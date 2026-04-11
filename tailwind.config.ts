@@ -47,6 +47,14 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        tier: {
+          basic: "hsl(var(--tier-basic))",
+          "basic-bg": "hsl(var(--tier-basic-bg))",
+          standard: "hsl(var(--tier-standard))",
+          "standard-bg": "hsl(var(--tier-standard-bg))",
+          premium: "hsl(var(--tier-premium))",
+          "premium-bg": "hsl(var(--tier-premium-bg))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
