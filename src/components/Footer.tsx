@@ -1,17 +1,19 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { serviceDetails } from "@/data/serviceDetails";
+import { domains } from "@/data/domains";
+import Logo from "./Logo";
 
 const Footer = () => {
   return (
     <footer className="hero-gradient text-primary-foreground">
       <div className="container max-w-6xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
           <div>
-            <h3 className="font-display text-xl font-bold mb-4">
-              REGC<span className="text-secondary">Digital</span>
-            </h3>
+            <div className="mb-4">
+              <Logo className="h-10 w-auto" inverted />
+            </div>
             <p className="text-primary-foreground/70 text-sm leading-relaxed">
               Healthcare digital marketing specialists. We help medical practices grow their patient base through proven digital strategies.
             </p>
@@ -31,6 +33,25 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Industries */}
+          <div>
+            <h4 className="font-display font-bold mb-4">Industries</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/domains" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  All Industries
+                </Link>
+              </li>
+              {domains.slice(0, 6).map((d) => (
+                <li key={d.slug}>
+                  <Link to={`/domains/${d.slug}`} className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                    {d.shortName}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Quick Links */}
           <div>
             <h4 className="font-display font-bold mb-4">Quick Links</h4>
@@ -38,6 +59,7 @@ const Footer = () => {
               <li><Link to="/" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Home</Link></li>
               <li><Link to="/about" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">About Us</Link></li>
               <li><Link to="/services" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">All Services</Link></li>
+              <li><Link to="/domains" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Industries</Link></li>
               <li><Link to="/contact" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Contact</Link></li>
             </ul>
           </div>
