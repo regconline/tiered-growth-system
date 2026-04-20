@@ -12,7 +12,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <div className="mb-4">
-              <Logo className="h-10 w-auto" inverted />
+              <Logo className="h-14 md:h-16 w-auto" inverted />
             </div>
             <p className="text-primary-foreground/70 text-sm leading-relaxed">
               Healthcare digital marketing specialists. We help medical practices grow their patient base through proven digital strategies.
@@ -74,12 +74,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-2 text-sm text-primary-foreground/70">
                 <Mail className="w-4 h-4 mt-0.5 shrink-0" />
-                <div className="space-y-1">
-                  <a href="mailto:info@regcdigital.co.za" className="block hover:text-primary-foreground transition-colors">info@regcdigital.co.za</a>
-                  <a href="mailto:sales@regcdigital.co.za" className="block hover:text-primary-foreground transition-colors">sales@regcdigital.co.za</a>
-                  <a href="mailto:support@regcdigital.co.za" className="block hover:text-primary-foreground transition-colors">support@regcdigital.co.za</a>
-                  <a href="mailto:finance@regcdigital.co.za" className="block hover:text-primary-foreground transition-colors">finance@regcdigital.co.za</a>
-                </div>
+                <a href="mailto:info@regcdigital.co.za" className="hover:text-primary-foreground transition-colors">info@regcdigital.co.za</a>
               </li>
             </ul>
           </div>

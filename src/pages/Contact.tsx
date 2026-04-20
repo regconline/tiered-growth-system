@@ -48,20 +48,9 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-display font-bold text-foreground mb-1">Email</h3>
-                    <div className="space-y-1">
-                      <a href="mailto:info@regcdigital.co.za" className="block text-muted-foreground hover:text-secondary transition-colors text-sm">
-                        info@regcdigital.co.za <span className="text-muted-foreground/50">— General</span>
-                      </a>
-                      <a href="mailto:sales@regcdigital.co.za" className="block text-muted-foreground hover:text-secondary transition-colors text-sm">
-                        sales@regcdigital.co.za <span className="text-muted-foreground/50">— Sales</span>
-                      </a>
-                      <a href="mailto:support@regcdigital.co.za" className="block text-muted-foreground hover:text-secondary transition-colors text-sm">
-                        support@regcdigital.co.za <span className="text-muted-foreground/50">— Support</span>
-                      </a>
-                      <a href="mailto:finance@regcdigital.co.za" className="block text-muted-foreground hover:text-secondary transition-colors text-sm">
-                        finance@regcdigital.co.za <span className="text-muted-foreground/50">— Finance</span>
-                      </a>
-                    </div>
+                    <a href="mailto:info@regcdigital.co.za" className="block text-muted-foreground hover:text-secondary transition-colors text-sm">
+                      info@regcdigital.co.za
+                    </a>
                   </div>
                 </div>
 
