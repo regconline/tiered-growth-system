@@ -19,10 +19,10 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border shadow-sm">
       <div className="container max-w-6xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" aria-label="REGC Digital home" className="flex items-center">
-            <Logo className="h-9 w-auto" />
+            <Logo className="h-12 md:h-14 w-auto" />
           </Link>
 
           {/* Desktop Nav */}
