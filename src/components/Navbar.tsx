@@ -2,22 +2,27 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { serviceDetails } from "@/data/serviceDetails";
+import { domains } from "@/data/domains";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [domainsOpen, setDomainsOpen] = useState(false);
+  const [mobileSubmenu, setMobileSubmenu] = useState<"services" | "domains" | null>(null);
   const location = useLocation();
 
   const isActive = (path: string) => location.pathname === path;
   const isServiceActive = location.pathname.startsWith("/services");
+  const isDomainActive = location.pathname.startsWith("/domains");
 
   return (
     <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border shadow-sm">
       <div className="container max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="font-display text-xl font-bold text-primary">
-            REGC<span className="text-secondary">Digital</span>
+          <Link to="/" aria-label="REGC Digital home" className="flex items-center">
+            <Logo className="h-9 w-auto" />
           </Link>
 
           {/* Desktop Nav */}
@@ -79,6 +84,46 @@ const Navbar = () => {
               </div>
             </div>
 
+            {/* Domains Dropdown */}
+            <div className="relative">
+              <button
+                className={`flex items-center gap-1 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  isDomainActive ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-muted"
+                }`}
+                onMouseEnter={() => setDomainsOpen(true)}
+                onClick={() => setDomainsOpen(!domainsOpen)}
+              >
+                Industries <ChevronDown className="w-4 h-4" />
+              </button>
+              <div
+                className={`absolute top-full right-0 mt-1 w-80 max-h-[70vh] overflow-y-auto bg-card rounded-lg border border-border shadow-xl py-2 transition-all ${
+                  domainsOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
+                }`}
+                onMouseEnter={() => setDomainsOpen(true)}
+                onMouseLeave={() => setDomainsOpen(false)}
+              >
+                <Link
+                  to="/domains"
+                  className="block px-4 py-2 text-sm font-semibold text-primary hover:bg-muted transition-colors"
+                  onClick={() => setDomainsOpen(false)}
+                >
+                  All Industries Overview
+                </Link>
+                <div className="border-t border-border my-1" />
+                {domains.map((d) => (
+                  <Link
+                    key={d.slug}
+                    to={`/domains/${d.slug}`}
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-foreground hover:bg-muted transition-colors"
+                    onClick={() => setDomainsOpen(false)}
+                  >
+                    <span>{d.emoji}</span>
+                    <span>{d.shortName}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
             <Link
               to="/contact"
               className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
@@ -100,6 +145,7 @@ const Navbar = () => {
           {/* Mobile Toggle */}
           <button
             className="md:hidden p-2 text-foreground"
+            aria-label="Toggle menu"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -108,7 +154,7 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {mobileOpen && (
-          <div className="md:hidden pb-4 border-t border-border">
+          <div className="md:hidden pb-4 border-t border-border max-h-[80vh] overflow-y-auto">
             <Link to="/" className="block px-4 py-3 text-sm font-medium text-foreground hover:bg-muted" onClick={() => setMobileOpen(false)}>
               Home
             </Link>
@@ -117,11 +163,11 @@ const Navbar = () => {
             </Link>
             <button
               className="flex items-center justify-between w-full px-4 py-3 text-sm font-medium text-foreground hover:bg-muted"
-              onClick={() => setServicesOpen(!servicesOpen)}
+              onClick={() => setMobileSubmenu(mobileSubmenu === "services" ? null : "services")}
             >
-              Services <ChevronDown className={`w-4 h-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
+              Services <ChevronDown className={`w-4 h-4 transition-transform ${mobileSubmenu === "services" ? "rotate-180" : ""}`} />
             </button>
-            {servicesOpen && (
+            {mobileSubmenu === "services" && (
               <div className="bg-muted/50 pl-6">
                 <Link to="/services" className="block px-4 py-2 text-sm font-semibold text-primary" onClick={() => setMobileOpen(false)}>
                   All Services
@@ -134,6 +180,29 @@ const Navbar = () => {
                     onClick={() => setMobileOpen(false)}
                   >
                     {s.icon} {s.title}
+                  </Link>
+                ))}
+              </div>
+            )}
+            <button
+              className="flex items-center justify-between w-full px-4 py-3 text-sm font-medium text-foreground hover:bg-muted"
+              onClick={() => setMobileSubmenu(mobileSubmenu === "domains" ? null : "domains")}
+            >
+              Industries <ChevronDown className={`w-4 h-4 transition-transform ${mobileSubmenu === "domains" ? "rotate-180" : ""}`} />
+            </button>
+            {mobileSubmenu === "domains" && (
+              <div className="bg-muted/50 pl-6">
+                <Link to="/domains" className="block px-4 py-2 text-sm font-semibold text-primary" onClick={() => setMobileOpen(false)}>
+                  All Industries
+                </Link>
+                {domains.map((d) => (
+                  <Link
+                    key={d.slug}
+                    to={`/domains/${d.slug}`}
+                    className="block px-4 py-2 text-sm text-foreground"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {d.emoji} {d.shortName}
                   </Link>
                 ))}
               </div>
