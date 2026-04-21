@@ -29,7 +29,21 @@ const {
 const path = canonicalPath ?? Astro.url.pathname;
 const canonical = new URL(path, SITE.url).toString();
 const ogUrl = new URL(ogImage, SITE.url).toString();
-const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": SITE.url + "#organization",
+  name: SITE.name,
+  url: SITE.url,
+  logo: new URL("/assets/regc-logo.png", SITE.url).toString(),
+  email: SITE.email,
+  telephone: SITE.phoneIntl,
+  areaServed: { "@type": "Country", name: "South Africa" },
+  sameAs: [],
+};
+
+const jsonLdArray: object[] = [orgSchema, ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [])];
 ---
 <!doctype html>
 <html lang="en">

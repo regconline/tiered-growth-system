@@ -3,11 +3,9 @@ Allow: /
 Disallow: /admin/
 Disallow: /private/
 Disallow: /thank-you/
-Crawl-delay: 1
 
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 0
 
 User-agent: Bingbot
 Allow: /
@@ -24,4 +22,4 @@ Crawl-delay: 10
 User-agent: SemrushBot
 Crawl-delay: 10
 
-Sitemap: https://regcdigital.co.za/sitemap.xml
+Sitemap: https://regcdigital.co.za/sitemap-index.xml

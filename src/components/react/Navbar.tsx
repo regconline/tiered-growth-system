@@ -76,6 +76,7 @@ export default function Navbar({ pathname }: Props) {
               </div>
             </div>
 
+            <a href="/locations/" className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${path.startsWith("/locations") || path.startsWith("/healthcare-marketing-") ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-muted"}`}>Locations</a>
             <a href="/blog/" className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${path.startsWith("/blog") ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-muted"}`}>Blog</a>
             <a href="/contact/" className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${isActive("/contact") ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-muted"}`}>Contact</a>
           </div>
@@ -113,6 +114,7 @@ export default function Navbar({ pathname }: Props) {
                 ))}
               </div>
             )}
+            <a href="/locations/" className="block px-4 py-3 text-sm font-medium text-foreground hover:bg-muted">Locations</a>
             <a href="/blog/" className="block px-4 py-3 text-sm font-medium text-foreground hover:bg-muted">Blog</a>
             <a href="/contact/" className="block px-4 py-3 text-sm font-medium text-foreground hover:bg-muted">Contact</a>
             <div className="px-4 pt-2">

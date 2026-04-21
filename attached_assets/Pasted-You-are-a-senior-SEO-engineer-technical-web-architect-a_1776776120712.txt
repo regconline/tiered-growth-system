@@ -1,0 +1,242 @@
+You are a senior SEO engineer, technical web architect, and performance optimization expert.
+
+Your task is to FULLY optimize the REGC Digital Astro website for:
+
+1. SEO domination across all major cities and provinces (South Africa focus)
+2. Maximum website speed and performance
+3. Perfect crawlability and indexing
+4. Clean, working, and shareable URLs
+5. Production-ready deployment on Vercel
+
+⚠️ CRITICAL:
+
+* FIRST scan and understand the ENTIRE codebase before making changes
+* DO NOT break existing functionality or design
+* ALL improvements must follow industry best practices
+
+---
+
+# 🎯 OBJECTIVES
+
+✅ Rank across ALL major cities and provinces in South Africa
+✅ Improve Core Web Vitals (LCP, CLS, INP)
+✅ Ensure ALL links are working and crawlable
+✅ Ensure clean, SEO-friendly URLs
+✅ Prepare project for seamless Vercel deployment
+✅ Ensure overall website health meets modern standards
+
+---
+
+# 🌍 STEP 1: LOCATION-BASED SEO (VERY IMPORTANT)
+
+Create SEO-optimized pages targeting major cities and provinces:
+
+Examples:
+
+* /digital-marketing-johannesburg
+* /healthcare-marketing-cape-town
+* /seo-services-durban
+* /medical-marketing-pretoria
+
+Requirements:
+
+* Each page must be UNIQUE (no duplicate content)
+* Include:
+
+  * Location-specific headings (H1)
+  * Local keywords
+  * Service + location combinations
+* Maintain professional healthcare tone
+
+Create pages for:
+
+* All provinces
+* Major cities in each province
+
+---
+
+# 🧠 STEP 2: ON-PAGE SEO OPTIMIZATION
+
+For EVERY page:
+
+* Add unique <title> tags (under 60 characters)
+* Add meta descriptions (under 160 characters)
+* Use proper heading hierarchy (H1 → H6)
+* Add keyword-rich but natural content
+* Optimize image alt text
+
+---
+
+# 🔗 STEP 3: INTERNAL LINKING (CRITICAL)
+
+* Ensure ALL pages link logically to each other
+* Add:
+
+  * Related services links
+  * Blog-to-service linking
+  * Location pages interlinking
+
+⚠️ REQUIREMENTS:
+
+* NO broken links
+* NO orphan pages
+* ALL links must resolve correctly
+
+---
+
+# 🧭 STEP 4: CLEAN URL STRUCTURE
+
+Ensure:
+
+* No query-based URLs
+* Use hyphen-separated words
+* Lowercase only
+
+Examples:
+✅ /healthcare-marketing-johannesburg
+❌ /Page?id=123
+
+---
+
+# 🧾 STEP 5: SITEMAP & ROBOTS
+
+Create:
+
+* sitemap.xml (auto-generated)
+* robots.txt
+
+Ensure:
+
+* All important pages are indexable
+* No accidental blocking
+
+---
+
+# ⚡ STEP 6: PERFORMANCE OPTIMIZATION
+
+* Optimize Core Web Vitals:
+
+  * LCP < 2.5s
+  * CLS < 0.1
+* Minimize JavaScript
+* Use Astro’s partial hydration properly
+* Optimize images (lazy loading, modern formats)
+* Remove unused CSS/JS
+
+---
+
+# 🧪 STEP 7: LINK VALIDATION
+
+* Scan entire site for:
+
+  * Broken links (404s)
+  * Incorrect paths
+* Fix ALL issues
+
+Ensure:
+
+* Every link is functional
+* Every route resolves correctly
+
+---
+
+# 🌐 STEP 8: CRAWLER & INDEXING READINESS
+
+Ensure compatibility with:
+
+* Googlebot
+* Bingbot
+* Social crawlers
+
+Requirements:
+
+* Proper HTML structure
+* No blocked resources
+* Fast response times
+
+---
+
+# 📦 STEP 9: VERCEL DEPLOYMENT SETUP
+
+Create and configure vercel.json:
+
+Requirements:
+
+* Clean routing
+* No broken refresh routes
+* Proper rewrites if needed
+
+Ensure:
+
+* All routes are shareable (no 404 on refresh)
+* Build settings are correct for Astro
+* Output is optimized for production
+
+---
+
+# 🧱 STEP 10: STRUCTURED DATA (BONUS BUT IMPORTANT)
+
+Add schema markup:
+
+* Organization schema
+* Local business schema
+* Service schema
+
+---
+
+# 🏥 STEP 11: WEBSITE HEALTH (INDUSTRY STANDARD)
+
+Ensure:
+
+* Accessibility (ARIA, semantic HTML)
+* Mobile responsiveness
+* HTTPS readiness
+* No console errors
+
+---
+
+# 🧼 STEP 12: CLEAN CODE & FINAL CHECK
+
+* Remove unused files
+* Ensure consistent naming
+* Validate HTML/CSS
+* Ensure no warnings/errors
+
+---
+
+# 🚀 FINAL OUTPUT REQUIREMENTS
+
+Deliver:
+
+1. Fully optimized SEO structure
+2. Location-based pages implemented
+3. All links working perfectly
+4. Clean URL structure
+5. sitemap.xml + robots.txt
+6. vercel.json properly configured
+7. Fast, production-ready build
+8. No errors or broken features
+
+---
+
+# ⚠️ FINAL RULES
+
+* DO NOT skip any step
+* DO NOT create duplicate content
+* DO NOT leave placeholder pages
+* VERIFY every link and route
+* ENSURE everything is deployable immediately
+
+---
+
+# ✅ SUCCESS CRITERIA
+
+The task is complete when:
+
+* The site ranks-ready for multiple locations
+* All pages are crawlable and indexed
+* Performance is optimized
+* Links are clean and functional
+* Deployment to Vercel works without issues
+
+Proceed step-by-step and execute carefully.

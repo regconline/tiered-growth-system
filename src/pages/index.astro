@@ -3,6 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { ArrowRight, CheckCircle2, Sparkles, Star, Users, TrendingUp } from "lucide-react";
 import { serviceDetails } from "@/data/serviceDetails";
 import { domains } from "@/data/domains";
+import { cities, provinces } from "@/data/locations";
 import { SITE } from "@/data/site";
 
 const title = "REGC Digital — Healthcare Marketing in South Africa";
@@ -89,6 +90,27 @@ const jsonLd = {
             <p class="font-display font-semibold text-sm text-foreground">{d.shortName}</p>
           </a>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="container max-w-6xl mx-auto px-4">
+      <div class="text-center mb-12 max-w-2xl mx-auto">
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">Healthcare marketing across South Africa</h2>
+        <p class="text-muted-foreground">Local strategies for {cities.length} cities across all {provinces.length} provinces.</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 max-w-5xl mx-auto mb-6">
+        {cities.slice(0, 15).map((c) => (
+          <a href={`/healthcare-marketing-${c.slug}/`} class="bg-card border border-border rounded-lg px-4 py-3 text-center hover:border-secondary hover:shadow-md transition-all">
+            <p class="font-display font-semibold text-sm text-foreground">{c.name}</p>
+          </a>
+        ))}
+      </div>
+      <div class="text-center">
+        <a href="/locations/" class="inline-flex items-center gap-1 text-sm font-semibold text-secondary hover:underline">
+          See all locations <ArrowRight className="w-4 h-4" />
+        </a>
       </div>
     </div>
   </section>
