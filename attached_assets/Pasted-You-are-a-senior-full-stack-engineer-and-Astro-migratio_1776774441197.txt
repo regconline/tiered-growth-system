@@ -1,0 +1,285 @@
+You are a senior full-stack engineer and Astro migration specialist.
+
+Your task is to perform a COMPLETE, production-ready migration of an existing REGC Digital website from a Vite + React architecture to Astro.
+
+⚠️ CRITICAL INSTRUCTIONS:
+
+1. FIRST scan and analyze the ENTIRE existing codebase inside this Replit project before making any changes.
+2. Understand:
+
+   * Folder structure
+   * Routing system
+   * Components
+   * Styling approach (Tailwind, CSS, etc.)
+   * Assets (images, logos, fonts)
+   * Any API usage or forms
+3. Do NOT start coding until the full architecture is understood.
+4. Maintain ALL functionality, ALL content, and ALL design fidelity.
+5. The final output must be production-ready, optimized, and clean.
+
+---
+
+# 🎯 OBJECTIVE
+
+Migrate the REGC Digital website to Astro while:
+
+✅ Preserving exact design (layout, spacing, colors, typography, responsiveness)
+✅ Improving performance (reduce JS, faster load times)
+✅ Improving SEO structure
+✅ Adding a FULL BLOG SYSTEM
+✅ Keeping React ONLY where necessary (forms, interactivity)
+✅ Removing unnecessary JavaScript
+
+---
+
+# 🧱 STEP 1: PROJECT SETUP
+
+1. Create a fresh Astro project inside Replit:
+
+   * Minimal template
+2. Install integrations:
+
+   * React
+   * Tailwind (if used in current project)
+3. Ensure project runs correctly before migration begins
+
+---
+
+# 📁 STEP 2: STRUCTURE MIGRATION
+
+Recreate a clean Astro structure:
+
+src/
+components/
+layouts/
+pages/
+styles/
+content/blog/
+public/
+
+Map existing Vite structure into Astro:
+
+* React components → src/components/
+* Pages → src/pages/ (convert to .astro)
+* Layout logic → src/layouts/
+
+---
+
+# 🔄 STEP 3: ROUTING MIGRATION
+
+1. Remove React Router completely
+2. Convert all routes into Astro file-based routing:
+
+Example:
+
+* / → src/pages/index.astro
+* /about → src/pages/about.astro
+* /services → src/pages/services.astro
+
+Ensure:
+
+* URL structure remains EXACTLY the same (SEO preservation)
+
+---
+
+# 🎨 STEP 4: DESIGN PRESERVATION (VERY IMPORTANT)
+
+You MUST replicate design pixel-perfect:
+
+* Same spacing system
+* Same typography scale
+* Same colors
+* Same responsiveness (mobile/tablet/desktop)
+* Same animations (or improved equivalent)
+
+If Tailwind is used:
+
+* Reuse existing classes
+
+If custom CSS:
+
+* Migrate into Astro global styles
+
+---
+
+# 🧩 STEP 5: COMPONENT MIGRATION
+
+1. Identify reusable components:
+
+   * Navbar
+   * Hero sections
+   * Service cards
+   * Footer
+   * CTA sections
+
+2. Convert:
+
+   * Static components → Astro components (.astro)
+   * Interactive components → keep as React (.jsx)
+
+3. Import React components into Astro ONLY when needed:
+   Use hydration strategies:
+
+   * client:visible (preferred)
+   * client:idle (secondary)
+   * client:load (only if necessary)
+
+---
+
+# ⚡ STEP 6: PERFORMANCE OPTIMIZATION
+
+* Remove unnecessary React usage
+* Ensure most pages ship ZERO JavaScript
+* Optimize images:
+
+  * Use Astro image optimization if possible
+* Lazy load non-critical components
+* Use partial hydration correctly
+
+---
+
+# 🧠 STEP 7: SEO OPTIMIZATION
+
+Add:
+
+* Proper meta tags (title, description)
+* Open Graph tags
+* Semantic HTML structure
+* Sitemap support
+* Clean heading hierarchy (H1 → H6)
+
+Ensure:
+
+* Fast load time
+* Mobile-first design
+
+---
+
+# 📝 STEP 8: BLOG SYSTEM (CRITICAL FEATURE)
+
+Implement Astro Content Collections:
+
+1. Create:
+   src/content/blog/
+
+2. Configure content collections
+
+3. Blog post format (Markdown):
+
+   * title
+   * description
+   * publish date
+   * author
+   * tags
+   * featured image
+
+4. Create pages:
+
+   * /blog (list all posts)
+   * /blog/[slug] (dynamic post pages)
+
+5. Features:
+
+   * Blog listing page
+   * Individual blog pages
+   * SEO-friendly URLs
+   * Styled content (headings, images, code blocks)
+   * Reading experience optimized
+
+6. Optional enhancements:
+
+   * Categories/tags filtering
+   * Related posts section
+
+---
+
+# 📱 STEP 9: RESPONSIVENESS
+
+Ensure:
+
+* Mobile-first design
+* Works perfectly on:
+
+  * Phones
+  * Tablets
+  * Desktop
+
+---
+
+# 📞 STEP 10: CONTACT & CTA
+
+Ensure all CTAs are preserved:
+
+* Email: [info@regcdigital.co.za](mailto:info@regcdigital.co.za)
+* WhatsApp: 0640826855
+
+Ensure:
+
+* Forms still work (React if needed)
+* Buttons are functional
+
+---
+
+# 🖼 STEP 11: ASSETS
+
+* Move all images, logos, fonts into /public
+* Ensure paths are updated correctly
+* Optimize images where possible
+
+---
+
+# 🧪 STEP 12: TESTING
+
+Before completion:
+
+* Test all pages
+* Test navigation
+* Test responsiveness
+* Test blog functionality
+* Test forms
+* Fix all errors
+
+---
+
+# 🚀 STEP 13: FINAL OUTPUT REQUIREMENTS
+
+Deliver:
+
+1. Fully working Astro project
+2. Clean, well-structured code
+3. No unused files
+4. No broken routes
+5. Optimized performance
+6. Blog fully functional
+7. Pixel-perfect design match
+
+---
+
+# ⚠️ FINAL RULES
+
+* DO NOT skip any step
+* DO NOT simplify design
+* DO NOT remove features unless absolutely necessary (and explain why)
+* DO NOT leave placeholders
+* DO NOT assume — verify everything from the codebase
+
+---
+
+# 💡 BONUS (If Possible)
+
+* Add subtle modern animations
+* Improve UI where appropriate WITHOUT changing brand identity
+* Improve conversion UX (clear CTAs, flow)
+
+---
+
+# ✅ SUCCESS CRITERIA
+
+The migration is complete when:
+
+* The Astro version looks identical (or better)
+* Loads significantly faster
+* Has a working blog system
+* Has clean, maintainable code
+
+Proceed step-by-step and execute carefully.
