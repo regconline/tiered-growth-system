@@ -1,0 +1,62 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { ArrowLeft } from "lucide-react";
+import { SITE } from "@/data/site";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const path = `/blog/${post.slug}/`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
+  author: { "@type": "Organization", name: post.data.author },
+  publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+  mainEntityOfPage: new URL(path, SITE.url).toString(),
+};
+---
+<BaseLayout
+  title={`${post.data.title} | REGC Digital`}
+  description={post.data.description}
+  canonicalPath={path}
+  ogType="article"
+  jsonLd={jsonLd}
+>
+  <article class="py-16">
+    <div class="container max-w-3xl mx-auto px-4">
+      <a href="/blog/" class="inline-flex items-center gap-1 text-sm text-secondary font-semibold mb-6 hover:underline">
+        <ArrowLeft className="w-4 h-4" /> Back to blog
+      </a>
+      <div class="text-5xl mb-4">{post.data.heroEmoji}</div>
+      <span class="text-xs uppercase tracking-wide text-secondary font-semibold">{post.data.category}</span>
+      <h1 class="font-display text-3xl md:text-5xl font-bold text-foreground mt-2 mb-4 leading-tight">{post.data.title}</h1>
+      <div class="flex items-center gap-4 text-sm text-muted-foreground mb-8 pb-8 border-b border-border">
+        <span>{post.data.author}</span>
+        <span>·</span>
+        <time datetime={post.data.pubDate.toISOString()}>
+          {post.data.pubDate.toLocaleDateString("en-ZA", { year: "numeric", month: "long", day: "numeric" })}
+        </time>
+      </div>
+      <div class="prose prose-lg max-w-none">
+        <Content />
+      </div>
+      {post.data.tags.length > 0 && (
+        <div class="mt-12 pt-6 border-t border-border flex flex-wrap gap-2">
+          {post.data.tags.map((tag) => (
+            <span class="text-xs bg-muted text-muted-foreground px-3 py-1 rounded-full">#{tag}</span>
+          ))}
+        </div>
+      )}
+    </div>
+  </article>
+</BaseLayout>

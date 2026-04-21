@@ -1,0 +1,15 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+const title = "Page Not Found | REGC Digital";
+const description = "The page you're looking for doesn't exist.";
+---
+<BaseLayout {title} {description} noindex>
+  <section class="py-32 text-center">
+    <div class="container max-w-xl mx-auto px-4">
+      <p class="font-display text-6xl font-bold text-secondary mb-4">404</p>
+      <h1 class="font-display text-3xl font-bold text-foreground mb-3">Page not found</h1>
+      <p class="text-muted-foreground mb-8">The page you're looking for doesn't exist or has moved.</p>
+      <a href="/" class="inline-flex items-center gap-2 bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-secondary/90 transition-colors">Back to home</a>
+    </div>
+  </section>
+</BaseLayout>

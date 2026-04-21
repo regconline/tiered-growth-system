@@ -1,0 +1,31 @@
+---
+import TierCard from "./TierCard.astro";
+
+interface Tier {
+  tier: "basic" | "standard" | "premium";
+  name: string;
+  price: string;
+  includes: string[];
+  result?: string;
+}
+
+interface Props {
+  icon: string;
+  number: number;
+  title: string;
+  tiers: Tier[];
+}
+
+const { icon, number, title, tiers } = Astro.props;
+---
+<section class="py-12">
+  <div class="flex items-center gap-3 mb-8">
+    <span class="text-3xl">{icon}</span>
+    <h3 class="font-display text-2xl md:text-3xl font-bold text-foreground">
+      <span class="text-muted-foreground mr-2">{number}.</span>{title}
+    </h3>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {tiers.map((t) => <TierCard {...t} />)}
+  </div>
+</section>

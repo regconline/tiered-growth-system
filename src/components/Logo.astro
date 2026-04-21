@@ -1,0 +1,15 @@
+---
+interface Props {
+  className?: string;
+  inverted?: boolean;
+}
+const { className = "h-12 w-auto", inverted = false } = Astro.props;
+---
+<img
+  src="/assets/regc-logo.png"
+  alt="REGC Digital — Healthcare Digital Marketing"
+  class={`${className} ${inverted ? "brightness-0 invert" : ""}`}
+  width="220"
+  height="56"
+  loading="eager"
+/>
