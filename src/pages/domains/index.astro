@@ -2,11 +2,24 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { ArrowRight } from "lucide-react";
 import { domains } from "@/data/domains";
+import { breadcrumbList, itemList } from "@/lib/seo";
 
 const title = "Healthcare Specialities We Serve | REGC Digital";
 const description = "Specialised digital marketing for GPs, dentists, dermatologists, paediatricians, physiotherapists and more across South Africa.";
+const path = "/domains/";
+const jsonLd = [
+  breadcrumbList([
+    { name: "Home", path: "/" },
+    { name: "Industries", path },
+  ]),
+  itemList(domains, (d) => ({
+    name: d.fullName,
+    url: `/domains/${d.slug}/`,
+    description: d.heroSubheading,
+  })),
+];
 ---
-<BaseLayout {title} {description}>
+<BaseLayout {title} {description} {jsonLd} canonicalPath={path}>
   <section class="hero-gradient text-primary-foreground py-20">
     <div class="container max-w-4xl mx-auto px-4 text-center">
       <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">Healthcare Specialities</h1>

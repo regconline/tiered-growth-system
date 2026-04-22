@@ -2,6 +2,8 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import { ArrowRight } from "lucide-react";
+import { breadcrumbList } from "@/lib/seo";
+import { SITE } from "@/data/site";
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -9,8 +11,30 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
 
 const title = "Healthcare Marketing Insights | REGC Digital Blog";
 const description = "Practical guides, strategies, and insights on digital marketing for South African medical practices.";
+const path = "/blog/";
+const jsonLd = [
+  breadcrumbList([
+    { name: "Home", path: "/" },
+    { name: "Blog", path },
+  ]),
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: title,
+    description,
+    url: new URL(path, SITE.url).toString(),
+    publisher: { "@id": SITE.url + "#organization" },
+    blogPost: posts.map((p) => ({
+      "@type": "BlogPosting",
+      headline: p.data.title,
+      description: p.data.description,
+      datePublished: p.data.pubDate.toISOString(),
+      url: new URL(`/blog/${p.slug}/`, SITE.url).toString(),
+    })),
+  },
+];
 ---
-<BaseLayout {title} {description}>
+<BaseLayout {title} {description} {jsonLd} canonicalPath={path}>
   <section class="hero-gradient text-primary-foreground py-20">
     <div class="container max-w-4xl mx-auto px-4 text-center">
       <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">Insights & Guides</h1>

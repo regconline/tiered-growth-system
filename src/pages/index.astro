@@ -9,16 +9,60 @@ import { SITE } from "@/data/site";
 const title = "REGC Digital — Healthcare Marketing in South Africa";
 const description = "Specialist healthcare marketing for South African medical practices. Websites, SEO, ads, social, reputation — done by people who understand healthcare.";
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: SITE.name,
-  url: SITE.url,
-  telephone: SITE.phoneIntl,
-  email: SITE.email,
-  areaServed: "ZA",
-  description,
-};
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": SITE.url + "#service",
+    name: SITE.name,
+    url: SITE.url,
+    telephone: SITE.phoneIntl,
+    email: SITE.email,
+    areaServed: { "@type": "Country", name: "South Africa" },
+    serviceType: "Healthcare Digital Marketing",
+    description,
+    priceRange: "$$",
+    provider: { "@id": SITE.url + "#organization" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Do you only work with healthcare practices in South Africa?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. We focus exclusively on healthcare practices across South Africa — doctors, dentists, allied health, pharmacies, psychology, nursing and more — because compliance, patient psychology and the local search market all behave differently from generic small-business marketing.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Are your campaigns HPCSA and POPIA compliant?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Every website, ad, landing page and social asset we produce is built against HPCSA, SANC, SAPC or relevant council advertising rules and POPIA data-handling requirements. We refuse work that would put your registration at risk.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How quickly can I expect results?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Website launches and Google Ads can generate enquiries within days. Local SEO typically shows movement at 30–60 days, with strong compounding gains from month 4 onward.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Do you require long-term contracts?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No. All retainer services are month-to-month with no lock-in. We earn your business each month through results.",
+        },
+      },
+    ],
+  },
+];
 ---
 <BaseLayout {title} {description} {jsonLd} canonicalPath="/">
   <section class="hero-gradient text-primary-foreground">

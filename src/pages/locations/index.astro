@@ -1,17 +1,31 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { MapPin } from "lucide-react";
-import { provinces, cities } from "@/data/locations";
+import { provinces, cities, locations } from "@/data/locations";
+import { breadcrumbList, itemList } from "@/lib/seo";
 
 const title = "Healthcare Marketing Locations | REGC Digital";
 const description = "Specialist healthcare marketing across South Africa — from Johannesburg and Cape Town to Bloemfontein, Polokwane and beyond. Find your city or province.";
+const path = "/locations/";
 
 const grouped = provinces.map((p) => ({
   province: p,
   cities: cities.filter((c) => c.region === p.region),
 }));
+
+const jsonLd = [
+  breadcrumbList([
+    { name: "Home", path: "/" },
+    { name: "Locations", path },
+  ]),
+  itemList(locations, (l) => ({
+    name: l.name,
+    url: `/healthcare-marketing-${l.slug}/`,
+    description: l.intro,
+  })),
+];
 ---
-<BaseLayout {title} {description}>
+<BaseLayout {title} {description} {jsonLd} canonicalPath={path}>
   <section class="hero-gradient text-primary-foreground py-20">
     <div class="container max-w-4xl mx-auto px-4 text-center">
       <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">Healthcare Marketing Across South Africa</h1>

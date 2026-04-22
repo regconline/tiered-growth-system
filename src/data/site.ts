@@ -1,9 +1,16 @@
 export const SITE = {
   url: "https://regcdigital.co.za",
   name: "REGC Digital",
-  defaultOg: "/og-default.jpg",
+  legalName: "REGC Digital",
+  defaultOg: "/assets/regc-logo.png",
+  defaultOgAlt: "REGC Digital — Healthcare Digital Marketing in South Africa",
   phone: "064 082 6855",
   phoneIntl: "+27640826855",
   whatsapp: "27640826855",
   email: "info@regcdigital.co.za",
+  locale: "en_ZA",
+  countryCode: "ZA",
+  region: "South Africa",
+  themeColor: "#0b3b5c",
+  sameAs: [] as string[],
 };

@@ -3,11 +3,26 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import ContactForm from "@/components/react/ContactForm.tsx";
 import { Mail, Phone, MessageCircle } from "lucide-react";
 import { SITE } from "@/data/site";
+import { breadcrumbList } from "@/lib/seo";
 
 const title = "Contact Us | REGC Digital";
 const description = "Get in touch with REGC Digital — book a free healthcare marketing consultation by WhatsApp, email or phone.";
+const path = "/contact/";
+const jsonLd = [
+  breadcrumbList([
+    { name: "Home", path: "/" },
+    { name: "Contact", path },
+  ]),
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: title,
+    description,
+    url: new URL(path, SITE.url).toString(),
+  },
+];
 ---
-<BaseLayout {title} {description}>
+<BaseLayout {title} {description} {jsonLd} canonicalPath={path}>
   <section class="hero-gradient text-primary-foreground py-20">
     <div class="container max-w-4xl mx-auto px-4 text-center">
       <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">Let's talk</h1>

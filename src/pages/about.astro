@@ -1,11 +1,26 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { CheckCircle2, Heart, Target, Users } from "lucide-react";
+import { breadcrumbList } from "@/lib/seo";
 
 const title = "About Us | REGC Digital";
 const description = "We're a team of healthcare marketing specialists in South Africa. Learn how REGC Digital helps medical practices grow ethically and sustainably.";
+const path = "/about/";
+const jsonLd = [
+  breadcrumbList([
+    { name: "Home", path: "/" },
+    { name: "About", path },
+  ]),
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: title,
+    description,
+    url: path,
+  },
+];
 ---
-<BaseLayout {title} {description}>
+<BaseLayout {title} {description} {jsonLd} canonicalPath={path}>
   <section class="hero-gradient text-primary-foreground py-20">
     <div class="container max-w-4xl mx-auto px-4 text-center">
       <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">About REGC Digital</h1>
