@@ -152,6 +152,76 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"blog": {
+"biggest-social-media-mistakes-businesses.md": {
+	id: "biggest-social-media-mistakes-businesses.md";
+  slug: "biggest-social-media-mistakes-businesses";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"blogging-drives-traffic-and-sales.md": {
+	id: "blogging-drives-traffic-and-sales.md";
+  slug: "blogging-drives-traffic-and-sales";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"build-authority-with-content.md": {
+	id: "build-authority-with-content.md";
+  slug: "build-authority-with-content";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"complete-digital-marketing-guide-south-africa.md": {
+	id: "complete-digital-marketing-guide-south-africa.md";
+  slug: "complete-digital-marketing-guide-south-africa";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"content-marketing-backbone-online-success.md": {
+	id: "content-marketing-backbone-online-success.md";
+  slug: "content-marketing-backbone-online-success";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"content-strategy-what-to-post.md": {
+	id: "content-strategy-what-to-post.md";
+  slug: "content-strategy-what-to-post";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"custom-vs-template-website-south-africa.md": {
+	id: "custom-vs-template-website-south-africa.md";
+  slug: "custom-vs-template-website-south-africa";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"evergreen-vs-trending-content.md": {
+	id: "evergreen-vs-trending-content.md";
+  slug: "evergreen-vs-trending-content";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"fast-website-doubles-sales.md": {
+	id: "fast-website-doubles-sales.md";
+  slug: "fast-website-doubles-sales";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"generate-leads-online-without-paid-ads.md": {
+	id: "generate-leads-online-without-paid-ads.md";
+  slug: "generate-leads-online-without-paid-ads";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "google-ads-medical-practice.md": {
 	id: "google-ads-medical-practice.md";
   slug: "google-ads-medical-practice";
@@ -166,9 +236,114 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"high-converting-website-breakdown.md": {
+	id: "high-converting-website-breakdown.md";
+  slug: "high-converting-website-breakdown";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"how-to-rank-1-google-south-africa.md": {
+	id: "how-to-rank-1-google-south-africa.md";
+  slug: "how-to-rank-1-google-south-africa";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"instagram-vs-facebook-ads-south-africa.md": {
+	id: "instagram-vs-facebook-ads-south-africa.md";
+  slug: "instagram-vs-facebook-ads-south-africa";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "local-seo-medical-practice.md": {
 	id: "local-seo-medical-practice.md";
   slug: "local-seo-medical-practice";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"local-seo-south-africa-guide.md": {
+	id: "local-seo-south-africa-guide.md";
+  slug: "local-seo-south-africa-guide";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"marketing-trends-south-africa-2026.md": {
+	id: "marketing-trends-south-africa-2026.md";
+  slug: "marketing-trends-south-africa-2026";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"on-page-vs-technical-seo.md": {
+	id: "on-page-vs-technical-seo.md";
+  slug: "on-page-vs-technical-seo";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"seo-content-writing-rank-and-convert.md": {
+	id: "seo-content-writing-rank-and-convert.md";
+  slug: "seo-content-writing-rank-and-convert";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"social-media-grow-business-90-days.md": {
+	id: "social-media-grow-business-90-days.md";
+  slug: "social-media-grow-business-90-days";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"top-10-website-mistakes-costing-customers.md": {
+	id: "top-10-website-mistakes-costing-customers.md";
+  slug: "top-10-website-mistakes-costing-customers";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"turn-followers-into-paying-customers.md": {
+	id: "turn-followers-into-paying-customers.md";
+  slug: "turn-followers-into-paying-customers";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"what-is-seo-business-survival.md": {
+	id: "what-is-seo-business-survival.md";
+  slug: "what-is-seo-business-survival";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"why-business-needs-digital-marketing-strategy.md": {
+	id: "why-business-needs-digital-marketing-strategy.md";
+  slug: "why-business-needs-digital-marketing-strategy";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"why-business-needs-professional-website-2026.md": {
+	id: "why-business-needs-professional-website-2026.md";
+  slug: "why-business-needs-professional-website-2026";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"why-website-not-ranking-fix.md": {
+	id: "why-website-not-ranking-fix.md";
+  slug: "why-website-not-ranking-fix";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
+"zero-to-online-presence-step-by-step.md": {
+	id: "zero-to-online-presence-step-by-step.md";
+  slug: "zero-to-online-presence-step-by-step";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">

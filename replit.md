@@ -94,3 +94,12 @@ public/
 - React islands use `client:load` for interactive-on-mount, `client:idle` for non-critical widgets.
 - Blog posts: front-matter must satisfy the Zod schema in `src/content/config.ts`.
 - Adding a new blog post = just drop a `.md` or `.mdx` file in `src/content/blog/`.
+
+## Blog Content
+
+- 28 blog posts live in `src/content/blog/` (3 healthcare-focused + 25 general SA business marketing posts).
+- 25 new posts (Apr 2026) cover: Website Development (5), SEO (5), Social Media (5), Content Marketing (5), Digital Marketing General (5).
+- Each post: ~1,500–2,500 words, hook intro → H2 body → real example → key takeaways → FAQ → CTA + image suggestion HTML comments.
+- Post dates staggered every 3 days from 2026-04-22 (newest) back to 2026-02-09.
+- Internal cross-links between blog posts and into `/services/{seo-services,website-design,content-marketing,conversion-optimization,social-media,practice-photography}/`.
+- Build: 94 total pages (67 base + 28 blog post detail pages — minus index overlap).
