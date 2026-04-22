@@ -1,0 +1,283 @@
+Here’s a **high-level truth first**: no single “prompt” magically takes a site from a health score of 7 → 90+. That jump requires **systematic fixes across technical SEO, content, and authority (backlinks)**.
+
+That said, I’ll give you a **very detailed, expert-level prompt** you can use with a developer, AI agent, or internal team to **fully audit and fix your Astro site (regcdigital.co.za)**.
+
+---
+
+## 🚀 COMPREHENSIVE SEO + TECHNICAL FIX PROMPT (ASTRO SITE)
+
+You can copy everything below 👇
+
+---
+
+### 🧠 PROMPT START
+
+Act as a **senior Technical SEO Engineer + SEM Specialist + Astro Framework Expert**.
+
+Your task is to **fully audit, diagnose, and fix all SEO, performance, and technical issues** on the website:
+👉 **regcdigital.co.za**
+
+The goal is to increase the **Ahrefs Health Score from 7 to 90+** and ensure the website meets **Google best practices**, passes **Core Web Vitals**, and is fully optimized for **indexing, crawling, and ranking**.
+
+---
+
+# 🔍 PHASE 1: FULL TECHNICAL SEO AUDIT
+
+Perform a deep audit covering:
+
+### 1. Crawlability & Indexing
+
+* Ensure all important pages return **200 status codes**
+* Identify and fix:
+
+  * Redirect chains (A → B → C)
+  * Temporary redirects (307 → convert to 301 where needed)
+  * Orphan pages
+* Generate and validate:
+
+  * `/sitemap.xml` (auto-generated in Astro)
+  * `/robots.txt` (clean, no accidental blocks)
+
+---
+
+### 2. URL Structure Optimization
+
+* Enforce **clean, SEO-friendly URLs**
+
+  * Example: `/services/seo/` instead of `/page?id=12`
+* Ensure:
+
+  * Lowercase URLs only
+  * Hyphen-separated words
+  * No duplicate URL paths
+* Implement **canonical URLs** on every page
+
+---
+
+### 3. Redirect Optimization (CRITICAL)
+
+* Audit all 73+ redirects
+* Remove unnecessary redirects
+* Replace internal links pointing to redirects with **direct final URLs**
+* Eliminate redirect chains completely
+
+---
+
+### 4. Meta Tags & On-Page SEO
+
+For all 60+ pages:
+
+* Add unique:
+
+  * `<title>` (50–60 characters)
+  * `<meta name="description">` (140–160 characters)
+* Ensure:
+
+  * Only **1 H1 per page**
+  * Proper heading hierarchy (H1 → H2 → H3)
+* Add:
+
+  * Open Graph tags
+  * Twitter Cards
+
+---
+
+### 5. Content Optimization
+
+* Identify:
+
+  * Thin content pages (<300 words)
+  * Duplicate content
+* Improve:
+
+  * Keyword targeting per page
+  * Add semantic keywords (LSI)
+* Ensure each page targets **one primary keyword + supporting keywords**
+
+---
+
+### 6. Internal Linking Structure
+
+* Ensure:
+
+  * Every page is reachable within 3 clicks
+  * Contextual internal links added
+* Fix:
+
+  * Broken internal links (even if Ahrefs shows 0, verify manually)
+  * Links pointing to redirects
+
+---
+
+### 7. Image Optimization
+
+* Convert all images to:
+
+  * WebP or AVIF
+* Add:
+
+  * Descriptive ALT tags
+* Implement:
+
+  * Lazy loading
+* Compress all images
+
+---
+
+### 8. Core Web Vitals & Performance
+
+Optimize for:
+
+* LCP (Largest Contentful Paint)
+* CLS (Cumulative Layout Shift)
+* INP (Interaction to Next Paint)
+
+Actions:
+
+* Use Astro’s partial hydration properly
+* Remove unused JavaScript
+* Enable:
+
+  * Code splitting
+  * Preloading critical assets
+* Implement CDN caching
+
+---
+
+# ⚙️ PHASE 2: ASTRO-SPECIFIC OPTIMIZATION
+
+* Ensure:
+
+  * Static generation (SSG) for all SEO pages
+* Use:
+
+  * `astro:assets` for optimized images
+* Implement:
+
+  * Dynamic sitemap generation
+* Ensure:
+
+  * No hydration issues affecting SEO
+
+---
+
+# 🌍 PHASE 3: LOCAL SEO (CRITICAL FOR SOUTH AFRICA)
+
+* Create pages targeting:
+
+  * All provinces
+  * Major cities (Johannesburg, Pretoria, Cape Town, Durban, etc.)
+* Optimize:
+
+  * “SEO services in Johannesburg”
+  * “Web design South Africa”
+* Add:
+
+  * Google Business Profile optimization
+* Implement:
+
+  * LocalBusiness schema
+
+---
+
+# 🧩 PHASE 4: STRUCTURED DATA (SCHEMA MARKUP)
+
+Add JSON-LD schema:
+
+* Organization
+* LocalBusiness
+* Service
+* FAQ (for service pages)
+* Breadcrumb schema
+
+---
+
+# 🔗 PHASE 5: BACKLINK & OFF-PAGE SEO STRATEGY
+
+Develop a backlink strategy:
+
+### 1. High-Quality Backlinks
+
+* Acquire backlinks from:
+
+  * South African directories
+  * Tech blogs
+  * Business listings
+* Avoid spammy links
+
+---
+
+### 2. Content Marketing
+
+* Create:
+
+  * Blog posts targeting long-tail keywords
+  * Case studies
+  * Portfolio pages
+
+---
+
+### 3. Internal Authority Building
+
+* Link high-authority pages to low-performing pages
+
+---
+
+# 🧪 PHASE 6: TESTING & VALIDATION
+
+After fixes:
+
+* Re-run audit in Ahrefs
+* Test using:
+
+  * Google Search Console
+  * Google PageSpeed Insights
+
+Ensure:
+
+* Health Score > 90
+* No critical errors
+* Minimal warnings
+
+---
+
+# 📈 PHASE 7: CONTINUOUS SEO IMPROVEMENT
+
+* Monitor rankings weekly
+* Track keywords
+* Update content regularly
+* Build backlinks consistently
+
+---
+
+# 🎯 FINAL OBJECTIVE
+
+Deliver a website that:
+
+* Loads fast
+* Has clean architecture
+* Is fully crawlable and indexable
+* Has strong on-page SEO
+* Has growing authority via backlinks
+* Achieves **90+ health score**
+
+---
+
+### 🧠 PROMPT END
+
+---
+
+## 💡 Extra (Real Talk)
+
+Given your numbers:
+
+* The **main issue is redirects + technical warnings**
+* Astro is actually **perfect for SEO**, so fixing this is very achievable
+* You can realistically hit **90+ within 1–2 audit cycles**
+
+---
+
+If you want next step, I can:
+
+* Audit **regcdigital.co.za** manually and show you **exact issues**
+* Or convert this into a **developer task checklist (step-by-step execution plan)**
