@@ -1,11 +1,1 @@
-{
-  "version": 4,
-  "routes": {},
-  "dynamicRoutes": {},
-  "notFoundRoutes": [],
-  "preview": {
-    "previewModeId": "ac9218a08851a803e995d391e16e8311",
-    "previewModeSigningKey": "3dd2f58cdc5e991cae45502d57f4623e2dcb0193297ff2742157b2e3859b91b2",
-    "previewModeEncryptionKey": "1e4d4318e426f54c786cce27a16b6dfc2db43507e7dc4e936c8df756ef3a924f"
-  }
-}
+{"version":4,"routes":{"/blog/why-business-needs-professional-website-2026":{},"/blog/custom-vs-template-website-south-africa":{},"/blog/local-seo-medical-practice":{},"/blog/fast-website-doubles-sales":{},"/blog/top-10-website-mistakes-costing-customers":{},"/blog/high-converting-website-breakdown":{},"/blog/what-is-seo-business-survival":{},"/blog/how-to-rank-1-google-south-africa":{},"/blog/google-ads-medical-practice":{},"/blog/on-page-vs-technical-seo":{},"/blog/why-website-not-ranking-fix":{},"/blog/local-seo-south-africa-guide":{},"/blog/social-media-grow-business-90-days":{},"/blog/instagram-vs-facebook-ads-south-africa":{},"/blog/content-strategy-what-to-post":{},"/blog/turn-followers-into-paying-customers":{},"/blog/healthcare-website-must-haves":{},"/blog/biggest-social-media-mistakes-businesses":{},"/blog/content-marketing-backbone-online-success":{},"/blog/blogging-drives-traffic-and-sales":{},"/blog/seo-content-writing-rank-and-convert":{},"/blog/evergreen-vs-trending-content":{},"/blog/build-authority-with-content":{},"/blog/complete-digital-marketing-guide-south-africa":{},"/blog/generate-leads-online-without-paid-ads":{},"/blog/why-business-needs-digital-marketing-strategy":{},"/blog/marketing-trends-south-africa-2026":{},"/blog/zero-to-online-presence-step-by-step":{}},"dynamicRoutes":{"/blog/[slug]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/blog/[slug]","routeRegex":"^\\/blog\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"38752d1024aa5bfe909fe2a32268a099","previewModeSigningKey":"464fc026c64f2201fdaf71bea683454696a27fa2ef432bbc053291f8fc5a8e73","previewModeEncryptionKey":"814710f7ee773b71097c1972ddbad474b74a0b1fadeeed8286d28c41ecfea59c"}}

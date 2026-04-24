@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   trailingSlash: true,
+  allowedDevOrigins: ["*.janeway.replit.dev", "*.replit.dev", "*.repl.co"],
   async rewrites() {
     return [
       {

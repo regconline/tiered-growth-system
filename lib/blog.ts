@@ -6,6 +6,11 @@ import remarkHtml from "remark-html";
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
 
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -18,6 +23,28 @@ export interface BlogPost {
   heroEmoji: string;
   draft: boolean;
   content?: string;
+  faqs?: FaqItem[];
+}
+
+/** Extract FAQ pairs from a "## Frequently asked questions" section */
+export function extractFaqs(markdown: string): FaqItem[] {
+  const faqMatch = markdown.match(/##\s+Frequently asked questions\s*\n([\s\S]*?)(?=\n##\s+|\n---|\n<!--|$)/i);
+  if (!faqMatch) return [];
+
+  const block = faqMatch[1];
+  const items: FaqItem[] = [];
+  const questionBlocks = block.split(/(?=\*\*[^*]+\??\*\*)/g).filter(Boolean);
+
+  for (const chunk of questionBlocks) {
+    const qMatch = chunk.match(/^\*\*(.+?)\*\*\s*\n+([\s\S]+?)(?:\n\n|$)/);
+    if (qMatch) {
+      items.push({
+        question: qMatch[1].trim(),
+        answer: qMatch[2].trim().replace(/\n+/g, " "),
+      });
+    }
+  }
+  return items;
 }
 
 function parsePost(filePath: string, fileName: string): BlogPost {
@@ -36,6 +63,7 @@ function parsePost(filePath: string, fileName: string): BlogPost {
     heroEmoji: data.heroEmoji ?? "📰",
     draft: data.draft ?? false,
     content,
+    faqs: extractFaqs(content),
   };
 }
 

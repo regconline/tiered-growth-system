@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Phone } from "lucide-react";
+import { Mail, Phone, ArrowRight } from "lucide-react";
 import { serviceDetails } from "@/data/serviceDetails";
 import { domains } from "@/data/domains";
 import { cities } from "@/data/locations";
@@ -10,88 +10,102 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="hero-gradient text-primary-foreground">
-      <div className="container max-w-6xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
-          <div>
-            <div className="mb-4">
-              <img
-                src="/assets/regc-logo.png"
-                alt="REGC Digital"
-                className="h-14 md:h-16 w-auto brightness-0 invert"
-                width={220}
-                height={56}
-              />
-            </div>
-            <p className="text-primary-foreground/70 text-sm leading-relaxed">
-              Healthcare digital marketing specialists. We help medical practices grow their patient base through proven digital strategies.
+    <footer className="bg-[hsl(222_65%_10%)] text-white/80">
+      {/* top glow */}
+      <div className="h-px bg-gradient-to-r from-transparent via-[hsl(168_48%_40%/0.5)] to-transparent" />
+
+      <div className="container max-w-6xl mx-auto px-4 pt-16 pb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 mb-14">
+
+          {/* Brand */}
+          <div className="lg:col-span-2">
+            <img src="/assets/regc-logo.png" alt="REGC Digital" className="h-11 w-auto brightness-0 invert mb-5" width={220} height={56} />
+            <p className="text-sm text-white/55 leading-relaxed mb-6">
+              Healthcare digital marketing specialists. We help South African medical practices attract more patients through proven digital strategies.
             </p>
+            <Link href="/contact/" className="inline-flex items-center gap-2 text-sm font-semibold text-[hsl(168_48%_60%)] hover:text-[hsl(168_48%_70%)] transition-colors">
+              Book a free consultation <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
 
+          {/* Services */}
           <div>
-            <h4 className="font-display font-bold mb-4">Services</h4>
-            <ul className="space-y-2">
+            <h4 className="font-display font-semibold text-white text-sm mb-4 tracking-wide">Services</h4>
+            <ul className="space-y-2.5">
               {serviceDetails.slice(0, 6).map((s) => (
                 <li key={s.slug}>
-                  <Link href={`/services/${s.slug}/`} className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">{s.title}</Link>
+                  <Link href={`/services/${s.slug}/`} className="text-xs text-white/50 hover:text-white/85 transition-colors">{s.title}</Link>
                 </li>
               ))}
+              <li>
+                <Link href="/services/" className="text-xs text-[hsl(168_48%_55%)] hover:text-[hsl(168_48%_65%)] transition-colors">All services →</Link>
+              </li>
             </ul>
           </div>
 
+          {/* Industries */}
           <div>
-            <h4 className="font-display font-bold mb-4">Industries</h4>
-            <ul className="space-y-2">
-              <li><Link href="/domains/" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">All Industries</Link></li>
+            <h4 className="font-display font-semibold text-white text-sm mb-4 tracking-wide">Industries</h4>
+            <ul className="space-y-2.5">
               {domains.slice(0, 6).map((d) => (
                 <li key={d.slug}>
-                  <Link href={`/domains/${d.slug}/`} className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">{d.shortName}</Link>
+                  <Link href={`/domains/${d.slug}/`} className="text-xs text-white/50 hover:text-white/85 transition-colors">{d.shortName}</Link>
                 </li>
               ))}
+              <li>
+                <Link href="/domains/" className="text-xs text-[hsl(168_48%_55%)] hover:text-[hsl(168_48%_65%)] transition-colors">All industries →</Link>
+              </li>
             </ul>
           </div>
 
+          {/* Locations */}
           <div>
-            <h4 className="font-display font-bold mb-4">Locations</h4>
-            <ul className="space-y-2">
-              <li><Link href="/locations/" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">All Locations</Link></li>
+            <h4 className="font-display font-semibold text-white text-sm mb-4 tracking-wide">Locations</h4>
+            <ul className="space-y-2.5">
               {featuredCities.map((c) => (
                 <li key={c.slug}>
-                  <Link href={`/healthcare-marketing-${c.slug}/`} className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">{c.name}</Link>
+                  <Link href={`/healthcare-marketing-${c.slug}/`} className="text-xs text-white/50 hover:text-white/85 transition-colors">{c.name}</Link>
                 </li>
               ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-display font-bold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li><Link href="/" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Home</Link></li>
-              <li><Link href="/about/" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">About Us</Link></li>
-              <li><Link href="/services/" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">All Services</Link></li>
-              <li><Link href="/domains/" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Industries</Link></li>
-              <li><Link href="/blog/" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Blog</Link></li>
-              <li><Link href="/contact/" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">Contact</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-display font-bold mb-4">Contact</h4>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-2 text-sm text-primary-foreground/70">
-                <Phone className="w-4 h-4 mt-0.5 shrink-0" />
-                <a href={`tel:${SITE.phoneIntl}`} className="hover:text-primary-foreground transition-colors">{SITE.phone}</a>
+              <li>
+                <Link href="/locations/" className="text-xs text-[hsl(168_48%_55%)] hover:text-[hsl(168_48%_65%)] transition-colors">All locations →</Link>
               </li>
-              <li className="flex items-start gap-2 text-sm text-primary-foreground/70">
-                <Mail className="w-4 h-4 mt-0.5 shrink-0" />
-                <a href={`mailto:${SITE.email}`} className="hover:text-primary-foreground transition-colors">{SITE.email}</a>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="font-display font-semibold text-white text-sm mb-4 tracking-wide">Contact</h4>
+            <ul className="space-y-3">
+              <li>
+                <a href={`tel:${SITE.phoneIntl}`} className="flex items-center gap-2 text-xs text-white/50 hover:text-white/85 transition-colors group">
+                  <Phone className="w-3.5 h-3.5 shrink-0 text-[hsl(168_48%_55%)]" /> {SITE.phone}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${SITE.email}`} className="flex items-center gap-2 text-xs text-white/50 hover:text-white/85 transition-colors group">
+                  <Mail className="w-3.5 h-3.5 shrink-0 text-[hsl(168_48%_55%)]" /> {SITE.email}
+                </a>
+              </li>
+              <li className="mt-4">
+                <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 bg-[hsl(168_48%_40%/0.2)] border border-[hsl(168_48%_40%/0.3)] text-[hsl(168_48%_60%)] text-xs font-semibold px-3 py-2 rounded-lg hover:bg-[hsl(168_48%_40%/0.35)] transition-colors">
+                  WhatsApp us
+                </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/20 mt-12 pt-8 text-center text-sm text-primary-foreground/50">
-          © {year} REGC Digital. All rights reserved.
+        {/* bottom bar */}
+        <div className="h-px bg-white/8 mb-6" />
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/30">
+          <p>© {year} REGC Digital. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <Link href="/about/" className="hover:text-white/60 transition-colors">About</Link>
+            <Link href="/contact/" className="hover:text-white/60 transition-colors">Contact</Link>
+            <Link href="/blog/" className="hover:text-white/60 transition-colors">Blog</Link>
+          </div>
         </div>
       </div>
     </footer>
