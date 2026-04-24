@@ -1,31 +1,35 @@
 {
-  "name": "regc-digital-astro",
+  "name": "regc-digital",
   "private": true,
   "version": "1.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "astro dev --host 0.0.0.0 --port 5000",
-    "start": "astro dev --host 0.0.0.0 --port 5000",
-    "build": "astro build",
-    "preview": "astro preview --host 0.0.0.0 --port 5000",
-    "astro": "astro"
+    "dev": "next dev -H 0.0.0.0 -p 5000",
+    "build": "next build",
+    "start": "next start -H 0.0.0.0 -p 5000",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@astrojs/mdx": "^3.1.9",
-    "@astrojs/react": "^3.6.3",
-    "@astrojs/sitemap": "^3.7.2",
-    "@astrojs/tailwind": "^5.1.5",
     "@tailwindcss/typography": "^0.5.19",
-    "astro": "^4.16.19",
+    "gray-matter": "^4.0.3",
     "lucide-react": "^0.462.0",
+    "next": "^15.5.15",
+    "nodemailer": "^6.10.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tailwindcss": "^3.4.19",
-    "tailwindcss-animate": "^1.0.7",
-    "typescript": "^5.9.3"
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
+    "tailwindcss": "^3.4.17",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@types/react": "^18.3.28",
-    "@types/react-dom": "^18.3.7"
+    "@types/node": "^22.15.3",
+    "@types/nodemailer": "^6.4.23",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "autoprefixer": "^10.5.0",
+    "eslint": "^9.26.0",
+    "eslint-config-next": "^15.5.15",
+    "postcss": "^8.5.10",
+    "typescript": "^5.8.3"
   }
 }

@@ -1,0 +1,151 @@
+"use client";
+
+import { useState, type FormEvent } from "react";
+import { Send, CheckCircle2 } from "lucide-react";
+
+const WHATSAPP_NUMBER = "27640826855";
+
+interface FormState {
+  name: string;
+  practice: string;
+  email: string;
+  phone: string;
+  service: string;
+  message: string;
+}
+
+export default function ContactForm() {
+  const [form, setForm] = useState<FormState>({
+    name: "",
+    practice: "",
+    email: "",
+    phone: "",
+    service: "",
+    message: "",
+  });
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const onChange = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+    setForm({ ...form, [k]: e.target.value });
+
+  const onSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setStatus("submitting");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        setForm({ name: "", practice: "", email: "", phone: "", service: "", message: "" });
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setErrorMsg(data.error || "Something went wrong. Please try WhatsApp instead.");
+        setStatus("error");
+        openWhatsApp();
+      }
+    } catch {
+      setStatus("error");
+      setErrorMsg("Could not send — opening WhatsApp as backup.");
+      openWhatsApp();
+    }
+  };
+
+  const openWhatsApp = () => {
+    const lines = [
+      `Hi REGC Digital, I'd like to enquire about your services.`,
+      ``,
+      `*Name:* ${form.name}`,
+      form.practice && `*Practice:* ${form.practice}`,
+      `*Email:* ${form.email}`,
+      form.phone && `*Phone:* ${form.phone}`,
+      form.service && `*Service of interest:* ${form.service}`,
+      ``,
+      `*Message:*`,
+      form.message,
+    ].filter(Boolean);
+    const text = encodeURIComponent(lines.join("\n"));
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank", "noopener,noreferrer");
+  };
+
+  const inputCls = "w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ring";
+
+  if (status === "success") {
+    return (
+      <div className="bg-card border border-border rounded-2xl p-8 shadow-sm text-center">
+        <CheckCircle2 className="w-12 h-12 text-secondary mx-auto mb-4" />
+        <h3 className="font-display text-xl font-bold text-foreground mb-2">Message sent!</h3>
+        <p className="text-muted-foreground mb-4">We've received your enquiry and will get back to you within one business day.</p>
+        <button
+          onClick={() => setStatus("idle")}
+          className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground rounded-lg px-6 py-2.5 font-semibold hover:bg-secondary/90 transition-colors text-sm"
+        >
+          Send another
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={onSubmit} className="space-y-4 bg-card border border-border rounded-2xl p-6 md:p-8 shadow-sm">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-medium text-foreground mb-1.5">Your name *</label>
+          <input required type="text" value={form.name} onChange={onChange("name")} className={inputCls} placeholder="Dr Jane Smith" />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-foreground mb-1.5">Practice name</label>
+          <input type="text" value={form.practice} onChange={onChange("practice")} className={inputCls} placeholder="Smith Medical Centre" />
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-medium text-foreground mb-1.5">Email *</label>
+          <input required type="email" value={form.email} onChange={onChange("email")} className={inputCls} placeholder="you@practice.co.za" />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-foreground mb-1.5">Phone</label>
+          <input type="tel" value={form.phone} onChange={onChange("phone")} className={inputCls} placeholder="064 082 6855" />
+        </div>
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-foreground mb-1.5">Service of interest</label>
+        <select value={form.service} onChange={onChange("service")} className={inputCls}>
+          <option value="">Select a service…</option>
+          <option>Website Design &amp; Development</option>
+          <option>SEO &amp; Local Search</option>
+          <option>Google Ads &amp; PPC</option>
+          <option>Social Media Management</option>
+          <option>Reputation &amp; Reviews</option>
+          <option>Email &amp; Patient Communication</option>
+          <option>Branding &amp; Design</option>
+          <option>Photography &amp; Video</option>
+          <option>Analytics &amp; Reporting</option>
+          <option>Strategy &amp; Consulting</option>
+          <option>I'm not sure — please advise</option>
+        </select>
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-foreground mb-1.5">How can we help? *</label>
+        <textarea required rows={5} value={form.message} onChange={onChange("message")} className={inputCls} placeholder="Tell us about your practice and goals…" />
+      </div>
+      {status === "error" && (
+        <p className="text-sm text-destructive">{errorMsg}</p>
+      )}
+      <button
+        type="submit"
+        disabled={status === "submitting"}
+        className="inline-flex items-center justify-center gap-2 w-full bg-secondary text-secondary-foreground rounded-lg px-6 py-3 font-semibold hover:bg-secondary/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+      >
+        <Send className="w-4 h-4" /> {status === "submitting" ? "Sending…" : "Send message"}
+      </button>
+      <p className="text-xs text-muted-foreground text-center">We'll reply within one business day. WhatsApp is also available for instant contact.</p>
+    </form>
+  );
+}

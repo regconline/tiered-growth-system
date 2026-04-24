@@ -2,7 +2,12 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./src/**/*.{astro,ts,tsx,js,jsx,md,mdx}"],
+  content: [
+    "./app/**/*.{ts,tsx,js,jsx,md,mdx}",
+    "./components/**/*.{ts,tsx,js,jsx}",
+    "./lib/**/*.{ts,tsx}",
+    "./data/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -59,7 +64,7 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      typography: ({ theme }: any) => ({
+      typography: () => ({
         DEFAULT: {
           css: {
             color: "hsl(var(--foreground))",
