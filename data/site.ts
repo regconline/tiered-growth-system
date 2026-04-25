@@ -1,3 +1,10 @@
+export const SOCIAL = {
+  facebook:  "https://facebook.com/regconline1",
+  instagram: "https://instagram.com/regcdigital",
+  tiktok:    "https://tiktok.com/@regcdigital",
+  linkedin:  "https://linkedin.com/company/regconline",
+};
+
 export const SITE = {
   url: "https://regcdigital.co.za",
   name: "REGC Digital",
@@ -13,5 +20,10 @@ export const SITE = {
   countryCode: "ZA",
   region: "South Africa",
   themeColor: "#0d0a0f",
-  sameAs: [] as string[],
+  sameAs: [
+    SOCIAL.facebook,
+    SOCIAL.instagram,
+    SOCIAL.tiktok,
+    SOCIAL.linkedin,
+  ] as string[],
 };

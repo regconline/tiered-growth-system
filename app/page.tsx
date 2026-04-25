@@ -124,6 +124,15 @@ export default function HomePage() {
         {/* decorative ring */}
         <div className="absolute -right-32 -top-32 w-96 h-96 rounded-full border border-white/5 animate-spin-slow z-0" aria-hidden />
         <div className="absolute -right-16 -top-16 w-64 h-64 rounded-full border border-white/8 z-0" aria-hidden />
+        {/* contrast overlay — darken behind text for WCAG AA on bright magenta blobs */}
+        <div
+          aria-hidden
+          className="absolute inset-0 z-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(8,5,12,0.55) 0%, rgba(8,5,12,0.35) 45%, rgba(8,5,12,0) 70%)",
+          }}
+        />
 
         <div className="container max-w-6xl mx-auto px-4 py-24 md:py-32 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

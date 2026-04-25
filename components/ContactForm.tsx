@@ -4,6 +4,13 @@ import { useState, type FormEvent } from "react";
 import { Send, CheckCircle2 } from "lucide-react";
 
 const WHATSAPP_NUMBER = "27640826855";
+const MESSAGE_MAX = 1000;
+
+declare global {
+  interface Window {
+    dataLayer?: Record<string, unknown>[];
+  }
+}
 
 interface FormState {
   name: string;
@@ -12,6 +19,7 @@ interface FormState {
   phone: string;
   service: string;
   message: string;
+  website: string;
 }
 
 export default function ContactForm() {
@@ -22,6 +30,7 @@ export default function ContactForm() {
     phone: "",
     service: "",
     message: "",
+    website: "",
   });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -35,7 +44,7 @@ export default function ContactForm() {
     setErrorMsg("");
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/contact/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -43,7 +52,14 @@ export default function ContactForm() {
 
       if (res.ok) {
         setStatus("success");
-        setForm({ name: "", practice: "", email: "", phone: "", service: "", message: "" });
+        if (typeof window !== "undefined") {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: "contact_form_submit",
+            form_service: form.service || "unspecified",
+          });
+        }
+        setForm({ name: "", practice: "", email: "", phone: "", service: "", message: "", website: "" });
       } else {
         const data = await res.json().catch(() => ({}));
         setErrorMsg(data.error || "Something went wrong. Please try WhatsApp instead.");
@@ -94,10 +110,24 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-4 bg-card border border-border rounded-2xl p-6 md:p-8 shadow-sm">
+      {/* Honeypot — hidden from real users; bots will fill it */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", top: "auto", width: 1, height: 1, overflow: "hidden" }}>
+        <label>
+          Website (leave blank)
+          <input
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={form.website}
+            onChange={onChange("website")}
+            name="website"
+          />
+        </label>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-foreground mb-1.5">Your name *</label>
-          <input required type="text" value={form.name} onChange={onChange("name")} className={inputCls} placeholder="Dr Jane Smith" />
+          <input required type="text" maxLength={120} value={form.name} onChange={onChange("name")} className={inputCls} placeholder="Dr Jane Smith" />
         </div>
         <div>
           <label className="block text-sm font-medium text-foreground mb-1.5">Practice name</label>
@@ -133,7 +163,16 @@ export default function ContactForm() {
       </div>
       <div>
         <label className="block text-sm font-medium text-foreground mb-1.5">How can we help? *</label>
-        <textarea required rows={5} value={form.message} onChange={onChange("message")} className={inputCls} placeholder="Tell us about your practice and goals…" />
+        <textarea
+          required
+          rows={5}
+          maxLength={MESSAGE_MAX}
+          value={form.message}
+          onChange={onChange("message")}
+          className={inputCls}
+          placeholder="Tell us about your practice and goals…"
+        />
+        <p className="mt-1 text-[11px] text-muted-foreground text-right">{form.message.length}/{MESSAGE_MAX}</p>
       </div>
       {status === "error" && (
         <p className="text-sm text-destructive">{errorMsg}</p>

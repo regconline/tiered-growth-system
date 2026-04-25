@@ -106,7 +106,7 @@ app/
 
 components/
 ├── Navbar.tsx            # Mobile menu + dropdowns (React client)
-├── Footer.tsx
+├── Footer.tsx            # Client comp — social row + dataLayer click tracking
 ├── ContactForm.tsx       # Email form + WhatsApp fallback (React client)
 ├── WhatsAppWidget.tsx    # Floating chat button (React client)
 ├── BackToTop.tsx         # Scroll-to-top (React client)
@@ -115,7 +115,8 @@ components/
 
 lib/
 ├── blog.ts               # getAllPosts(), getPostBySlug(), renderMarkdown()
-└── seo.ts                # breadcrumbList(), itemList() JSON-LD helpers
+├── seo.ts                # breadcrumbList(), itemList() JSON-LD helpers
+└── rateLimit.ts          # In-memory IP rate limiter for /api/contact/
 
 data/
 ├── site.ts               # SITE constants (URL, phone, email, GTM ID)
@@ -134,10 +135,40 @@ public/
 
 ## Contact Form / Email
 
-- Route: `POST /api/contact`
+- Route: `POST /api/contact/` (trailing slash enforced by `next.config.mjs`)
 - Required env vars: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`
 - Sends to: `info@regcdigital.co.za`
 - Fallback: WhatsApp redirect when SMTP is not configured
+
+### Anti-spam / hardening
+- **Honeypot field** — hidden `website` input on the form; if filled, API returns `{success:true}` silently and skips email.
+- **In-memory rate limit** — 5 submissions per IP per 10 min (`lib/rateLimit.ts`).
+- **Origin allowlist** — POSTs from outside `regcdigital.co.za` (or `localhost` in dev) are rejected.
+- **Per-field length caps + control-char strip** — name 100, email 200, phone 30, practice 150, service 100, message 5000.
+
+## Security Headers
+
+Set globally in `next.config.mjs` `headers()`:
+- `X-Frame-Options: DENY`
+- `X-Content-Type-Options: nosniff`
+- `Referrer-Policy: strict-origin-when-cross-origin`
+- `Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=(), usb=()`
+- `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload`
+- `poweredByHeader: false`
+
+## Analytics (GTM-PZ7NLPQP)
+
+GTM container loaded in `app/layout.tsx` via `next/script` + `<noscript>` iframe.
+Custom `dataLayer` events to wire up in GA4 / GTM:
+- `contact_form_submit` — fired by `components/ContactForm.tsx` on success.
+- `social_click` — fired by `components/Footer.tsx` social row (FB, IG, TikTok, LinkedIn).
+- `contact_click` — fired by `components/Footer.tsx` for `tel:` / `mailto:` / WhatsApp links.
+
+## Social Profiles
+
+`data/site.ts` exports `SOCIAL` (FB, IG, TikTok, LinkedIn) and `SITE.sameAs` (auto-flowed
+into Organization JSON-LD on the home page). Update those constants to add or remove
+profiles — the footer row and schema both update.
 
 ## Blog
 

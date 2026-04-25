@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, X } from "lucide-react";
 import { serviceDetails } from "@/data/serviceDetails";
 import { domains } from "@/data/domains";
 
@@ -46,9 +46,9 @@ export default function Navbar() {
             <img
               src="/assets/regc-logo.png"
               alt="REGC Digital"
-              className="h-11 w-auto"
-              width={220}
-              height={56}
+              className="h-12 md:h-[52px] w-auto"
+              width={260}
+              height={66}
               style={{ filter: "brightness(0) invert(1)" }}
             />
           </Link>
@@ -119,11 +119,15 @@ export default function Navbar() {
           </Link>
 
           <button className="md:hidden p-2 text-foreground/70 hover:text-foreground transition-colors"
-            aria-label="Toggle menu" onClick={() => setMobileOpen(!mobileOpen)}>
-            <span className={`block transition-all duration-200 ${mobileOpen ? "rotate-90 opacity-0 absolute" : ""}`}>
-              <Menu className="w-5 h-5" />
-            </span>
-            {mobileOpen && <X className="w-5 h-5" />}
+            aria-label="Toggle menu" aria-expanded={mobileOpen} onClick={() => setMobileOpen(!mobileOpen)}>
+            {mobileOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
+                <line x1="4" y1="9"  x2="20" y2="9" />
+                <line x1="4" y1="15" x2="20" y2="15" />
+              </svg>
+            )}
           </button>
         </div>
 

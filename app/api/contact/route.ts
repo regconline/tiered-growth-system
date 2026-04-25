@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { rateLimit, getClientIp } from "@/lib/rateLimit";
 
 interface ContactBody {
   name: string;
@@ -8,28 +9,81 @@ interface ContactBody {
   phone?: string;
   service?: string;
   message: string;
+  website?: string;
 }
 
-function sanitize(str: unknown): string {
+const FIELD_LIMITS = {
+  name: 120,
+  practice: 160,
+  email: 200,
+  phone: 40,
+  service: 120,
+  message: 1000,
+} as const;
+
+function sanitize(str: unknown, max: number): string {
   if (typeof str !== "string") return "";
-  return str.replace(/<[^>]*>/g, "").trim().slice(0, 2000);
+  return str
+    .replace(/<[^>]*>/g, "")
+    .replace(/[\u0000-\u001F\u007F]/g, "")
+    .trim()
+    .slice(0, max);
+}
+
+function originAllowed(req: Request): boolean {
+  const origin = req.headers.get("origin");
+  if (!origin) return true;
+  try {
+    const o = new URL(origin).host;
+    const host = req.headers.get("host") || "";
+    if (o === host) return true;
+    if (o.endsWith(".replit.dev") || o.endsWith(".replit.app")) return true;
+    if (o.endsWith("regcdigital.co.za")) return true;
+    if (o.endsWith(".vercel.app")) return true;
+    return false;
+  } catch {
+    return false;
+  }
 }
 
 export async function POST(req: Request) {
   try {
+    if (!originAllowed(req)) {
+      return NextResponse.json({ error: "Forbidden origin." }, { status: 403 });
+    }
+
+    const ip = getClientIp(req);
+    const limit = rateLimit(`contact:${ip}`, 5, 10 * 60 * 1000);
+    if (!limit.ok) {
+      const retryAfter = Math.max(1, Math.ceil((limit.resetAt - Date.now()) / 1000));
+      return NextResponse.json(
+        { error: "Too many submissions. Please try again later or message us on WhatsApp." },
+        { status: 429, headers: { "Retry-After": String(retryAfter) } },
+      );
+    }
+
     const body: ContactBody = await req.json();
 
-    const name = sanitize(body.name);
-    const practice = sanitize(body.practice);
-    const email = sanitize(body.email);
-    const phone = sanitize(body.phone);
-    const service = sanitize(body.service);
-    const message = sanitize(body.message);
+    if (typeof body.website === "string" && body.website.trim() !== "") {
+      return NextResponse.json({ success: true });
+    }
+
+    const name = sanitize(body.name, FIELD_LIMITS.name);
+    const practice = sanitize(body.practice, FIELD_LIMITS.practice);
+    const email = sanitize(body.email, FIELD_LIMITS.email);
+    const phone = sanitize(body.phone, FIELD_LIMITS.phone);
+    const service = sanitize(body.service, FIELD_LIMITS.service);
+    const message = sanitize(body.message, FIELD_LIMITS.message);
 
     if (!name || !email || !message) {
       return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
     }
-
+    if (name.length < 2) {
+      return NextResponse.json({ error: "Please enter your full name." }, { status: 400 });
+    }
+    if (message.length < 10) {
+      return NextResponse.json({ error: "Please provide a slightly longer message." }, { status: 400 });
+    }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
     }
@@ -42,7 +96,7 @@ export async function POST(req: Request) {
     if (!smtpHost || !smtpUser || !smtpPass) {
       return NextResponse.json(
         { error: "Email service not configured. Please contact us via WhatsApp." },
-        { status: 503 }
+        { status: 503 },
       );
     }
 
@@ -62,6 +116,7 @@ export async function POST(req: Request) {
         ${phone ? `<tr><td><strong>Phone</strong></td><td>${phone}</td></tr>` : ""}
         ${service ? `<tr><td><strong>Service</strong></td><td>${service}</td></tr>` : ""}
         <tr><td><strong>Message</strong></td><td style="white-space:pre-wrap">${message}</td></tr>
+        <tr><td colspan="2" style="font-size:11px;color:#888;padding-top:12px">Sent from regcdigital.co.za · IP ${ip}</td></tr>
       </table>
     `;
 

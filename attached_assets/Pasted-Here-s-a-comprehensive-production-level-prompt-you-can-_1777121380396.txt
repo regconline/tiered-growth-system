@@ -1,0 +1,246 @@
+Here’s a **comprehensive, production-level prompt** you can give to a Replit AI Agent (or any coding agent) to implement everything cleanly and securely without breaking your current site:
+
+---
+
+## 🔧 FULL PROMPT FOR REPLIT AI AGENT
+
+You are a senior full-stack engineer tasked with improving, securing, and optimizing an existing production website.
+
+### ⚠️ IMPORTANT RULES
+
+* Do NOT break existing functionality, layout, or content.
+* Do NOT remove any current features unless explicitly stated.
+* Maintain current design consistency, but enhance where specified.
+* Follow best practices for **security, SEO, performance, and accessibility**.
+* Ensure everything works in **production (not just dev)**.
+
+---
+
+# 🔐 1. CONTACT FORM SECURITY (CRITICAL)
+
+Implement enterprise-level security for the contact form:
+
+### CSRF Protection
+
+* Add **CSRF tokens** to all form submissions.
+* Validate CSRF tokens server-side.
+* Reject requests without valid tokens.
+
+### Input Validation & Sanitization
+
+* Validate all fields (name, email, message, etc.).
+* Sanitize inputs to prevent:
+
+  * XSS (Cross-Site Scripting)
+  * Injection attacks
+* Use strict validation rules:
+
+  * Email must be properly formatted
+  * Message length limits (e.g. max 1000 chars)
+
+### Rate Limiting
+
+* Prevent spam by limiting submissions:
+
+  * Example: max 5 submissions per IP per 10 minutes
+
+### Bot Protection
+
+* Add one of:
+
+  * Honeypot field (hidden input)
+  * OR Google reCAPTCHA (v2 or v3 preferred)
+
+### Secure Headers
+
+Add HTTP security headers:
+
+* `Content-Security-Policy`
+* `X-Frame-Options: DENY`
+* `X-Content-Type-Options: nosniff`
+* `Referrer-Policy`
+* `Strict-Transport-Security`
+
+### HTTPS Enforcement
+
+* Force HTTPS redirects
+
+---
+
+# 🛡️ 2. OVERALL WEBSITE SECURITY
+
+Implement global protections:
+
+* Escape all dynamic content rendered in UI
+* Prevent XSS via proper encoding
+* Disable inline scripts unless necessary (CSP)
+* Protect API routes:
+
+  * Validate request origin
+  * Use proper authentication if needed
+* Hide sensitive environment variables
+* Ensure `.env` is not exposed
+* Disable directory listing
+
+---
+
+# 📊 3. GOOGLE ANALYTICS + TAG MANAGER
+
+### Google Tag Manager (Already Added)
+
+* Verify correct installation in:
+
+  * `<head>`
+  * `<body>` (noscript fallback)
+* Ensure GTM loads on all pages
+
+### Google Analytics (GA4)
+
+* Integrate GA4 via GTM (preferred)
+* Track:
+
+  * Page views
+  * Form submissions
+  * Button clicks (CTA tracking)
+
+### Event Tracking
+
+Add tracking for:
+
+* Contact form submission
+* Phone/email clicks
+* Social media clicks
+
+---
+
+# 🌐 4. SOCIAL MEDIA INTEGRATION + TRACKING
+
+Add and display social links globally (header/footer):
+
+* Facebook: [https://facebook.com/regconline1](https://facebook.com/regconline1)
+* Instagram: [https://instagram.com/regcdigital](https://instagram.com/regcdigital)
+* TikTok: [https://tiktok.com/@regcdigital](https://tiktok.com/@regcdigital)
+* LinkedIn: [https://linkedin.com/company/regconline](https://linkedin.com/company/regconline)
+
+### Requirements:
+
+* Open links in new tab
+* Add `rel="noopener noreferrer"`
+* Track clicks via Google Analytics events
+
+---
+
+# 🎨 5. UI/UX IMPROVEMENTS
+
+### Logo
+
+* Slightly increase logo size (10–20%)
+* Ensure responsiveness across devices
+
+### Mobile Menu
+
+* Change hamburger icon to **two strokes (lines)** instead of three
+* Maintain smooth animation
+
+### Hero Section
+
+* Improve text visibility:
+
+  * Increase contrast
+  * Add overlay (dark gradient if needed)
+  * Ensure accessibility (WCAG contrast compliance)
+
+---
+
+# 🚀 6. SEO OPTIMIZATION (SOUTH AFRICA FOCUS)
+
+### Technical SEO
+
+* Clean URLs (no query clutter)
+* Add:
+
+  * `sitemap.xml`
+  * `robots.txt`
+* Add canonical tags
+* Optimize meta tags (title + description per page)
+
+### Local SEO Keywords
+
+Generate and integrate SEO keywords targeting major South African cities:
+
+**Primary Cities:**
+
+* Johannesburg
+* Cape Town
+* Durban
+* Pretoria
+* Port Elizabeth (Gqeberha)
+* Bloemfontein
+* East London
+* Polokwane
+* Nelspruit (Mbombela)
+* Kimberley
+
+### Example Keyword Strategy:
+
+Include variations like:
+
+* “Web design Johannesburg”
+* “Digital marketing Cape Town”
+* “SEO services Durban”
+* “Website development Pretoria”
+* “Affordable web design South Africa”
+
+### Implementation:
+
+* Add keywords naturally into:
+
+  * Homepage content
+  * Meta descriptions
+  * Headings (H1, H2)
+* Avoid keyword stuffing
+
+---
+
+# ⚡ 7. PERFORMANCE OPTIMIZATION
+
+* Lazy load images
+* Optimize images (WebP if possible)
+* Minify CSS/JS
+* Enable caching
+* Reduce unused scripts
+
+---
+
+# 🧪 8. TESTING
+
+After implementation:
+
+* Test contact form security (CSRF, validation, spam)
+* Test responsiveness (mobile, tablet, desktop)
+* Verify analytics tracking works
+* Check page speed (Lighthouse)
+* Validate SEO structure
+
+---
+
+# 📦 9. FINAL DELIVERABLE
+
+Provide:
+
+* Clean, production-ready code
+* Summary of all changes made
+* Any environment variables required
+* Instructions for deployment (if needed)
+
+---
+
+## 🔥 BONUS (IF POSSIBLE)
+
+* Add structured data (schema markup)
+* Add Open Graph tags for social sharing
+* Add favicon + app icons
+
+---
+
+If you want, I can also tailor this prompt specifically for your **Next.js setup (with exact code snippets for CSRF, middleware, and analytics)** — that would make the agent even more accurate.
