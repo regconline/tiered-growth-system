@@ -130,7 +130,7 @@ export default function HomePage() {
           className="absolute inset-0 z-0 pointer-events-none"
           style={{
             background:
-              "linear-gradient(90deg, rgba(8,5,12,0.55) 0%, rgba(8,5,12,0.35) 45%, rgba(8,5,12,0) 70%)",
+              "linear-gradient(90deg, rgba(8,5,12,0.78) 0%, rgba(8,5,12,0.6) 50%, rgba(8,5,12,0.15) 80%, rgba(8,5,12,0) 100%)",
           }}
         />
 

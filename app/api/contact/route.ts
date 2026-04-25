@@ -10,6 +10,25 @@ interface ContactBody {
   service?: string;
   message: string;
   website?: string;
+  recaptchaToken?: string;
+}
+
+async function verifyRecaptcha(token: string | undefined, ip: string): Promise<boolean> {
+  const secret = process.env.RECAPTCHA_SECRET_KEY;
+  if (!secret) return true; // not configured — allow through
+  if (!token) return false;
+  try {
+    const params = new URLSearchParams({ secret, response: token, remoteip: ip });
+    const r = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: params.toString(),
+    });
+    const data: { success?: boolean } = await r.json();
+    return data.success === true;
+  } catch {
+    return false;
+  }
 }
 
 const FIELD_LIMITS = {
@@ -66,6 +85,14 @@ export async function POST(req: Request) {
 
     if (typeof body.website === "string" && body.website.trim() !== "") {
       return NextResponse.json({ success: true });
+    }
+
+    const recaptchaOk = await verifyRecaptcha(body.recaptchaToken, ip);
+    if (!recaptchaOk) {
+      return NextResponse.json(
+        { error: "reCAPTCHA verification failed. Please try again." },
+        { status: 400 },
+      );
     }
 
     const name = sanitize(body.name, FIELD_LIMITS.name);

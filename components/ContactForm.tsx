@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, useRef, type FormEvent } from "react";
 import { Send, CheckCircle2 } from "lucide-react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const WHATSAPP_NUMBER = "27640826855";
 const MESSAGE_MAX = 1000;
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
 
 declare global {
   interface Window {
@@ -34,20 +36,29 @@ export default function ContactForm() {
   });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const onChange = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm({ ...form, [k]: e.target.value });
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setStatus("submitting");
     setErrorMsg("");
+
+    const recaptchaToken = recaptchaRef.current?.getValue();
+    if (RECAPTCHA_SITE_KEY && !recaptchaToken) {
+      setErrorMsg("Please complete the reCAPTCHA verification.");
+      setStatus("error");
+      return;
+    }
+
+    setStatus("submitting");
 
     try {
       const res = await fetch("/api/contact/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, recaptchaToken }),
       });
 
       if (res.ok) {
@@ -60,15 +71,18 @@ export default function ContactForm() {
           });
         }
         setForm({ name: "", practice: "", email: "", phone: "", service: "", message: "", website: "" });
+        recaptchaRef.current?.reset();
       } else {
         const data = await res.json().catch(() => ({}));
         setErrorMsg(data.error || "Something went wrong. Please try WhatsApp instead.");
         setStatus("error");
+        recaptchaRef.current?.reset();
         openWhatsApp();
       }
     } catch {
       setStatus("error");
       setErrorMsg("Could not send — opening WhatsApp as backup.");
+      recaptchaRef.current?.reset();
       openWhatsApp();
     }
   };
@@ -174,6 +188,11 @@ export default function ContactForm() {
         />
         <p className="mt-1 text-[11px] text-muted-foreground text-right">{form.message.length}/{MESSAGE_MAX}</p>
       </div>
+      {RECAPTCHA_SITE_KEY && (
+        <div className="flex justify-center">
+          <ReCAPTCHA ref={recaptchaRef} sitekey={RECAPTCHA_SITE_KEY} theme="dark" />
+        </div>
+      )}
       {status === "error" && (
         <p className="text-sm text-destructive">{errorMsg}</p>
       )}
