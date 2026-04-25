@@ -43,7 +43,14 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-[68px]">
           {/* Logo */}
           <Link href="/" aria-label="REGC Digital home" className="flex items-center shrink-0">
-            <img src="/assets/regc-logo.png" alt="REGC Digital" className="h-11 w-auto" width={220} height={56} />
+            <img
+              src="/assets/regc-logo.png"
+              alt="REGC Digital"
+              className="h-11 w-auto"
+              width={220}
+              height={56}
+              style={{ filter: "brightness(0) invert(1)" }}
+            />
           </Link>
 
           {/* Desktop nav */}
