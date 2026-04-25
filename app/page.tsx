@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, Sparkles, Star, Users, TrendingUp, Shield, Phone } from "lucide-react";
 import AnimateIn from "@/components/AnimateIn";
 import Blobs from "@/components/Blobs";
+import QuickLeadForm from "@/components/QuickLeadForm";
 import { serviceDetails } from "@/data/serviceDetails";
 import { domains } from "@/data/domains";
 import { cities, provinces } from "@/data/locations";
@@ -389,24 +390,29 @@ export default function HomePage() {
           className="blob pointer-events-none"
           style={{ top: "-6rem", left: "-6rem", width: "20rem", height: "20rem", opacity: 0.4 }}
         />
-        <div className="container max-w-3xl mx-auto px-4 text-center relative z-10">
-          <AnimateIn>
-            <span className="section-label mb-5 !bg-white/10 !text-white/80">Free consultation</span>
-            <h2 className="font-display text-3xl md:text-5xl font-bold mb-4 mt-4">
-              Ready to grow your practice?
-            </h2>
-            <p className="text-primary-foreground/80 mb-8 text-lg leading-relaxed">
-              Book a free, no-obligation consultation. We'll review your current digital presence and recommend a clear next step — no sales pressure.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link href="/contact/" className="btn-primary">
-                Book a free consultation <ArrowRight className="w-4 h-4" />
-              </Link>
-              <a href={`tel:${SITE.phoneIntl}`} className="btn-ghost text-white inline-flex items-center gap-2">
-                <Phone className="w-4 h-4" /> {SITE.phone}
-              </a>
-            </div>
-          </AnimateIn>
+        <div className="container max-w-6xl mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            <AnimateIn className="text-center lg:text-left">
+              <span className="section-label mb-5 !bg-white/10 !text-white/80">Free consultation</span>
+              <h2 className="font-display text-3xl md:text-5xl font-bold mb-4 mt-4 text-white">
+                Ready to grow your practice?
+              </h2>
+              <p className="text-primary-foreground/85 mb-8 text-lg leading-relaxed">
+                Book a free, no-obligation consultation. We'll review your current digital presence and recommend a clear next step — no sales pressure.
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+                <Link href="/contact/" className="btn-primary">
+                  Full enquiry form <ArrowRight className="w-4 h-4" />
+                </Link>
+                <a href={`tel:${SITE.phoneIntl}`} className="btn-ghost text-white inline-flex items-center gap-2">
+                  <Phone className="w-4 h-4" /> {SITE.phone}
+                </a>
+              </div>
+            </AnimateIn>
+            <AnimateIn delay={120}>
+              <QuickLeadForm />
+            </AnimateIn>
+          </div>
         </div>
       </section>
     </>
