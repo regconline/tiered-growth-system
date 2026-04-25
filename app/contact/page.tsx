@@ -43,7 +43,7 @@ export default function ContactPage() {
             <ContactForm />
           </div>
           <aside className="space-y-4">
-            <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 bg-card border border-border rounded-xl p-5 hover:border-secondary transition-colors">
+            <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="nofollow noopener noreferrer" className="flex items-start gap-3 bg-card border border-border rounded-xl p-5 hover:border-secondary transition-colors">
               <MessageCircle className="w-6 h-6 text-[#25D366] mt-0.5 shrink-0" />
               <div>
                 <h3 className="font-display font-bold text-foreground">WhatsApp</h3>

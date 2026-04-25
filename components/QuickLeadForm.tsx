@@ -215,7 +215,7 @@ export default function QuickLeadForm() {
         <a
           href={`https://wa.me/${WHATSAPP_NUMBER}`}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="nofollow noopener noreferrer"
           className="underline hover:text-white"
         >
           Message us instantly

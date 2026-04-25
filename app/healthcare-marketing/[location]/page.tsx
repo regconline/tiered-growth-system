@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, MapPin, CheckCircle2 } from "lucide-react";
-import { locations, cities, provinces } from "@/data/locations";
+import { locations, cities, provinces, getLocationKeywords } from "@/data/locations";
 import { serviceDetails } from "@/data/serviceDetails";
 import { domains } from "@/data/domains";
 import { SITE } from "@/data/site";
@@ -15,11 +15,25 @@ export async function generateMetadata({ params }: { params: Promise<{ location:
   const { location } = await params;
   const loc = locations.find((l) => l.slug === location);
   if (!loc) return {};
+
+  const keywords = getLocationKeywords(loc.slug);
+  const isProvince = loc.type === "province";
+  const provinceName = isProvince ? loc.name : (loc.province ?? loc.region);
+  const description = isProvince
+    ? `Specialist healthcare digital marketing across ${loc.name} — HPCSA-aligned websites, SEO, Google Ads, social media and reputation management for doctors, dentists, physios and allied health professionals.`
+    : `Healthcare digital marketing for medical practices in ${loc.name}, ${provinceName} — HPCSA-aligned websites, SEO, Google Ads and patient acquisition campaigns built for ${loc.name} doctors and specialists.`;
+
+  const pageTitle = `Healthcare Marketing in ${loc.name}`;
   return {
-    title: `Healthcare Marketing in ${loc.name} | REGC Digital`,
-    description: `Specialist healthcare digital marketing for medical practices in ${loc.name}, South Africa — websites, SEO, Google Ads, social media and reputation management.`,
+    title: pageTitle,
+    description,
+    keywords: keywords.length ? keywords : undefined,
     alternates: { canonical: `/healthcare-marketing-${loc.slug}/` },
-    openGraph: { url: `/healthcare-marketing-${loc.slug}/` },
+    openGraph: {
+      title: `${pageTitle} | REGC Digital`,
+      description,
+      url: `/healthcare-marketing-${loc.slug}/`,
+    },
   };
 }
 
@@ -32,6 +46,21 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
   const featuredServices = serviceDetails.slice(0, 6);
   const sameRegion = cities.filter((c) => c.region === loc.region && c.slug !== loc.slug).slice(0, 6);
   const otherProvinces = provinces.filter((p) => p.slug !== loc.slug).slice(0, 5);
+  const isProvince = loc.type === "province";
+
+  // areaServed lists the province + the relevant city/cities so Google can
+  // associate this page with the correct local market.
+  const areaServed = isProvince
+    ? [
+        { "@type": "AdministrativeArea", name: loc.name },
+        ...cities
+          .filter((c) => c.region === loc.region)
+          .map((c) => ({ "@type": "City", name: c.name })),
+      ]
+    : [
+        { "@type": "AdministrativeArea", name: loc.province ?? loc.region },
+        { "@type": "City", name: loc.name },
+      ];
 
   const jsonLd = [
     {
@@ -43,8 +72,18 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
       telephone: SITE.phoneIntl,
       email: SITE.email,
       priceRange: "$$",
-      description: `Specialist healthcare digital marketing for medical practices in ${loc.name}, South Africa.`,
-      areaServed: { "@type": "Place", name: `${loc.name}, South Africa` },
+      description: isProvince
+        ? `Healthcare digital marketing agency serving doctors, dentists, physios and allied health professionals across ${loc.name}, South Africa.`
+        : `Healthcare digital marketing agency serving ${loc.name} and the wider ${loc.province ?? loc.region} province.`,
+      areaServed,
+      serviceType: [
+        "Healthcare Marketing",
+        "Medical SEO",
+        "Healthcare Website Design",
+        "Patient Acquisition",
+        "Google Ads for Doctors",
+        "Healthcare Content Marketing",
+      ],
       address: { "@type": "PostalAddress", addressRegion: loc.region, addressCountry: "ZA" },
     },
     {

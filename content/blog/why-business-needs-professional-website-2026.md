@@ -112,7 +112,7 @@ Yes — any modern site should ship with a content management system that lets y
 
 ---
 
-Ready to find out what a proper website would look like for your business? [Book a free consultation](/contact/) and we'll review your current site and show you exactly what's leaving money on the table. Or explore our [website development services](/services/website-design/) to see how we work.
+Ready to find out what a proper website would look like for your business? [Book a free consultation](/contact/) and we'll review your current site and show you exactly what's leaving money on the table. Or explore our [website development services](/services/website-services/) to see how we work.
 
 <!--
 IMAGE SUGGESTIONS

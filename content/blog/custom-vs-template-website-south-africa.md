@@ -141,7 +141,7 @@ Custom sites have technical SEO advantages (clean code, fast load times, proper 
 
 ---
 
-Not sure which route is right for you? [Get a free recommendation](/contact/) — tell us about your business and we'll give you an honest answer, even if that means recommending a template. Or explore our [website development packages](/services/website-design/) to see how we approach custom builds.
+Not sure which route is right for you? [Get a free recommendation](/contact/) — tell us about your business and we'll give you an honest answer, even if that means recommending a template. Or explore our [website development packages](/services/website-services/) to see how we approach custom builds.
 
 <!--
 IMAGE SUGGESTIONS

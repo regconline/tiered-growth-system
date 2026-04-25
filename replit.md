@@ -191,3 +191,23 @@ profiles — the footer row and schema both update.
 - Path alias `@/*` points to project root
 - All page components are async server components unless they need interactivity
 - Interactive components marked with `"use client"` directive
+
+## SEO Configuration
+
+- **Canonical domain:** `https://www.regcdigital.co.za` (set in `data/site.ts → SITE.url`).
+  Both `app/sitemap.ts` and `app/robots.ts` derive their URLs from this constant.
+- **Apex → www enforcement:** `next.config.mjs → redirects()` issues a `301` from any
+  `regcdigital.co.za` host to the matching `www.regcdigital.co.za` URL.
+- **Legacy service URL redirects:** `/services/website-design` → `/services/website-services/`
+  and `/services/practice-photography` → `/services/` (both `301`, configured in
+  `next.config.mjs`). Live blog posts already link to the correct destinations.
+- **Province / city keywords:** `data/locations.ts → provinceKeywords` holds the
+  per-province keyword sets. `getLocationKeywords(slug)` returns the right set
+  (cities inherit from their parent province via `cityToProvinceSlug`). The
+  location page (`app/healthcare-marketing/[location]/page.tsx`) wires these into
+  `<meta name="keywords">`, the meta description, the `<title>`, and the LocalBusiness
+  JSON-LD `areaServed` array.
+- **External link rel attributes:** WhatsApp (Footer / Contact / QuickLeadForm) and
+  LinkedIn (Footer social row) carry `rel="nofollow noopener noreferrer"` so we
+  don't pass equity to off-site destinations we can't influence. TikTok URL uses
+  the canonical `https://www.tiktok.com/@regcdigital` to avoid a 301 hop.

@@ -129,7 +129,7 @@ Not directly if your site is hosted abroad or on a redundant cloud platform. But
 
 ---
 
-Want to know how fast (or slow) your site actually is and what's costing you sales? [Request a free speed audit](/contact/) and we'll send you a one-page report with the top three fixes. Or check out our [website performance services](/services/website-design/) to see how we approach speed-first builds.
+Want to know how fast (or slow) your site actually is and what's costing you sales? [Request a free speed audit](/contact/) and we'll send you a one-page report with the top three fixes. Or check out our [website performance services](/services/website-services/) to see how we approach speed-first builds.
 
 <!--
 IMAGE SUGGESTIONS

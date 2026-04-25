@@ -1,12 +1,12 @@
 export const SOCIAL = {
   facebook:  "https://facebook.com/regconline1",
   instagram: "https://instagram.com/regcdigital",
-  tiktok:    "https://tiktok.com/@regcdigital",
+  tiktok:    "https://www.tiktok.com/@regcdigital",
   linkedin:  "https://linkedin.com/company/regconline",
 };
 
 export const SITE = {
-  url: "https://regcdigital.co.za",
+  url: "https://www.regcdigital.co.za",
   name: "REGC Digital",
   legalName: "REGC Digital",
   defaultOg: "/assets/regc-logo.png",

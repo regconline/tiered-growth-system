@@ -1,0 +1,630 @@
+# REGC Digital — Comprehensive SEO Fix & Provincial Keyword Integration
+## Replit AI Prompt — regcdigital.co.za (Next.js)
+
+> **Instructions for Replit:** This is a comprehensive, prioritised SEO remediation prompt for the `regcdigital.co.za` Next.js website. Work through each section in order. All fixes are based on a full Ahrefs link audit of 5,869 links crawled on 25 April 2026.
+
+---
+
+## PROJECT CONTEXT
+
+- **Site:** `https://www.regcdigital.co.za` — a healthcare digital marketing agency serving South Africa
+- **Stack:** Next.js (App Router, based on `_next/static/chunks` structure observed in crawl)
+- **Primary Domain:** `www.regcdigital.co.za`
+- **Non-www Domain:** `regcdigital.co.za` (currently redirecting via 307 — see Issue #1)
+- **Crawl Date:** 25 April 2026
+
+---
+
+## ISSUE #1 — CRITICAL: Fix 307 Temporary Redirects → Change to 301 Permanent Redirects
+
+### Problem
+The crawl identified **187 URLs** with `307 Temporary Redirect` responses. This includes:
+- All **canonical link** declarations pointing from `www.` to non-`www.` versions that are returning 307
+- All **sitemap.xml entries** pointing to non-`www.` URLs that return 307
+- The root HTTP redirect `http://regcdigital.co.za/ → https://regcdigital.co.za/` returning 308 but the chain continues with a 307
+
+307 redirects tell search engines the redirect is **temporary**, meaning Google will not pass PageRank through them, will not consolidate canonical signals, and may continue indexing both versions. This is the **highest priority SEO issue on the site.**
+
+### Root Cause
+The site has two canonical domains in conflict:
+- Pages load on `www.regcdigital.co.za` (200 OK) ✅
+- Canonical tags point to `regcdigital.co.za` (non-www) which then 307-redirects to `www`
+- Sitemap lists `regcdigital.co.za` (non-www) URLs
+
+### Fix Required
+
+**Step 1: Standardise on `www.regcdigital.co.za` as the canonical domain.**
+
+In `next.config.js` (or `next.config.mjs`), ensure the following redirect is in place:
+
+```js
+async redirects() {
+  return [
+    {
+      source: '/:path*',
+      has: [{ type: 'host', value: 'regcdigital.co.za' }],
+      destination: 'https://www.regcdigital.co.za/:path*',
+      permanent: true, // This generates a 301, not 307
+    },
+  ];
+},
+```
+
+**Step 2: Fix all canonical tags.**
+
+Every page currently has a canonical pointing to `https://regcdigital.co.za/[slug]`. Change all canonicals to point to `https://www.regcdigital.co.za/[slug]`.
+
+In your shared metadata layout or `generateMetadata()` function, ensure:
+
+```js
+alternates: {
+  canonical: `https://www.regcdigital.co.za/${slug}`,
+},
+```
+
+Replace any hardcoded `regcdigital.co.za` (without `www`) in canonical generation with `www.regcdigital.co.za`.
+
+**Step 3: Fix sitemap.xml**
+
+Update `sitemap.ts` (or `sitemap.xml`) to use `www.regcdigital.co.za` for all URLs:
+
+```ts
+// In app/sitemap.ts
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://www.regcdigital.co.za'; // NOT regcdigital.co.za
+  // ...
+}
+```
+
+**Step 4: Check hosting/server redirects**
+
+If using Vercel, check `vercel.json` for any redirect rules. If using Nginx or another server, ensure the non-www → www redirect uses `301` not `307`. The `307` is often caused by a misconfigured server redirect or a missing `permanent: true` flag.
+
+---
+
+## ISSUE #2 — HIGH: Fix 5 Broken Links (404 Errors)
+
+### Problem
+The crawl found **5 internal links pointing to pages that return 404**. These are all located in blog posts and point to service URLs that no longer exist or were renamed.
+
+### Broken Links to Fix
+
+| Source Page | Broken Target URL | Anchor Text | Fix |
+|---|---|---|---|
+| `/blog/top-10-website-mistakes-costing-customers/` | `/services/practice-photography/` | practice photography service | Update anchor to point to `/services/` or remove link |
+| `/blog/top-10-website-mistakes-costing-customers/` | `/services/website-design/` | website rebuild services | Redirect or update to `/services/website-services/` |
+| `/blog/fast-website-doubles-sales/` | `/services/website-design/` | website performance services | Redirect or update to `/services/website-services/` |
+| `/blog/why-business-needs-professional-website-2026/` | `/services/website-design/` | website development services | Redirect or update to `/services/website-services/` |
+| `/blog/custom-vs-template-website-south-africa/` | `/services/website-design/` | website development packages | Redirect or update to `/services/website-services/` |
+
+### Fix Required
+
+**Option A (Preferred): Add 301 redirects in `next.config.js`**
+
+```js
+async redirects() {
+  return [
+    {
+      source: '/services/website-design',
+      destination: '/services/website-services',
+      permanent: true,
+    },
+    {
+      source: '/services/practice-photography',
+      destination: '/services',
+      permanent: true,
+    },
+  ];
+},
+```
+
+**Option B: Update the blog post content** — go into each blog post MDX/content file and update the href values to point to the correct live URLs.
+
+---
+
+## ISSUE #3 — HIGH: Fix TikTok Links Returning 301 Redirects
+
+### Problem
+**93 internal pages** contain a link to `https://tiktok.com/@regcdigital` which returns a **301 redirect**. TikTok's canonical URL uses a different format. Crawlers waste link equity following these redirects on every page.
+
+### Fix Required
+
+Update the TikTok link in your shared footer/social links component. Replace:
+```
+https://tiktok.com/@regcdigital
+```
+With the final destination URL (test in browser to find the exact 200-OK URL):
+```
+https://www.tiktok.com/@regcdigital
+```
+
+This is likely a single component change (e.g., `Footer.tsx` or a `socialLinks` config file).
+
+---
+
+## ISSUE #4 — MEDIUM: Fix Source Pages Responding with 307
+
+### Problem
+**94 source pages** in the crawl are being crawled from their non-`www` version and returning 307. This means Google is crawling the non-canonical version of pages. Once Issue #1 is resolved (proper 301 redirect from non-www to www), this will resolve automatically.
+
+**Confirm after Issue #1 fix** that `https://regcdigital.co.za/[any-page]` redirects with a **301** (not 307) to `https://www.regcdigital.co.za/[any-page]`.
+
+---
+
+## ISSUE #5 — MEDIUM: Fix WhatsApp Link Crawl Speed Block
+
+### Problem
+The link `https://wa.me/27640826855` appears on multiple pages and is flagged as "Crawl speed is too limited" — the crawler could not reach it. While this is an external link and not a crawlability issue for your own site, ensure this link has `rel="nofollow noopener noreferrer"` applied to avoid sending signals to it unnecessarily.
+
+### Fix Required
+
+In your WhatsApp CTA component, update:
+```jsx
+<a 
+  href="https://wa.me/27640826855" 
+  rel="nofollow noopener noreferrer"
+  target="_blank"
+>
+  WhatsApp us
+</a>
+```
+
+---
+
+## ISSUE #6 — MEDIUM: Fix LinkedIn External Link Blocked by Robots.txt
+
+### Problem
+Multiple pages link to `https://linkedin.com/company/regconline` which is blocked by LinkedIn's `robots.txt`. Add `rel="nofollow noopener noreferrer"` to this link to signal to Google that you are not endorsing or passing equity to a page it cannot crawl.
+
+### Fix Required
+
+In your LinkedIn social link component:
+```jsx
+<a 
+  href="https://linkedin.com/company/regconline" 
+  rel="nofollow noopener noreferrer"
+  target="_blank"
+  aria-label="REGC Digital on LinkedIn"
+>
+  LinkedIn
+</a>
+```
+
+---
+
+## ISSUE #7 — SEO ENHANCEMENT: Add Province-Level Keywords to Location Pages
+
+### Background
+`regcdigital.co.za` has individual location pages for cities across South Africa. These pages need province-level keyword targeting added to improve rankings for healthcare professionals searching for marketing services across each province. Below are researched keyword sets for all 9 provinces.
+
+### Province Keyword Sets
+
+Add the following keywords to each relevant provincial landing page and its associated city sub-pages. Keywords should appear in:
+1. `<title>` tag
+2. Meta description
+3. H1 and H2 headings (naturally)
+4. First paragraph of body copy
+5. In schema markup `areaServed` field
+
+---
+
+#### 🟡 KwaZulu-Natal (Pages: `/healthcare-marketing-kwazulu-natal/`, `/healthcare-marketing-durban/`, `/healthcare-marketing-pietermaritzburg/`, `/healthcare-marketing-umhlanga/`, `/healthcare-marketing-ballito/`)
+
+**Primary Keywords:**
+- healthcare marketing KwaZulu-Natal
+- medical digital marketing Durban
+- healthcare SEO KZN
+- doctor marketing Durban
+- physiotherapy marketing Durban
+- healthcare website design KwaZulu-Natal
+- dental practice marketing Durban
+- GP marketing Pietermaritzburg
+- allied health marketing Umhlanga
+- medical SEO Ballito
+
+**Secondary / Long-tail Keywords:**
+- healthcare marketing agency Durban South Africa
+- digital marketing for doctors KwaZulu-Natal
+- attract more patients Durban
+- private practice marketing Umhlanga
+- HPCSA compliant marketing KZN
+- healthcare Google Ads Durban
+- medical website design Pietermaritzburg
+- patient acquisition KwaZulu-Natal
+
+---
+
+#### 🟠 Gauteng (Pages: `/healthcare-marketing-gauteng/`, `/healthcare-marketing-johannesburg/`, `/healthcare-marketing-pretoria/`, `/healthcare-marketing-sandton/`, `/healthcare-marketing-midrand/`, `/healthcare-marketing-centurion/`, `/healthcare-marketing-soweto/`)
+
+**Primary Keywords:**
+- healthcare marketing Gauteng
+- medical SEO Johannesburg
+- digital marketing for doctors Pretoria
+- healthcare agency Sandton
+- private practice marketing Johannesburg
+- doctor SEO Gauteng
+- dental marketing Pretoria
+- medical Google Ads Johannesburg
+- healthcare website design Gauteng
+- specialist marketing Sandton
+
+**Secondary / Long-tail Keywords:**
+- healthcare digital marketing agency Johannesburg
+- attract patients online Pretoria
+- HPCSA compliant digital marketing Gauteng
+- physiotherapy marketing Midrand
+- psychology practice marketing Centurion
+- healthcare content marketing Johannesburg
+- medical practice SEO Sandton
+- GP marketing Soweto
+- health professional marketing Pretoria
+- online presence for doctors Gauteng
+
+---
+
+#### 🟢 Limpopo (Pages: `/healthcare-marketing-limpopo/`, `/healthcare-marketing-polokwane/`)
+
+**Primary Keywords:**
+- healthcare marketing Limpopo
+- medical SEO Polokwane
+- digital marketing doctors Limpopo
+- healthcare website Polokwane
+- private practice marketing Limpopo
+- GP marketing Polokwane
+
+**Secondary / Long-tail Keywords:**
+- healthcare marketing agency Limpopo South Africa
+- attract patients Polokwane
+- online marketing for doctors Limpopo
+- dental practice SEO Polokwane
+- allied health marketing Limpopo
+- HPCSA digital marketing Limpopo
+- medical Google Ads Polokwane
+- physiotherapy marketing Limpopo
+
+---
+
+#### 🔵 North West (Pages: `/healthcare-marketing-north-west/`, `/healthcare-marketing-rustenburg/`)
+
+**Primary Keywords:**
+- healthcare marketing North West
+- medical SEO Rustenburg
+- digital marketing doctors North West Province
+- healthcare website Rustenburg
+- private practice marketing North West
+- GP digital marketing Rustenburg
+
+**Secondary / Long-tail Keywords:**
+- healthcare marketing agency North West South Africa
+- attract patients Rustenburg online
+- dental practice marketing North West
+- physiotherapy marketing Rustenburg
+- allied health marketing North West Province
+- medical practice SEO Rustenburg
+- HPCSA compliant marketing North West
+- doctor website design Rustenburg
+
+---
+
+#### 🔴 Eastern Cape (Pages: `/healthcare-marketing-eastern-cape/`, `/healthcare-marketing-east-london/`, `/healthcare-marketing-gqeberha/`)
+
+**Primary Keywords:**
+- healthcare marketing Eastern Cape
+- medical SEO Gqeberha
+- digital marketing doctors East London
+- healthcare website Eastern Cape
+- GP marketing Port Elizabeth
+- private practice marketing Gqeberha
+
+**Secondary / Long-tail Keywords:**
+- healthcare marketing agency Eastern Cape
+- attract patients online East London
+- dental practice SEO Gqeberha
+- physiotherapy marketing Eastern Cape
+- allied health marketing East London
+- HPCSA compliant marketing Eastern Cape
+- medical Google Ads Port Elizabeth
+- doctor website design Eastern Cape
+- healthcare SEO East London South Africa
+
+---
+
+#### 🟤 Free State (Pages: `/healthcare-marketing-free-state/`, `/healthcare-marketing-bloemfontein/`)
+
+**Primary Keywords:**
+- healthcare marketing Free State
+- medical SEO Bloemfontein
+- digital marketing doctors Free State
+- healthcare website Bloemfontein
+- GP marketing Free State
+- private practice marketing Bloemfontein
+
+**Secondary / Long-tail Keywords:**
+- healthcare marketing agency Bloemfontein
+- attract patients online Free State
+- dental practice marketing Bloemfontein
+- physiotherapy SEO Free State
+- allied health marketing Bloemfontein
+- HPCSA compliant marketing Free State
+- medical Google Ads Bloemfontein
+- doctor website design Free State
+
+---
+
+#### ⚫ Northern Cape (Pages: `/healthcare-marketing-northern-cape/`, `/healthcare-marketing-kimberley/`)
+
+**Primary Keywords:**
+- healthcare marketing Northern Cape
+- medical SEO Kimberley
+- digital marketing doctors Northern Cape
+- healthcare website Kimberley
+- GP marketing Northern Cape
+- private practice marketing Kimberley
+
+**Secondary / Long-tail Keywords:**
+- healthcare marketing agency Northern Cape South Africa
+- attract patients Kimberley online
+- dental practice marketing Northern Cape
+- physiotherapy marketing Kimberley
+- allied health digital marketing Northern Cape
+- HPCSA compliant marketing Kimberley
+- doctor website design Northern Cape
+- medical content marketing Kimberley
+
+---
+
+#### 🟣 Mpumalanga (Pages: `/healthcare-marketing-mpumalanga/`, `/healthcare-marketing-mbombela/`)
+
+**Primary Keywords:**
+- healthcare marketing Mpumalanga
+- medical SEO Mbombela
+- digital marketing doctors Mpumalanga
+- healthcare website Nelspruit
+- GP marketing Mpumalanga
+- private practice marketing Mbombela
+
+**Secondary / Long-tail Keywords:**
+- healthcare marketing agency Mpumalanga South Africa
+- attract patients online Nelspruit
+- dental practice marketing Mpumalanga
+- physiotherapy SEO Mbombela
+- allied health marketing Mpumalanga
+- HPCSA compliant marketing Nelspruit
+- medical Google Ads Mbombela
+- doctor website design Mpumalanga
+
+---
+
+#### 🟩 Western Cape (Pages: `/healthcare-marketing-western-cape/`, `/healthcare-marketing-cape-town/`, `/healthcare-marketing-stellenbosch/`, `/healthcare-marketing-george/`, `/healthcare-marketing-paarl/`, `/healthcare-marketing-somerset-west/`)
+
+**Primary Keywords:**
+- healthcare marketing Western Cape
+- medical SEO Cape Town
+- digital marketing doctors Western Cape
+- healthcare website Cape Town
+- GP marketing Stellenbosch
+- private practice marketing George
+- dental marketing Cape Town
+- physiotherapy SEO Western Cape
+
+**Secondary / Long-tail Keywords:**
+- healthcare marketing agency Cape Town South Africa
+- attract patients online Western Cape
+- HPCSA compliant digital marketing Cape Town
+- allied health marketing Stellenbosch
+- medical Google Ads Cape Town
+- doctor website design Western Cape
+- healthcare SEO Somerset West
+- medical content marketing Paarl
+- specialist practice marketing Cape Town
+- patient acquisition Western Cape
+
+---
+
+### How to Implement Keywords in Next.js
+
+#### 1. Update `generateMetadata()` on each location page
+
+```tsx
+// Example: app/healthcare-marketing/[location]/page.tsx
+export async function generateMetadata({ params }): Promise<Metadata> {
+  const { location } = params;
+  const locationData = getLocationData(location); // your data source
+
+  return {
+    title: `Healthcare Marketing ${locationData.city} | REGC Digital`,
+    description: `Expert healthcare digital marketing in ${locationData.city}, ${locationData.province}. We help doctors, dentists, physios & allied health professionals attract more patients. HPCSA-aligned strategies.`,
+    keywords: locationData.keywords.join(', '), // add from keyword sets above
+    alternates: {
+      canonical: `https://www.regcdigital.co.za/healthcare-marketing-${location}/`,
+    },
+    openGraph: {
+      title: `Healthcare Marketing ${locationData.city} | REGC Digital`,
+      description: `Grow your practice in ${locationData.province} with tailored digital marketing.`,
+    },
+  };
+}
+```
+
+#### 2. Add JSON-LD LocalBusiness Schema to Location Pages
+
+Add this schema to every location page to boost local SEO signals:
+
+```tsx
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'REGC Digital',
+  url: 'https://www.regcdigital.co.za',
+  telephone: '+27640826855',
+  areaServed: [
+    {
+      '@type': 'AdministrativeArea',
+      name: locationData.province, // e.g. "KwaZulu-Natal"
+    },
+    {
+      '@type': 'City',
+      name: locationData.city, // e.g. "Durban"
+    },
+  ],
+  description: `Healthcare digital marketing agency serving ${locationData.city} and the ${locationData.province} province.`,
+  serviceType: [
+    'Healthcare Marketing',
+    'Medical SEO',
+    'Healthcare Website Design',
+    'Patient Acquisition',
+    'Google Ads for Doctors',
+    'Healthcare Content Marketing',
+  ],
+};
+
+// In your component JSX:
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+/>
+```
+
+#### 3. Update H1 and Opening Paragraph on Each Location Page
+
+For each province page, ensure the H1 contains the primary keyword:
+
+```tsx
+// Example for KwaZulu-Natal page
+<h1>Healthcare Marketing in KwaZulu-Natal</h1>
+<p>
+  REGC Digital is a specialist healthcare marketing agency serving doctors, dentists, 
+  physiotherapists, psychologists, and allied health professionals across KwaZulu-Natal. 
+  Whether you practice in Durban, Pietermaritzburg, Umhlanga, or Ballito, we build 
+  HPCSA-compliant digital marketing strategies that attract more patients and grow 
+  your practice online.
+</p>
+```
+
+#### 4. Add Province Keywords to Location Data File
+
+If location data is stored in a central config (e.g., `lib/locations.ts` or a CMS), add a `keywords` array to each location entry:
+
+```ts
+export const locations = [
+  {
+    slug: 'kwazulu-natal',
+    city: 'KwaZulu-Natal',
+    province: 'KwaZulu-Natal',
+    keywords: [
+      'healthcare marketing KwaZulu-Natal',
+      'medical digital marketing Durban',
+      'healthcare SEO KZN',
+      'doctor marketing Durban',
+      // ... full list from above
+    ],
+  },
+  // ... repeat for all 9 provinces
+];
+```
+
+---
+
+## ISSUE #8 — SEO ENHANCEMENT: Add Province-Level Internal Linking
+
+### Problem
+Province hub pages (`/healthcare-marketing-kwazulu-natal/`, `/healthcare-marketing-gauteng/`, etc.) should link to all city sub-pages within that province, and each city page should link back to its province hub. This strengthens topical authority and crawl depth.
+
+### Fix Required
+
+Ensure each province page has a "Cities We Serve in [Province]" section linking to all relevant city location pages. Example for KwaZulu-Natal:
+
+```tsx
+<section>
+  <h2>Healthcare Marketing Across KwaZulu-Natal</h2>
+  <ul>
+    <li><a href="/healthcare-marketing-durban/">Durban</a></li>
+    <li><a href="/healthcare-marketing-pietermaritzburg/">Pietermaritzburg</a></li>
+    <li><a href="/healthcare-marketing-umhlanga/">Umhlanga</a></li>
+    <li><a href="/healthcare-marketing-ballito/">Ballito</a></li>
+  </ul>
+</section>
+```
+
+And on each city page, add a breadcrumb and back-link:
+```tsx
+<nav aria-label="breadcrumb">
+  <a href="/">Home</a> → 
+  <a href="/locations/">All Locations</a> → 
+  <a href="/healthcare-marketing-kwazulu-natal/">KwaZulu-Natal</a> → 
+  <span>Durban</span>
+</nav>
+```
+
+---
+
+## ISSUE #9 — SEO ENHANCEMENT: Fix robots.txt and Sitemap Alignment
+
+### Problem
+The sitemap lists non-`www` URLs that redirect (307). Once Issue #1 is resolved, update the sitemap to confirm all URLs use `www`. Also ensure `robots.txt` at `https://www.regcdigital.co.za/robots.txt` correctly references the sitemap.
+
+### Fix Required
+
+Ensure `robots.txt` contains:
+```
+User-agent: *
+Allow: /
+
+Sitemap: https://www.regcdigital.co.za/sitemap.xml
+```
+
+---
+
+## ISSUE #10 — SEO ENHANCEMENT: Add Missing Open Graph & Twitter Card Tags
+
+### Recommendation
+Ensure every page (including all location pages and blog posts) has complete Open Graph metadata for social sharing. In the root `layout.tsx`:
+
+```tsx
+export const metadata: Metadata = {
+  metadataBase: new URL('https://www.regcdigital.co.za'),
+  openGraph: {
+    type: 'website',
+    locale: 'en_ZA',
+    siteName: 'REGC Digital',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@regcdigital', // update to correct Twitter handle
+  },
+};
+```
+
+---
+
+## PRIORITY ORDER OF IMPLEMENTATION
+
+| Priority | Issue | Impact |
+|---|---|---|
+| 🔴 1 | Fix 307 → 301 redirects (canonical domain consolidation) | Critical — PageRank leakage |
+| 🔴 2 | Fix 5 broken 404 links | High — user experience & crawl budget |
+| 🟠 3 | Fix TikTok 301 redirect across 93 pages | High — link equity |
+| 🟠 4 | Add `rel="nofollow"` to WhatsApp & LinkedIn | Medium |
+| 🟡 5 | Add province-level keywords to all 9 province pages | High — organic rankings |
+| 🟡 6 | Add JSON-LD LocalBusiness schema to location pages | Medium — local SEO |
+| 🟢 7 | Add province-to-city internal linking | Medium — crawl depth |
+| 🟢 8 | Fix sitemap to use `www` URLs | Medium |
+| 🔵 9 | Add Open Graph / Twitter Card metadata | Low-Medium |
+
+---
+
+## TESTING CHECKLIST AFTER IMPLEMENTATION
+
+- [ ] `curl -I https://regcdigital.co.za/` returns `301` (not `307`)
+- [ ] `curl -I http://regcdigital.co.za/` returns `308` then `301` chain to `https://www.`
+- [ ] All canonical tags on all pages point to `https://www.regcdigital.co.za/[slug]/`
+- [ ] `https://www.regcdigital.co.za/sitemap.xml` — all URLs begin with `https://www.`
+- [ ] `https://www.regcdigital.co.za/services/website-design/` returns `301` to `/services/website-services/`
+- [ ] `https://www.regcdigital.co.za/services/practice-photography/` returns `301` to `/services/`
+- [ ] TikTok footer link resolves in 0 hops (no redirect chain)
+- [ ] Google Search Console — submit updated sitemap after fixes
+- [ ] Run Ahrefs Site Audit or Screaming Frog re-crawl to confirm 0 links returning 307
+
+---
+
+*Prompt prepared by Claude for REGC Digital | Based on Ahrefs link crawl dated 25 April 2026 | 5,869 links analysed*

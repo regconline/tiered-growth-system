@@ -42,7 +42,7 @@ Across hundreds of South African business website audits, the same ten mistakes 
 
 **Why it costs you:** Trust evaporates. South African buyers are increasingly sceptical and can spot stock imagery instantly.
 
-**The fix:** Invest in one professional photoshoot of your real team, premises, and work. Even basic phone photography of your actual operation outperforms premium stock. If you're a healthcare practice, our [practice photography service](/services/practice-photography/) is built specifically for this.
+**The fix:** Invest in one professional photoshoot of your real team, premises, and work. Even basic phone photography of your actual operation outperforms premium stock. If you're a healthcare practice, our [practice photography service](/services/) is built specifically for this.
 
 ## 5. A confusing or non-existent navigation menu
 
@@ -140,7 +140,7 @@ Test at pagespeed.web.dev on the "Mobile" tab. Anything below 70 is too slow. An
 
 ---
 
-Want a free audit of your site against this checklist? [Send us your URL](/contact/) and we'll send back a one-page report identifying which of these 10 mistakes you're making and what to fix first. Or explore our [website rebuild services](/services/website-design/) if you're ready for a complete refresh.
+Want a free audit of your site against this checklist? [Send us your URL](/contact/) and we'll send back a one-page report identifying which of these 10 mistakes you're making and what to fix first. Or explore our [website rebuild services](/services/website-services/) if you're ready for a complete refresh.
 
 <!--
 IMAGE SUGGESTIONS

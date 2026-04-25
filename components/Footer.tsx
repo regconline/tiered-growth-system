@@ -14,10 +14,10 @@ declare global {
 }
 
 const socialLinks = [
-  { href: SOCIAL.facebook,  label: "Facebook",  network: "facebook",  Icon: Facebook },
-  { href: SOCIAL.instagram, label: "Instagram", network: "instagram", Icon: Instagram },
-  { href: SOCIAL.tiktok,    label: "TikTok",    network: "tiktok",    Icon: TikTokIcon },
-  { href: SOCIAL.linkedin,  label: "LinkedIn",  network: "linkedin",  Icon: Linkedin },
+  { href: SOCIAL.facebook,  label: "Facebook",  network: "facebook",  Icon: Facebook,    rel: "noopener noreferrer" },
+  { href: SOCIAL.instagram, label: "Instagram", network: "instagram", Icon: Instagram,   rel: "noopener noreferrer" },
+  { href: SOCIAL.tiktok,    label: "TikTok",    network: "tiktok",    Icon: TikTokIcon,  rel: "noopener noreferrer" },
+  { href: SOCIAL.linkedin,  label: "LinkedIn",  network: "linkedin",  Icon: Linkedin,    rel: "nofollow noopener noreferrer" },
 ];
 
 function TikTokIcon({ className }: { className?: string }) {
@@ -129,7 +129,7 @@ export default function Footer() {
                 </a>
               </li>
               <li className="mt-4">
-                <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackContactClick("whatsapp")}
+                <a href={SITE.whatsappUrl} target="_blank" rel="nofollow noopener noreferrer" onClick={() => trackContactClick("whatsapp")}
                   className="inline-flex items-center gap-1.5 bg-[hsl(329_60%_48%/0.2)] border border-[hsl(329_60%_48%/0.3)] text-[hsl(329_60%_65%)] text-xs font-semibold px-3 py-2 rounded-lg hover:bg-[hsl(329_60%_48%/0.35)] transition-colors">
                   WhatsApp us
                 </a>
@@ -142,12 +142,12 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 pb-6">
           <p className="text-xs text-white/45 font-medium">Follow REGC Digital</p>
           <div className="flex items-center gap-2.5">
-            {socialLinks.map(({ href, label, network, Icon }) => (
+            {socialLinks.map(({ href, label, network, Icon, rel }) => (
               <a
                 key={network}
                 href={href}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel={rel}
                 aria-label={label}
                 onClick={() => trackSocialClick(network)}
                 className="w-10 h-10 inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 hover:text-white hover:bg-[hsl(329_60%_48%/0.25)] hover:border-[hsl(329_60%_48%/0.5)] transition-colors"

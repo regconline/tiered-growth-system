@@ -39,6 +39,38 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      // Canonical domain — force www on the apex (301 permanent, not 307)
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'regcdigital.co.za' }],
+        destination: 'https://www.regcdigital.co.za/:path*',
+        permanent: true,
+      },
+      // Legacy/broken service URLs referenced from older blog posts
+      {
+        source: '/services/website-design',
+        destination: '/services/website-services/',
+        permanent: true,
+      },
+      {
+        source: '/services/website-design/',
+        destination: '/services/website-services/',
+        permanent: true,
+      },
+      {
+        source: '/services/practice-photography',
+        destination: '/services/',
+        permanent: true,
+      },
+      {
+        source: '/services/practice-photography/',
+        destination: '/services/',
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
