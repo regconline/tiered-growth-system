@@ -38,3 +38,8 @@ outputType = "webview"
 [[ports]]
 localPort = 5000
 externalPort = 80
+
+[userenv]
+
+[userenv.shared]
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY = "6LdG2cksAAAAAFBdd19j4JDXwYWhRyHkctigwuj0"
