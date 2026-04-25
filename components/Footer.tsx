@@ -10,11 +10,17 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[hsl(222_65%_10%)] text-white/80">
-      {/* top glow */}
-      <div className="h-px bg-gradient-to-r from-transparent via-[hsl(168_48%_40%/0.5)] to-transparent" />
+    <footer className="relative bg-[#0a080d] text-white/80 overflow-hidden">
+      {/* top gradient border */}
+      <div className="h-px" style={{ background: "var(--gradient-accent)" }} />
+      {/* subtle blob in corner */}
+      <div
+        aria-hidden
+        className="blob blob-soft pointer-events-none"
+        style={{ bottom: "-10rem", right: "-8rem", width: "26rem", height: "26rem", opacity: 0.35 }}
+      />
 
-      <div className="container max-w-6xl mx-auto px-4 pt-16 pb-8">
+      <div className="container max-w-6xl mx-auto px-4 pt-16 pb-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 mb-14">
 
           {/* Brand */}
@@ -23,7 +29,7 @@ export default function Footer() {
             <p className="text-sm text-white/55 leading-relaxed mb-6">
               Healthcare digital marketing specialists. We help South African medical practices attract more patients through proven digital strategies.
             </p>
-            <Link href="/contact/" className="inline-flex items-center gap-2 text-sm font-semibold text-[hsl(168_48%_60%)] hover:text-[hsl(168_48%_70%)] transition-colors">
+            <Link href="/contact/" className="inline-flex items-center gap-2 text-sm font-semibold text-[hsl(329_60%_65%)] hover:text-[hsl(329_60%_75%)] transition-colors">
               Book a free consultation <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -38,7 +44,7 @@ export default function Footer() {
                 </li>
               ))}
               <li>
-                <Link href="/services/" className="text-xs text-[hsl(168_48%_55%)] hover:text-[hsl(168_48%_65%)] transition-colors">All services →</Link>
+                <Link href="/services/" className="text-xs text-[hsl(329_60%_60%)] hover:text-[hsl(329_60%_70%)] transition-colors">All services →</Link>
               </li>
             </ul>
           </div>
@@ -53,7 +59,7 @@ export default function Footer() {
                 </li>
               ))}
               <li>
-                <Link href="/domains/" className="text-xs text-[hsl(168_48%_55%)] hover:text-[hsl(168_48%_65%)] transition-colors">All industries →</Link>
+                <Link href="/domains/" className="text-xs text-[hsl(329_60%_60%)] hover:text-[hsl(329_60%_70%)] transition-colors">All industries →</Link>
               </li>
             </ul>
           </div>
@@ -68,7 +74,7 @@ export default function Footer() {
                 </li>
               ))}
               <li>
-                <Link href="/locations/" className="text-xs text-[hsl(168_48%_55%)] hover:text-[hsl(168_48%_65%)] transition-colors">All locations →</Link>
+                <Link href="/locations/" className="text-xs text-[hsl(329_60%_60%)] hover:text-[hsl(329_60%_70%)] transition-colors">All locations →</Link>
               </li>
             </ul>
           </div>
@@ -79,17 +85,17 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a href={`tel:${SITE.phoneIntl}`} className="flex items-center gap-2 text-xs text-white/50 hover:text-white/85 transition-colors group">
-                  <Phone className="w-3.5 h-3.5 shrink-0 text-[hsl(168_48%_55%)]" /> {SITE.phone}
+                  <Phone className="w-3.5 h-3.5 shrink-0 text-[hsl(329_60%_60%)]" /> {SITE.phone}
                 </a>
               </li>
               <li>
                 <a href={`mailto:${SITE.email}`} className="flex items-center gap-2 text-xs text-white/50 hover:text-white/85 transition-colors group">
-                  <Mail className="w-3.5 h-3.5 shrink-0 text-[hsl(168_48%_55%)]" /> {SITE.email}
+                  <Mail className="w-3.5 h-3.5 shrink-0 text-[hsl(329_60%_60%)]" /> {SITE.email}
                 </a>
               </li>
               <li className="mt-4">
                 <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 bg-[hsl(168_48%_40%/0.2)] border border-[hsl(168_48%_40%/0.3)] text-[hsl(168_48%_60%)] text-xs font-semibold px-3 py-2 rounded-lg hover:bg-[hsl(168_48%_40%/0.35)] transition-colors">
+                  className="inline-flex items-center gap-1.5 bg-[hsl(329_60%_48%/0.2)] border border-[hsl(329_60%_48%/0.3)] text-[hsl(329_60%_65%)] text-xs font-semibold px-3 py-2 rounded-lg hover:bg-[hsl(329_60%_48%/0.35)] transition-colors">
                   WhatsApp us
                 </a>
               </li>

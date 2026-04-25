@@ -2,17 +2,45 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Sparkles, Star, Users, TrendingUp, Shield, Phone } from "lucide-react";
 import AnimateIn from "@/components/AnimateIn";
+import Blobs from "@/components/Blobs";
 import { serviceDetails } from "@/data/serviceDetails";
 import { domains } from "@/data/domains";
 import { cities, provinces } from "@/data/locations";
 import { SITE } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "REGC Digital — Healthcare Marketing in South Africa",
-  description: "Specialist healthcare marketing for South African medical practices. Websites, SEO, ads, social, reputation — done by people who understand healthcare.",
+  title: "Healthcare Digital Marketing South Africa | REGC Digital",
+  description: "Specialist healthcare marketing agency for South African medical practices. Medical SEO, Google Ads for doctors, websites, social — HPCSA & POPIA compliant. Johannesburg, Cape Town, Durban, Pretoria.",
   alternates: { canonical: "/" },
   openGraph: { url: "/", type: "website" },
 };
+
+const faqs = [
+  {
+    q: "Do you only work with healthcare practices in South Africa?",
+    a: "Yes. We focus exclusively on healthcare practices across South Africa — doctors, dentists, allied health, pharmacies, psychology, nursing and more — because compliance, patient psychology and the local search market all behave differently from generic small-business marketing.",
+  },
+  {
+    q: "Are your campaigns HPCSA and POPIA compliant?",
+    a: "Every website, ad, landing page and social asset we produce is built against HPCSA, SANC, SAPC or relevant council advertising rules and POPIA data-handling requirements. We refuse work that would put your registration at risk.",
+  },
+  {
+    q: "How quickly can I expect results?",
+    a: "Website launches and Google Ads can generate enquiries within days. Local SEO typically shows movement at 30–60 days, with strong compounding gains from month 4 onward.",
+  },
+  {
+    q: "Do you require long-term contracts?",
+    a: "No. All retainer services are month-to-month with no lock-in. We earn your business each month through results.",
+  },
+  {
+    q: "Which South African cities do you serve?",
+    a: "We work with practices in Johannesburg, Cape Town, Durban, Pretoria, Port Elizabeth (Gqeberha), Bloemfontein and across all nine provinces. Our local-SEO playbooks are mapped to South African suburb-level search behaviour.",
+  },
+  {
+    q: "Can you help a brand-new medical practice?",
+    a: "Yes. New practices are one of our specialities — we handle launch websites, Google Business Profile setup, opening campaigns, and the early-stage reviews that build trust quickly.",
+  },
+];
 
 const jsonLd = [
   {
@@ -63,28 +91,11 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Do you only work with healthcare practices in South Africa?",
-        acceptedAnswer: { "@type": "Answer", text: "Yes. We focus exclusively on healthcare practices across South Africa — doctors, dentists, allied health, pharmacies, psychology, nursing and more — because compliance, patient psychology and the local search market all behave differently from generic small-business marketing." },
-      },
-      {
-        "@type": "Question",
-        name: "Are your campaigns HPCSA and POPIA compliant?",
-        acceptedAnswer: { "@type": "Answer", text: "Every website, ad, landing page and social asset we produce is built against HPCSA, SANC, SAPC or relevant council advertising rules and POPIA data-handling requirements. We refuse work that would put your registration at risk." },
-      },
-      {
-        "@type": "Question",
-        name: "How quickly can I expect results?",
-        acceptedAnswer: { "@type": "Answer", text: "Website launches and Google Ads can generate enquiries within days. Local SEO typically shows movement at 30–60 days, with strong compounding gains from month 4 onward." },
-      },
-      {
-        "@type": "Question",
-        name: "Do you require long-term contracts?",
-        acceptedAnswer: { "@type": "Answer", text: "No. All retainer services are month-to-month with no lock-in. We earn your business each month through results." },
-      },
-    ],
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
   },
 ];
 
@@ -108,10 +119,11 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* ── Hero ──────────────────────────────────────────── */}
-      <section className="hero-gradient hero-grid text-primary-foreground relative overflow-hidden">
+      <section className="hero-gradient hero-grid text-white relative overflow-hidden">
+        <Blobs variant="hero" />
         {/* decorative ring */}
-        <div className="absolute -right-32 -top-32 w-96 h-96 rounded-full border border-white/5 animate-spin-slow" aria-hidden />
-        <div className="absolute -right-16 -top-16 w-64 h-64 rounded-full border border-white/8" aria-hidden />
+        <div className="absolute -right-32 -top-32 w-96 h-96 rounded-full border border-white/5 animate-spin-slow z-0" aria-hidden />
+        <div className="absolute -right-16 -top-16 w-64 h-64 rounded-full border border-white/8 z-0" aria-hidden />
 
         <div className="container max-w-6xl mx-auto px-4 py-24 md:py-32 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -323,9 +335,51 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className="divider-glow mx-auto max-w-4xl" />
+
+      {/* ── FAQ ───────────────────────────────────────────── */}
+      <section className="py-24 relative overflow-hidden">
+        <Blobs variant="subtle" />
+        <div className="container max-w-4xl mx-auto px-4 relative z-10">
+          <AnimateIn className="text-center mb-12">
+            <span className="section-label mb-4">FAQ</span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mt-3 mb-4">
+              Healthcare marketing questions, answered
+            </h2>
+            <p className="text-white/70">
+              The questions South African medical practices ask us most often.
+            </p>
+          </AnimateIn>
+          <div className="space-y-3">
+            {faqs.map((f, i) => (
+              <AnimateIn key={f.q} delay={i * 50}>
+                <details className="card-premium group p-5 [&_summary::-webkit-details-marker]:hidden">
+                  <summary className="flex items-start justify-between gap-4 cursor-pointer list-none">
+                    <h3 className="font-display font-semibold text-white text-base md:text-lg leading-snug">
+                      {f.q}
+                    </h3>
+                    <span className="text-white/60 group-open:rotate-45 transition-transform mt-0.5 text-xl leading-none">
+                      +
+                    </span>
+                  </summary>
+                  <p className="mt-4 text-sm md:text-base text-white/75 leading-relaxed">
+                    {f.a}
+                  </p>
+                </details>
+              </AnimateIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA ───────────────────────────────────────────── */}
-      <section className="py-24 hero-gradient text-primary-foreground relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/3 to-transparent pointer-events-none" />
+      <section className="py-24 relative overflow-hidden text-white" style={{ background: "var(--gradient-accent)" }}>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none" />
+        <div
+          aria-hidden
+          className="blob pointer-events-none"
+          style={{ top: "-6rem", left: "-6rem", width: "20rem", height: "20rem", opacity: 0.4 }}
+        />
         <div className="container max-w-3xl mx-auto px-4 text-center relative z-10">
           <AnimateIn>
             <span className="section-label mb-5 !bg-white/10 !text-white/80">Free consultation</span>

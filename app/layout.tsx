@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Poppins, Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -9,6 +10,20 @@ import { SITE } from "@/data/site";
 
 const GTM_ID = "GTM-PZ7NLPQP";
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "600", "700", "800"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-body",
+  display: "swap",
+});
+
 export const viewport: Viewport = {
   themeColor: SITE.themeColor,
   width: "device-width",
@@ -18,18 +33,41 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "REGC Digital — Healthcare Marketing in South Africa",
+    default: "Healthcare Digital Marketing South Africa | REGC Digital",
     template: "%s | REGC Digital",
   },
   description:
-    "Specialist healthcare marketing for South African medical practices. Websites, SEO, ads, social, reputation — done by people who understand healthcare.",
+    "Specialist healthcare digital marketing agency for South African medical practices, hospitals, and clinics. SEO, Google Ads, websites, and social — HPCSA & POPIA compliant.",
+  keywords: [
+    "healthcare digital marketing South Africa",
+    "medical marketing agency South Africa",
+    "healthcare marketing agency Johannesburg",
+    "digital marketing for doctors South Africa",
+    "medical SEO South Africa",
+    "HPCSA compliant digital marketing",
+    "hospital marketing services South Africa",
+    "pharmaceutical marketing agency South Africa",
+  ],
+  authors: [{ name: SITE.name, url: SITE.url }],
+  creator: SITE.name,
+  publisher: SITE.name,
+  alternates: { canonical: "/" },
   openGraph: {
     siteName: SITE.name,
     locale: SITE.locale,
     type: "website",
+    url: SITE.url,
+    title: "Healthcare Digital Marketing South Africa | REGC Digital",
+    description:
+      "Specialist healthcare digital marketing for SA medical practices. HPCSA & POPIA compliant. Websites, SEO, Google Ads, social, reputation.",
+    images: [{ url: SITE.defaultOg, alt: SITE.defaultOgAlt }],
   },
   twitter: {
     card: "summary_large_image",
+    title: "Healthcare Digital Marketing South Africa | REGC Digital",
+    description:
+      "Specialist healthcare digital marketing for SA medical practices.",
+    images: [SITE.defaultOg],
   },
   robots: {
     index: true,
@@ -42,17 +80,23 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+  other: {
+    "geo.region": "ZA",
+    "geo.placename": "Johannesburg, South Africa",
+    "geo.position": "-26.2041;28.0473",
+    "ICBM": "-26.2041, 28.0473",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-ZA" data-scroll-behavior="smooth">
+    <html lang="en-ZA" data-scroll-behavior="smooth" className={`${poppins.variable} ${inter.variable}`}>
       <head>
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="format-detection" content="telephone=no" />
       </head>
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col bg-background text-foreground font-body antialiased">
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
@@ -63,7 +107,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
         </noscript>
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 relative">{children}</main>
         <Footer />
         <WhatsAppWidget />
         <BackToTop />

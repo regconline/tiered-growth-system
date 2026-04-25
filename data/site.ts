@@ -7,10 +7,11 @@ export const SITE = {
   phone: "064 082 6855",
   phoneIntl: "+27640826855",
   whatsapp: "27640826855",
+  whatsappUrl: "https://wa.me/27640826855",
   email: "info@regcdigital.co.za",
   locale: "en_ZA",
   countryCode: "ZA",
   region: "South Africa",
-  themeColor: "#0b3b5c",
+  themeColor: "#0d0a0f",
   sameAs: [] as string[],
 };

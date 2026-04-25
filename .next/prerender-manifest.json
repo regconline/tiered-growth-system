@@ -1,11 +1,1 @@
-{
-  "version": 4,
-  "routes": {},
-  "dynamicRoutes": {},
-  "notFoundRoutes": [],
-  "preview": {
-    "previewModeId": "003bfbeb470464bc30f5fcb2baaafe13",
-    "previewModeSigningKey": "f5d88c7bab6eff3819be48d6d299120fa5cd48773d81515fa8b9dc16718aa6aa",
-    "previewModeEncryptionKey": "d3f451f01e8a2d3c938b75121167116d17298cbca29458d28db8c0f9cf3c2e85"
-  }
-}
+{"version":4,"routes":{"/services/website-services":{},"/services/seo-services":{},"/services/social-media":{},"/services/content-marketing":{},"/services/reputation-management":{},"/services/patient-communication":{},"/services/analytics-reporting":{},"/services/compliance":{},"/services/branding":{},"/services/conversion-optimization":{}},"dynamicRoutes":{"/services/[slug]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/services/[slug]","routeRegex":"^\\/services\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"cc1011deded5e6d638f0a25a74118818","previewModeSigningKey":"cf03b8c987cdc0442ac6fe4bb4add491e18cc8df4abfa406797a344d83138ae5","previewModeEncryptionKey":"3e8f6b86fa8e66ab9a5b31450a153204cde2dac3087328d58a4247bf1868a707"}}

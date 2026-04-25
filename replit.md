@@ -5,11 +5,37 @@ Healthcare digital marketing website for South African medical practices.
 ## Stack
 
 - **Next.js 15** — App Router, TypeScript, server components + API routes
-- **React 19** — via Next.js 15 bundled React
+- **React 18** — via Next.js 15
 - **Tailwind CSS** + `@tailwindcss/typography` + `tailwindcss-animate`
+- **next/font** — `Poppins` (display) + `Inter` (body), CSS-variable based
 - **gray-matter + remark** — blog markdown parsing
 - **nodemailer** — server-side contact form email (SMTP)
 - **lucide-react** — icons
+
+## Brand Visual System (April 2026 redesign)
+
+Dark, premium, vibrant healthcare-tech aesthetic:
+
+- **Background:** near-black `#0d0a0f` / dark purple-black `#1a0a1e`
+- **Brand colors:** purple-deep `#4a0e6e`, purple-mid `#7b2d9e`, purple-bright `#9b3fc4`,
+  magenta `#c4317a`, hot pink `#e8406a`, coral `#f05060`, white `#ffffff`
+- **Gradients (CSS vars in `app/globals.css`):**
+  - `--gradient-hero` — radial purple-to-black hero background
+  - `--gradient-accent` — diagonal magenta→purple for CTA banners
+  - `--gradient-cta` — horizontal magenta→bright-purple for buttons
+  - `--gradient-card` — translucent glass card fill
+  - `--gradient-blob` — soft pink/magenta/purple radial blob
+- **Decorative blobs:** `<Blobs variant="hero|page|subtle" />` component (`components/Blobs.tsx`).
+  Blobs are large (~24rem), `border-radius: 50%`, `filter: blur(80–100px)`, `opacity: 0.55–0.7`,
+  with a 9s `blob-pulse` keyframe.
+- **Typography:** Poppins headings (300/400/600/700/800), Inter body (300/400/500/600).
+- **Glass cards:** `.card-premium` — semi-transparent purple gradient + 1px purple border +
+  `backdrop-filter: blur(10px)`; hover lift + magenta glow.
+- **Buttons:** `.btn-primary` (gradient-cta + glow) / `.btn-ghost` (white border, fills with gradient on hover).
+- **Section labels:** `.section-label` — soft pink uppercase chip with magenta border.
+
+The semantic Tailwind tokens (`bg-card`, `text-foreground`, `border-border`, `--secondary`, etc.)
+were re-mapped to the new dark palette so the entire site cascades through one source.
 
 ## SEO
 

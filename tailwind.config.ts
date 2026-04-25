@@ -16,6 +16,10 @@ export default {
       screens: { "2xl": "1400px" },
     },
     extend: {
+      fontFamily: {
+        display: ["var(--font-display)", "Poppins", "sans-serif"],
+        body:    ["var(--font-body)",    "Inter",   "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -67,11 +71,11 @@ export default {
       typography: () => ({
         DEFAULT: {
           css: {
-            color: "hsl(var(--foreground))",
-            a: { color: "hsl(var(--secondary))" },
+            color: "rgba(255,255,255,0.85)",
+            a: { color: "#e8406a" },
             "h1,h2,h3,h4": {
-              fontFamily: "'Space Grotesk', sans-serif",
-              color: "hsl(var(--foreground))",
+              fontFamily: "var(--font-display, 'Poppins'), sans-serif",
+              color: "#ffffff",
             },
           },
         },

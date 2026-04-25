@@ -1,0 +1,352 @@
+# Replit AI Agent Prompt: RegC Digital — Migration Audit, SEO & Full Redesign
+
+---
+
+## 🧭 CONTEXT & OVERVIEW
+
+You are working on the codebase for **RegC Digital** (www.regcdigital.co.za), a **Healthcare-Only Digital Marketing Agency** based in South Africa. The project has recently been **migrated from Astro to the latest version of Next.js (App Router)**. Your job is to work through this in **four sequential phases**:
+
+1. **Migration Audit & Bug Fixing**
+2. **Vercel Deployment Readiness**
+3. **SEO Enhancement for South African Rankings**
+4. **Complete Visual Redesign** matching the brand image provided
+
+Do NOT skip any phase. Complete each fully before moving to the next. Do NOT remove, truncate, or lose any existing website content at any point during this process.
+
+---
+
+## ✅ PHASE 1: MIGRATION AUDIT — ASTRO → NEXT.JS (APP ROUTER)
+
+Go through the **entire codebase file by file** and perform the following checks and fixes:
+
+### 1.1 — Project Structure Verification
+- Confirm the project uses the **Next.js App Router** (`/app` directory), not the Pages Router
+- Ensure `app/layout.tsx` (or `.jsx`) exists and wraps all pages with proper `<html>` and `<body>` tags
+- Verify `app/page.tsx` exists as the homepage entry point
+- Check that all route folders follow the App Router convention (`app/about/page.tsx`, `app/services/page.tsx`, etc.)
+- Confirm `next.config.js` (or `next.config.ts`) is correctly configured and not using any deprecated Astro-specific options
+
+### 1.2 — Component Migration Checks
+- Astro uses `.astro` files — confirm **all `.astro` components have been fully converted** to `.tsx` or `.jsx` React components
+- Verify that any Astro-specific syntax (e.g. `---` frontmatter blocks, `<slot />`, `Astro.props`, `define:vars`) has been completely removed and replaced with proper React equivalents (`props`, `children`, `useState`, etc.)
+- Check that all **Astro layouts** have been converted to Next.js layouts or reusable React wrapper components
+- Confirm no leftover Astro imports like `import { ... } from 'astro'` remain anywhere
+
+### 1.3 — Image Handling
+- Astro uses its own `<Image />` component — ensure all images now use **`next/image`** with proper `width`, `height`, and `alt` attributes
+- Verify all image paths are correct and images exist in the `/public` directory
+- Check that `next.config.js` has the correct `images.domains` or `images.remotePatterns` configured if any external images are used
+
+### 1.4 — Routing & Links
+- Astro uses `<a href>` for routing — replace all bare anchor tags used for internal navigation with **`next/link`'s `<Link />` component**
+- Verify all dynamic routes use the correct Next.js App Router file-based convention (e.g. `[slug]/page.tsx`)
+- Check that `useRouter` imports come from `'next/navigation'` (not `'next/router'`, which is Pages Router only)
+
+### 1.5 — Data Fetching
+- Astro fetches data at build time in frontmatter — confirm all data fetching has been migrated to:
+  - **`async` Server Components** for static/server-side data
+  - **`generateStaticParams()`** for static dynamic routes
+  - **`fetch()` with Next.js cache options** (`{ cache: 'force-cache' }` or `{ next: { revalidate: N } }`) where appropriate
+- Remove any Astro-specific `getStaticPaths` or `Astro.glob()` patterns entirely
+
+### 1.6 — Metadata & Head Tags
+- Astro manages `<head>` tags directly — confirm all pages now use the **Next.js Metadata API**:
+  - `export const metadata = { ... }` in Server Components
+  - Or `export async function generateMetadata()` for dynamic pages
+- Ensure no raw `<head>` or `<Helmet>` tags are being used where the Metadata API should handle it
+
+### 1.7 — Styling Migration
+- Check that all CSS, SCSS, or Tailwind styles have been correctly migrated
+- Confirm global styles are imported in `app/layout.tsx`
+- Verify that any CSS Modules (`.module.css`) are imported and used correctly in React components
+- Ensure Tailwind (if used) has `tailwind.config.js` pointing to all correct content paths including `./app/**/*.{ts,tsx}`
+
+### 1.8 — Client vs Server Components
+- Identify any components using browser APIs (`window`, `document`, `localStorage`), `useState`, `useEffect`, or event handlers — add `'use client'` directive at the top of each
+- Ensure Server Components are NOT importing or using client-only hooks
+- Check Context Providers are wrapped in a `'use client'` component and placed appropriately in the layout tree
+
+### 1.9 — Environment Variables
+- Astro uses `import.meta.env` — replace all instances with `process.env.NEXT_PUBLIC_*` for client-side variables or `process.env.*` for server-side
+- Confirm `.env.local` (or `.env`) exists with all necessary variables and that none of these secrets are committed to source control
+
+### 1.10 — Dependencies
+- Run `npm install` (or `yarn`) and verify there are **no peer dependency conflicts**
+- Remove any Astro-specific packages (`@astrojs/*`, `astro`) from `package.json` — they serve no purpose and may cause conflicts
+- Confirm `next`, `react`, and `react-dom` are all on compatible, latest stable versions
+- Check `tsconfig.json` is configured correctly for Next.js (use `"moduleResolution": "bundler"` or `"node"`, `"jsx": "preserve"`, paths alias for `@/` if used)
+
+---
+
+## 🚀 PHASE 2: VERCEL DEPLOYMENT READINESS
+
+Fix every issue that could prevent a successful Vercel deployment.
+
+### 2.1 — Build Test
+- Run `npm run build` locally and **fix every single error and warning** until the build completes with zero errors
+- Pay special attention to:
+  - TypeScript type errors
+  - Missing `alt` props on images
+  - Invalid or deprecated Next.js config options
+  - Modules not found
+  - `'use client'` violations (Server Components accidentally importing client modules)
+
+### 2.2 — Vercel Configuration
+- Create or verify a `vercel.json` file at the project root with appropriate settings:
+```json
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install"
+}
+```
+- Ensure `next.config.js` does NOT use `output: 'export'` (static export) unless explicitly required — Vercel handles SSR natively
+- If the project uses any Edge Runtime or Middleware, verify it is compatible with Vercel's Edge Network
+
+### 2.3 — Environment Variables for Vercel
+- Document all required environment variables (without exposing secrets) in a `.env.example` file
+- Ensure all `NEXT_PUBLIC_*` variables that need to be available at build time are clearly noted — these must be added in the Vercel dashboard under Project Settings → Environment Variables
+
+### 2.4 — Font & Static Asset Optimization
+- Use `next/font` for all font loading (Google Fonts or local fonts) to avoid layout shift and improve performance
+- Ensure all static assets in `/public` are referenced with absolute paths from root (e.g. `/logo.png` not `./logo.png`)
+
+### 2.5 — API Routes (if any)
+- If the project has any API routes, verify they are in `app/api/[route]/route.ts` format using the new Route Handler convention
+- Confirm they export named HTTP method functions (`GET`, `POST`, etc.) — not default exports
+
+### 2.6 — Final Pre-Deploy Checklist
+- No `console.error` outputs during build
+- No broken imports or circular dependencies
+- All pages render without runtime errors (test each route)
+- `npm run lint` passes cleanly
+- Confirm the project can be successfully deployed by checking that all the above conditions are met
+
+---
+
+## 🔍 PHASE 3: SEO ENHANCEMENT — RANK #1 ACROSS SOUTH AFRICA
+
+Implement a comprehensive, technically excellent SEO strategy targeting the South African healthcare marketing market.
+
+### 3.1 — Keyword Strategy
+Target the following keyword clusters across all pages. Integrate them naturally into headings, body copy, metadata, and alt text — do NOT keyword-stuff:
+
+**Primary Keywords:**
+- "healthcare digital marketing South Africa"
+- "medical marketing agency South Africa"
+- "healthcare marketing agency Johannesburg"
+- "digital marketing for doctors South Africa"
+- "medical SEO South Africa"
+- "healthcare social media marketing SA"
+- "pharmaceutical marketing agency South Africa"
+- "hospital marketing services South Africa"
+
+**Secondary / Long-tail Keywords:**
+- "SEO for medical practices South Africa"
+- "digital marketing for hospitals Johannesburg"
+- "healthcare content marketing Cape Town"
+- "medical website design South Africa"
+- "Google Ads for doctors South Africa"
+- "digital marketing for dentists South Africa"
+- "online marketing for specialists SA"
+- "healthcare brand strategy South Africa"
+- "HPCSA compliant digital marketing"
+- "medical practice marketing Pretoria"
+- "specialist clinic marketing Durban"
+- "digital marketing for pharmacies South Africa"
+
+### 3.2 — On-Page SEO (Every Page)
+For every page on the website, implement:
+- Unique, keyword-rich `<title>` tags (50–60 characters) using the Next.js Metadata API
+- Compelling `<meta name="description">` tags (150–160 characters) with a clear value proposition and CTA
+- Proper heading hierarchy: one `<h1>` per page, logical `<h2>`/`<h3>` structure using target keywords
+- Keyword-optimized body copy rewritten for clarity, value, and search relevance — **preserve all original information, only enhance the copy**
+- Descriptive, keyword-rich `alt` text on every image
+- Internal linking between all service pages, blog posts, and the homepage
+
+### 3.3 — Technical SEO
+- Generate and configure a **dynamic XML sitemap** at `/sitemap.xml` using `app/sitemap.ts` (Next.js built-in sitemap generation)
+- Generate a **`robots.txt`** at `/robots.txt` using `app/robots.ts` — allow all crawlers, point to sitemap
+- Implement **canonical URLs** on every page to prevent duplicate content issues
+- Add **structured data (JSON-LD)** on the following:
+  - Homepage: `Organization` schema with name, URL, logo, contact, social profiles, and `areaServed: "South Africa"`
+  - Services pages: `Service` schema with description and provider
+  - Contact page: `LocalBusiness` schema with address, phone, geo coordinates (Johannesburg)
+  - Any blog/article pages: `Article` schema
+- Add **Open Graph** and **Twitter Card** meta tags to every page for rich social sharing previews
+- Ensure all pages are **mobile-responsive** (critical for Google's mobile-first indexing)
+- Implement **Core Web Vitals** optimizations:
+  - Lazy load all below-the-fold images
+  - Use `priority` prop on hero/above-the-fold images in `next/image`
+  - Minimize Cumulative Layout Shift (CLS) by specifying all image dimensions
+  - Use `next/font` for zero-CLS font loading
+
+### 3.4 — Local SEO (South Africa Focus)
+- Add South Africa-specific geo meta tags:
+```html
+<meta name="geo.region" content="ZA" />
+<meta name="geo.placename" content="Johannesburg, South Africa" />
+<meta name="geo.position" content="-26.2041;28.0473" />
+<meta name="ICBM" content="-26.2041, 28.0473" />
+```
+- Include `"areaServed"` in all JSON-LD schemas specifying South African cities: Johannesburg, Cape Town, Durban, Pretoria, Port Elizabeth
+- Mention South African cities naturally in service page copy to support local search relevance
+- Link to Google Business Profile in the footer if a URL is available
+
+### 3.5 — Content SEO
+- Add a dedicated **FAQ section** on the homepage and each service page with 5–8 questions per page using `FAQPage` JSON-LD schema — target "People Also Ask" rich results
+- Ensure the **blog/articles section** (if it exists) has proper category taxonomy and internal linking
+- Add a **testimonials/reviews section** with `Review` schema markup if reviews exist in the content
+
+---
+
+## 🎨 PHASE 4: COMPLETE VISUAL REDESIGN
+
+Completely rebuild the visual design of the entire website to match the brand identity shown in the uploaded image. **Every page, every component, every element must be redesigned.** No content must be lost — only the visual presentation changes.
+
+### 4.1 — Design Reference (from uploaded image)
+The uploaded image shows the RegC Digital brand identity with the following characteristics to replicate exactly:
+
+**Color Palette — implement as CSS custom properties:**
+```css
+:root {
+  --color-bg-primary: #0d0a0f;         /* Near-black dark background */
+  --color-bg-secondary: #1a0a1e;       /* Very dark purple-black */
+  --color-purple-deep: #4a0e6e;        /* Deep purple */
+  --color-purple-mid: #7b2d9e;         /* Mid purple */
+  --color-purple-bright: #9b3fc4;      /* Bright purple */
+  --color-magenta: #c4317a;            /* Hot magenta/pink */
+  --color-pink-hot: #e8406a;           /* Hot pink */
+  --color-coral: #f05060;              /* Coral-red */
+  --color-white: #ffffff;              /* Pure white for text */
+  --color-white-soft: rgba(255,255,255,0.85); /* Soft white */
+
+  /* Gradients */
+  --gradient-hero: radial-gradient(ellipse at 70% 40%, #7b2d9e 0%, #4a0e6e 40%, #0d0a0f 75%);
+  --gradient-accent: linear-gradient(135deg, #c4317a 0%, #7b2d9e 50%, #4a0e6e 100%);
+  --gradient-blob: radial-gradient(circle, #e8406a 0%, #c4317a 50%, #9b3fc4 100%);
+  --gradient-card: linear-gradient(145deg, rgba(123,45,158,0.3) 0%, rgba(196,49,122,0.15) 100%);
+  --gradient-cta: linear-gradient(90deg, #c4317a 0%, #9b3fc4 100%);
+}
+```
+
+### 4.2 — Background & Atmosphere
+- All page backgrounds must use dark near-black (`#0d0a0f` to `#1a0a1e`) as the base
+- Apply **radial gradient overlays** emanating from off-center focal points in deep purple and magenta, exactly like the brand image
+- Add **decorative blob/orb elements** — these are the large, soft, rounded gradient shapes visible in the corners and edges of the image. Implement them as absolutely-positioned `<div>` elements with:
+  - `border-radius: 50%` with varying radii
+  - The `--gradient-blob` gradient fill
+  - `filter: blur(60px)` or `blur(80px)` for the soft glow effect
+  - `opacity: 0.6–0.8`
+  - Positioned at top-right, bottom-right, left-center — matching the image layout
+  - These blobs should be present on EVERY page, not just the homepage
+- The overall feel must be: **dark, premium, vibrant, modern, futuristic healthcare tech**
+
+### 4.3 — Typography
+- Use **`next/font`** to load the following Google Font pairing:
+  - **Headings:** `Poppins` (weights: 300, 400, 600, 700, 800) — clean, modern, geometric
+  - **Body:** `Inter` (weights: 300, 400, 500, 600) — highly readable, professional
+- All heading text: `color: #ffffff` — pure white, bold
+- Body text: `color: rgba(255,255,255,0.85)` — soft white for readability against dark backgrounds
+- Large display headings on hero sections should be very bold (700–800 weight), large (clamp-based responsive sizing)
+- Subheadings and taglines: lighter weight (300–400), with slight purple or pink tint where appropriate
+
+### 4.4 — Navigation / Header
+- Full-width sticky header with `background: rgba(13, 10, 15, 0.85)` and `backdrop-filter: blur(12px)` for a frosted glass effect on scroll
+- Logo (RD Digital wordmark) in white on the left
+- Navigation links in white, with hover state showing the magenta-to-purple gradient as an underline or text color shift
+- CTA button in the nav: filled with `--gradient-cta` (magenta to purple), white text, rounded corners (`border-radius: 8px`), with a glowing box-shadow on hover: `box-shadow: 0 0 20px rgba(196,49,122,0.5)`
+- Mobile: hamburger menu with smooth slide-in drawer, dark background, full-width links
+
+### 4.5 — Hero Section
+- Full-viewport-height hero section
+- Background: `--gradient-hero` radial gradient with blobs
+- Large, bold white headline with highlighted keywords in gradient text using:
+```css
+background: var(--gradient-accent);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+```
+- Subheadline in soft white, lighter weight
+- Two CTA buttons:
+  - Primary: gradient fill (`--gradient-cta`), white text, rounded, glow shadow on hover
+  - Secondary: transparent with white border, white text, hover fills with gradient
+- Optional: subtle animated particle effect or gradient animation in the background (CSS-only, no heavy JS libraries)
+
+### 4.6 — Services Section
+- Section background: very dark (`#0d0a0f`) with a subtle mid-section blob/glow in deep purple
+- Service cards with:
+  - Background: `--gradient-card` — semi-transparent dark purple glass effect
+  - Border: `1px solid rgba(155, 63, 196, 0.3)`
+  - `border-radius: 16px`
+  - `backdrop-filter: blur(10px)`
+  - Icon in gradient color (magenta/purple) or white
+  - Title in white, bold
+  - Description in soft white
+  - Hover state: border glows with `box-shadow: 0 0 24px rgba(196,49,122,0.4)`, slight upward `transform: translateY(-4px)`
+- Grid layout: 3 columns on desktop, 2 on tablet, 1 on mobile
+
+### 4.7 — About / Why Us Section
+- Dark background with blob decorations on opposite corners from hero
+- Split layout: text content left, visual/image right (or vice versa)
+- Use gradient accent lines or borders to separate content blocks
+- Statistics/achievements displayed in large gradient-text numbers with white labels below
+
+### 4.8 — Testimonials / Social Proof
+- Cards with glass morphism treatment (same as service cards)
+- Star ratings in magenta/pink gradient
+- Quote text in soft white
+- Client name and practice in lighter white
+- Carousel or grid layout
+
+### 4.9 — Call-to-Action Sections
+- Full-width CTA banner sections with `--gradient-accent` as background
+- White headline and subheadline
+- White or dark-text button (contrasting with the gradient background)
+- Optional: decorative blob overlays with low opacity
+
+### 4.10 — Footer
+- Background: `#0a080d` (darkest shade)
+- Top border: 1px gradient line (`--gradient-accent`)
+- Logo in white, tagline in soft white
+- Navigation columns with white link text, magenta hover color
+- Social media icons in gradient fill or white with gradient hover
+- Copyright line in muted white (`rgba(255,255,255,0.4)`)
+- "Website by RegC Digital" or similar attribution if present — keep it
+
+### 4.11 — Forms & Interactive Elements
+- Input fields: dark background (`rgba(255,255,255,0.05)`), white border (`rgba(255,255,255,0.15)`), white text, focused state border turns magenta/purple with glow
+- Submit buttons: `--gradient-cta` background, white text, rounded, glow on hover
+- All focus states must be visible for accessibility (WCAG AA compliance)
+
+### 4.12 — Animations & Micro-interactions
+- Use **CSS transitions** (not heavy JS animation libraries) for all hover effects
+- Fade-in-up animations for sections entering the viewport using **Intersection Observer** or the CSS `@keyframes` approach via a lightweight utility
+- Smooth scroll behavior: `html { scroll-behavior: smooth; }`
+- Gradient blob elements can have a slow, subtle CSS `@keyframes` animation (scale and opacity pulse, 6–10s loop)
+
+### 4.13 — Responsive Design
+- The design must be **fully responsive** across all breakpoints:
+  - Mobile: 320px–767px
+  - Tablet: 768px–1023px
+  - Desktop: 1024px+
+  - Wide: 1440px+
+- Use CSS Grid and Flexbox throughout — no fixed pixel widths for layout containers
+- Touch targets must be at least 44px on mobile
+
+---
+
+## 🔒 CRITICAL RULES — MUST FOLLOW THROUGHOUT ALL PHASES
+
+1. **NEVER DELETE CONTENT.** All existing text, services descriptions, testimonials, team information, contact details, and any other content on the website must be preserved verbatim. Only the presentation and code structure change.
+2. **Complete all phases in order.** Do not start Phase 2 until Phase 1 is done, do not start Phase 3 until Phase 2 is verified, etc.
+3. **Test after every major change.** Run `npm run build` regularly to catch regressions early.
+4. **The website is `regcdigital.co.za`** — a professional healthcare marketing brand. All design decisions must reflect premium quality, trust, and expertise.
+5. **HPCSA compliance awareness** — healthcare marketing in South Africa is regulated. Do not add claims that could violate HPCSA advertising guidelines. Keep all existing copy as-is unless enhancing for SEO in a factually accurate way.
+6. **All redesign must use the brand's exact visual identity** from the uploaded image — dark backgrounds, purple-to-magenta gradient palette, soft glowing blobs, white typography. Do not substitute different colors or design trends.
+
+---
+
+Begin with **Phase 1, file by file**, and report what you find and fix at each step before moving on.
