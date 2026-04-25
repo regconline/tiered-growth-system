@@ -661,3 +661,20 @@ export function getLocationKeywords(slug: string): string[] {
   const parent = cityToProvinceSlug[slug];
   return parent ? provinceKeywords[parent] ?? [] : [];
 }
+
+/**
+ * Returns the parent province Location object for a given city slug, or
+ * undefined if the slug is itself a province / has no mapped parent.
+ */
+export function getParentProvince(citySlug: string): Location | undefined {
+  const parentSlug = cityToProvinceSlug[citySlug];
+  if (!parentSlug) return undefined;
+  return locations.find((l) => l.slug === parentSlug && l.type === "province");
+}
+
+/**
+ * Returns every city Location whose parent province matches the given province slug.
+ */
+export function getCitiesInProvince(provinceSlug: string): Location[] {
+  return cities.filter((c) => cityToProvinceSlug[c.slug] === provinceSlug);
+}

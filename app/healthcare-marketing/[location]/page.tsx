@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, MapPin, CheckCircle2 } from "lucide-react";
-import { locations, cities, provinces, getLocationKeywords } from "@/data/locations";
+import { locations, cities, provinces, getLocationKeywords, getParentProvince, getCitiesInProvince } from "@/data/locations";
 import { serviceDetails } from "@/data/serviceDetails";
 import { domains } from "@/data/domains";
 import { SITE } from "@/data/site";
@@ -44,9 +44,15 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
 
   const path = `/healthcare-marketing-${loc.slug}/`;
   const featuredServices = serviceDetails.slice(0, 6);
-  const sameRegion = cities.filter((c) => c.region === loc.region && c.slug !== loc.slug).slice(0, 6);
-  const otherProvinces = provinces.filter((p) => p.slug !== loc.slug).slice(0, 5);
   const isProvince = loc.type === "province";
+  const parentProvince = isProvince ? undefined : getParentProvince(loc.slug);
+  // Province pages: list every city we serve in that province (no slice cap).
+  // City pages: keep the existing "other cities in same region" cluster, capped.
+  const provinceCities = isProvince ? getCitiesInProvince(loc.slug) : [];
+  const sameRegion = isProvince
+    ? []
+    : cities.filter((c) => c.region === loc.region && c.slug !== loc.slug).slice(0, 6);
+  const otherProvinces = provinces.filter((p) => p.slug !== loc.slug).slice(0, 5);
 
   // areaServed lists the province + the relevant city/cities so Google can
   // associate this page with the correct local market.
@@ -92,7 +98,20 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: SITE.url },
         { "@type": "ListItem", position: 2, name: "Locations", item: new URL("/locations/", SITE.url).toString() },
-        { "@type": "ListItem", position: 3, name: loc.name, item: new URL(path, SITE.url).toString() },
+        ...(parentProvince
+          ? [{
+              "@type": "ListItem",
+              position: 3,
+              name: parentProvince.name,
+              item: new URL(`/healthcare-marketing-${parentProvince.slug}/`, SITE.url).toString(),
+            }]
+          : []),
+        {
+          "@type": "ListItem",
+          position: parentProvince ? 4 : 3,
+          name: loc.name,
+          item: new URL(path, SITE.url).toString(),
+        },
       ],
     },
   ];
@@ -103,8 +122,31 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
 
       <section className="hero-gradient text-primary-foreground py-16">
         <div className="container max-w-4xl mx-auto px-4">
-          <nav className="text-sm text-primary-foreground/70 mb-4">
-            <Link href="/locations/" className="hover:text-primary-foreground">← All Locations</Link>
+          <nav aria-label="Breadcrumb" className="text-sm text-primary-foreground/70 mb-4">
+            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
+              <li>
+                <Link href="/" className="hover:text-primary-foreground">Home</Link>
+              </li>
+              <li aria-hidden className="text-primary-foreground/40">›</li>
+              <li>
+                <Link href="/locations/" className="hover:text-primary-foreground">Locations</Link>
+              </li>
+              {parentProvince && (
+                <>
+                  <li aria-hidden className="text-primary-foreground/40">›</li>
+                  <li>
+                    <Link
+                      href={`/healthcare-marketing-${parentProvince.slug}/`}
+                      className="hover:text-primary-foreground"
+                    >
+                      {parentProvince.name}
+                    </Link>
+                  </li>
+                </>
+              )}
+              <li aria-hidden className="text-primary-foreground/40">›</li>
+              <li aria-current="page" className="text-primary-foreground/90 font-medium">{loc.name}</li>
+            </ol>
           </nav>
           <div className="flex items-center gap-3 mb-4">
             <MapPin className="w-8 h-8 text-secondary" />
@@ -170,9 +212,55 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
             </div>
           </div>
 
-          {sameRegion.length > 0 && (
+          {isProvince && provinceCities.length > 0 && (
             <div className="mb-12">
-              <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-4">Other {loc.region} locations</h2>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">
+                Cities we serve in {loc.name}
+              </h2>
+              <p className="text-muted-foreground mb-6">
+                Tap any city below for a healthcare marketing breakdown built specifically for that local market.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {provinceCities.map((c) => (
+                  <Link
+                    key={c.slug}
+                    href={`/healthcare-marketing-${c.slug}/`}
+                    className="group flex items-center justify-between gap-2 bg-card border border-border rounded-xl px-4 py-3 hover:border-secondary hover:shadow-md transition-all"
+                  >
+                    <span className="flex items-center gap-2 font-semibold text-foreground">
+                      <MapPin className="w-4 h-4 text-secondary shrink-0" />
+                      {c.name}
+                    </span>
+                    <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-secondary transition-colors" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {!isProvince && parentProvince && (
+            <div className="mb-12 bg-card border border-border rounded-2xl p-6">
+              <p className="text-sm uppercase tracking-wider text-muted-foreground mb-2">Province hub</p>
+              <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-2">
+                Part of our {parentProvince.name} healthcare marketing region
+              </h2>
+              <p className="text-sm text-muted-foreground mb-4">
+                {loc.name} sits within our wider {parentProvince.name} coverage. Visit the province hub for the full picture of how we help medical practices across the region.
+              </p>
+              <Link
+                href={`/healthcare-marketing-${parentProvince.slug}/`}
+                className="inline-flex items-center gap-2 text-secondary font-semibold hover:underline"
+              >
+                Healthcare marketing in {parentProvince.name} <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          )}
+
+          {!isProvince && sameRegion.length > 0 && (
+            <div className="mb-12">
+              <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-4">
+                Other {loc.region} cities we serve
+              </h2>
               <div className="flex flex-wrap gap-2">
                 {sameRegion.map((c) => (
                   <Link key={c.slug} href={`/healthcare-marketing-${c.slug}/`} className="text-sm bg-card border border-border rounded-full px-4 py-1.5 hover:border-secondary transition-colors">
@@ -185,7 +273,7 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
 
           {loc.type === "city" && (
             <div className="mb-12">
-              <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-4">Browse by province</h2>
+              <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-4">Browse other provinces</h2>
               <div className="flex flex-wrap gap-2">
                 {otherProvinces.map((p) => (
                   <Link key={p.slug} href={`/healthcare-marketing-${p.slug}/`} className="text-sm bg-card border border-border rounded-full px-4 py-1.5 hover:border-secondary transition-colors">
