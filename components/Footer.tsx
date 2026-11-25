@@ -64,7 +64,7 @@ export default function Footer() {
       <div className="container relative max-w-7xl px-4 pb-8 pt-14">
         <div className="mb-14 grid grid-cols-2 gap-10 md:grid-cols-4 lg:grid-cols-12">
           <div className="col-span-2 md:col-span-4 lg:col-span-4">
-            <Link href="/" aria-label="REGC Digital — home"><Logo onDark /></Link>
+            <Link href="/" aria-label="REGC Digital — home"><Logo onDark size="lg" /></Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/55">
               Specialist healthcare digital marketing. We help South African doctors, dentists and clinics attract more of the right patients — ethically and measurably.
             </p>

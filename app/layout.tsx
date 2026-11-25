@@ -106,6 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
         </noscript>
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="" />
+        <link rel="preload" as="image" type="image/webp" href="/assets/regc-logo-128.webp" imageSrcSet="/assets/regc-logo-128.webp 1x, /assets/regc-logo.webp 2x" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify([organizationSchema(), websiteSchema()]) }}

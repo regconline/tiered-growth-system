@@ -1,4 +1,9 @@
 import { ImageResponse } from "next/og";
+import { readFileSync } from "fs";
+import { join } from "path";
+
+// original REGC Digital badge, inlined so the image renderer never needs a network request
+const LOGO = `data:image/png;base64,${readFileSync(join(process.cwd(), "public/assets/regc-logo.png")).toString("base64")}`;
 
 export const OG_SIZE = { width: 1200, height: 630 };
 
@@ -15,12 +20,8 @@ export function ogCard({ eyebrow, title, footer }: { eyebrow: string; title: str
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-          <div style={{ width: 64, height: 64, borderRadius: 18, display: "flex", alignItems: "center", justifyContent: "center", background: "linear-gradient(135deg,#9b3fc4,#c4317a 55%,#f05060)" }}>
-            <svg width="44" height="44" viewBox="0 0 40 40">
-              <path d="M13.5 29.5V10.5h7.75a5.9 5.9 0 0 1 0 11.8H13.5M20.4 22.3l6.6 7.2" fill="none" stroke="#fff" strokeWidth="3.6" strokeLinecap="round" strokeLinejoin="round" />
-              <circle cx="29.2" cy="11.2" r="2.6" fill="#fff" />
-            </svg>
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={LOGO} width={96} height={96} alt="" style={{ borderRadius: 999, boxShadow: "0 0 0 3px rgba(232,64,106,0.6)" }} />
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ fontSize: 34, fontWeight: 800, letterSpacing: -1, display: "flex" }}>REGC <span style={{ color: "#ff86ab", marginLeft: 10 }}>Digital</span></div>
             <div style={{ fontSize: 16, letterSpacing: 4, opacity: 0.6, textTransform: "uppercase" }}>Healthcare Marketing</div>
