@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
 import remarkHtml from "remark-html";
+import remarkGfm from "remark-gfm";
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
 
@@ -83,6 +84,59 @@ export function getPostBySlug(slug: string): BlogPost | null {
 }
 
 export async function renderMarkdown(markdown: string): Promise<string> {
-  const result = await remark().use(remarkHtml, { sanitize: false }).process(markdown);
+  const result = await remark().use(remarkGfm).use(remarkHtml, { sanitize: false }).process(markdown);
   return result.toString();
+}
+
+/** Estimated reading time in minutes (~220 wpm). */
+export function readingTime(markdown?: string): number {
+  if (!markdown) return 1;
+  const words = markdown.replace(/[#>*_`\-\[\]()!|]/g, " ").split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 220));
+}
+
+/** Posts most related to `post` — same category first, then shared tags, then newest. */
+export function getRelatedPosts(post: BlogPost, count = 3): BlogPost[] {
+  const tags = new Set(post.tags.map((t) => t.toLowerCase()));
+  return getAllPosts()
+    .filter((p) => p.slug !== post.slug)
+    .map((p) => ({
+      p,
+      score: (p.category === post.category ? 3 : 0) + p.tags.filter((t) => tags.has(t.toLowerCase())).length,
+    }))
+    .sort((a, b) => b.score - a.score || b.p.pubDate.valueOf() - a.p.pubDate.valueOf())
+    .slice(0, count)
+    .map((x) => x.p);
+}
+
+/** h2 headings for a table of contents, with ids matching `addHeadingIds`. */
+export function extractHeadings(markdown: string): { id: string; text: string }[] {
+  const out: { id: string; text: string }[] = [];
+  for (const line of markdown.split("\n")) {
+    const m = line.match(/^##\s+(.+?)\s*#*$/);
+    if (m) {
+      const text = m[1].replace(/[*_`]/g, "").trim();
+      out.push({ id: slugify(text), text });
+    }
+  }
+  return out;
+}
+
+export function slugify(text: string) {
+  return text.toLowerCase().replace(/&[a-z]+;/g, "").replace(/[^a-z0-9\s-]/g, "").trim().replace(/\s+/g, "-").slice(0, 80);
+}
+
+/** Adds id attributes to rendered <h2>/<h3> so the TOC and deep links work. */
+export function addHeadingIds(html: string) {
+  return html.replace(/<h([23])>(.*?)<\/h\1>/g, (_m, level, inner) => {
+    const text = String(inner).replace(/<[^>]+>/g, "");
+    return `<h${level} id="${slugify(text)}">${inner}</h${level}>`;
+  });
+}
+
+/** All categories with post counts. */
+export function getCategories(): { name: string; count: number }[] {
+  const map = new Map<string, number>();
+  for (const p of getAllPosts()) map.set(p.category, (map.get(p.category) ?? 0) + 1);
+  return [...map.entries()].map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
 }

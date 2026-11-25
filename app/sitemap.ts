@@ -16,13 +16,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: SITE.url + "/domains/", lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: SITE.url + "/locations/", lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: SITE.url + "/blog/", lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: SITE.url + "/privacy-policy/", lastModified: now, changeFrequency: "yearly", priority: 0.3 },
   ];
 
   const serviceRoutes: MetadataRoute.Sitemap = serviceDetails.map((s) => ({
     url: `${SITE.url}/services/${s.slug}/`,
     lastModified: now,
     changeFrequency: "monthly",
-    priority: 0.8,
+    priority: 0.9,
   }));
 
   const domainRoutes: MetadataRoute.Sitemap = domains.map((d) => ({

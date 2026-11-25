@@ -1,43 +1,52 @@
 "use client";
 
-import { useEffect, useRef, ReactNode } from "react";
+import { useEffect, useRef, type ReactNode, type ElementType } from "react";
 
 interface Props {
   children: ReactNode;
   className?: string;
   delay?: number;
   fade?: boolean;
+  as?: ElementType;
 }
 
-export default function AnimateIn({ children, className = "", delay = 0, fade = false }: Props) {
-  const ref = useRef<HTMLDivElement>(null);
+// One shared observer for every reveal on the page (cheaper than one per element).
+let observer: IntersectionObserver | null = null;
+function getObserver() {
+  if (observer) return observer;
+  observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer?.unobserve(entry.target);
+        }
+      }
+    },
+    { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+  );
+  return observer;
+}
+
+export default function AnimateIn({ children, className = "", delay = 0, fade = false, as: Tag = "div" }: Props) {
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-
-    const cls = fade ? ["animate-fade-hidden", "animate-fade-visible"]
-                     : ["animate-in-hidden",   "animate-in-visible"];
-
-    el.classList.add(cls[0]);
-    if (delay) el.style.transitionDelay = `${delay}ms`;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.replace(cls[0], cls[1]);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.12 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [delay, fade]);
+    if (!("IntersectionObserver" in window)) { el.classList.add("is-visible"); return; }
+    const obs = getObserver();
+    obs.observe(el);
+    return () => obs.unobserve(el);
+  }, []);
 
   return (
-    <div ref={ref} className={className}>
+    <Tag
+      ref={ref}
+      className={`reveal ${fade ? "reveal-fade" : ""} ${className}`}
+      style={delay ? { transitionDelay: `${Math.min(delay, 600)}ms` } : undefined}
+    >
       {children}
-    </div>
+    </Tag>
   );
 }
