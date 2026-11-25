@@ -17,8 +17,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["var(--font-display)", "Poppins", "sans-serif"],
-        body:    ["var(--font-body)",    "Inter",   "sans-serif"],
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        body:    ["var(--font-body)", "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -68,18 +68,12 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      typography: () => ({
-        DEFAULT: {
-          css: {
-            color: "rgba(255,255,255,0.85)",
-            a: { color: "#e8406a" },
-            "h1,h2,h3,h4": {
-              fontFamily: "var(--font-display, 'Poppins'), sans-serif",
-              color: "#ffffff",
-            },
-          },
-        },
-      }),
+      keyframes: {
+        "fade-up": { from: { opacity: "0", transform: "translateY(10px)" }, to: { opacity: "1", transform: "none" } },
+      },
+      animation: {
+        "fade-up": "fade-up 0.35s cubic-bezier(0.22,1,0.36,1) both",
+      },
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],

@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 
 type TierLevel = "basic" | "standard" | "premium";
 
@@ -8,38 +8,50 @@ interface Props {
   price: string;
   includes: string[];
   result?: string;
+  /** anchor for the enquiry CTA (e.g. "#enquire") */
+  ctaHref?: string;
 }
 
-const tierConfig = {
-  basic: { label: "Basic", badgeClass: "tier-basic-badge", borderClass: "tier-basic-border", bgClass: "tier-basic-bg" },
-  standard: { label: "Standard", badgeClass: "tier-standard-badge", borderClass: "tier-standard-border", bgClass: "tier-standard-bg" },
-  premium: { label: "Premium", badgeClass: "tier-premium-badge", borderClass: "tier-premium-border", bgClass: "tier-premium-bg" },
+const config = {
+  basic: { label: "Essential", badge: "tier-basic-badge", border: "tier-basic-border", bg: "tier-basic-bg" },
+  standard: { label: "Most popular", badge: "tier-standard-badge", border: "tier-standard-border", bg: "tier-standard-bg" },
+  premium: { label: "Premium", badge: "tier-premium-badge", border: "tier-premium-border", bg: "tier-premium-bg" },
 } as const;
 
-export default function TierCard({ tier, name, price, includes, result }: Props) {
-  const config = tierConfig[tier];
+export default function TierCard({ tier, name, price, includes, result, ctaHref }: Props) {
+  const c = config[tier];
+  const featured = tier === "standard";
   return (
-    <div className={`rounded-xl border-2 ${config.borderClass} bg-card overflow-hidden flex flex-col h-full transition-transform hover:scale-[1.02] hover:shadow-lg`}>
-      <div className={`${config.bgClass} px-5 py-4`}>
-        <div className="flex items-center gap-2 mb-1">
-          <span className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${config.badgeClass}`}>{config.label}</span>
-        </div>
-        <h4 className="font-display text-lg font-bold text-foreground">{name}</h4>
-        <p className="font-display text-xl font-bold text-primary mt-1">{price}</p>
+    <div
+      className={`relative flex h-full flex-col overflow-hidden rounded-3xl border-2 bg-card transition-[transform,box-shadow] duration-300 hover:-translate-y-1.5 ${c.border} ${
+        featured ? "shadow-[0_30px_60px_-30px_hsl(var(--secondary)/0.55)] md:-translate-y-2 md:hover:-translate-y-3.5" : "hover:shadow-xl"
+      }`}
+    >
+      <div className={`${c.bg} px-6 pb-5 pt-6`}>
+        <span className={`inline-block rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider ${c.badge}`}>{c.label}</span>
+        <h3 className="mt-4 font-display text-xl font-bold text-foreground">{name}</h3>
+        <p className="mt-2 font-display text-2xl font-extrabold text-foreground">{price}</p>
       </div>
-      <div className="px-5 py-4 flex-1 flex flex-col">
-        <ul className="space-y-2 flex-1">
-          {includes.map((item, i) => (
-            <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-              <Check className="w-4 h-4 mt-0.5 shrink-0 text-secondary" />
+      <div className="flex flex-1 flex-col px-6 py-6">
+        <ul className="flex-1 space-y-3">
+          {includes.map((item) => (
+            <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/80">
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-secondary/10">
+                <Check className="h-3.5 w-3.5 text-secondary" strokeWidth={3} />
+              </span>
               <span>{item}</span>
             </li>
           ))}
         </ul>
         {result && (
-          <div className="mt-4 pt-3 border-t border-border">
-            <p className="text-sm font-medium text-primary">👉 {result}</p>
-          </div>
+          <p className="mt-6 rounded-xl bg-muted px-4 py-3 text-sm font-medium text-foreground">
+            <span className="text-secondary">Outcome:</span> {result}
+          </p>
+        )}
+        {ctaHref && (
+          <a href={ctaHref} data-package={name} className={`mt-6 w-full ${featured ? "btn-primary" : "btn-secondary"}`}>
+            Enquire about {name} <ArrowRight className="h-4 w-4" />
+          </a>
         )}
       </div>
     </div>

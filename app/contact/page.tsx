@@ -1,72 +1,60 @@
 import type { Metadata } from "next";
-import { Mail, Phone, MessageCircle } from "lucide-react";
+import { Mail, Phone, Clock, MapPin } from "lucide-react";
 import { SITE } from "@/data/site";
-import { breadcrumbList } from "@/lib/seo";
-import ContactForm from "@/components/ContactForm";
+import { abs, pageMetadata } from "@/lib/seo";
+import PageHero from "@/components/PageHero";
+import InquiryForm from "@/components/InquiryForm";
+import JsonLd from "@/components/JsonLd";
+import { WhatsAppIcon } from "@/components/icons";
 
-export const metadata: Metadata = {
-  title: "Contact Us | REGC Digital",
-  description: "Get in touch with REGC Digital — book a free healthcare marketing consultation by WhatsApp, email or phone.",
-  alternates: { canonical: "/contact/" },
-  openGraph: { url: "/contact/" },
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Contact Us — Book a Free Consultation",
+  description:
+    "Contact REGC Digital for a free healthcare marketing consultation. WhatsApp or call 064 082 6855, email info@regcdigital.co.za, or send an enquiry — we reply within one business day.",
+  path: "/contact/",
+});
 
-const jsonLd = [
-  breadcrumbList([
-    { name: "Home", path: "/" },
-    { name: "Contact", path: "/contact/" },
-  ]),
-  {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    name: "Contact Us | REGC Digital",
-    description: "Book a free healthcare marketing consultation.",
-    url: new URL("/contact/", SITE.url).toString(),
-  },
+const channels = [
+  { icon: WhatsAppIcon, title: "WhatsApp", note: "Fastest way to reach us", value: SITE.phone, href: SITE.whatsappUrl, external: true, color: "text-[#25D366]" },
+  { icon: Phone, title: "Phone", note: SITE.hours, value: SITE.phone, href: `tel:${SITE.phoneIntl}`, color: "text-secondary" },
+  { icon: Mail, title: "Email", note: "Reply within 1 business day", value: SITE.email, href: `mailto:${SITE.email}`, color: "text-secondary" },
 ];
 
 export default function ContactPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-
-      <section className="hero-gradient text-primary-foreground py-20">
-        <div className="container max-w-4xl mx-auto px-4 text-center">
-          <h1 className="font-display text-4xl md:text-5xl font-bold mb-4">Let's talk</h1>
-          <p className="text-lg text-primary-foreground/85">Book a free, no-obligation consultation. We'll respond within one business day.</p>
-        </div>
-      </section>
-
-      <section className="py-16">
-        <div className="container max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <ContactForm />
-          </div>
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "ContactPage", name: "Contact REGC Digital", url: abs("/contact/"), about: { "@id": SITE.url + "/#organization" } }} />
+      <PageHero
+        crumbs={[{ name: "Home", path: "/" }, { name: "Contact", path: "/contact/" }]}
+        eyebrow="Contact"
+        title={<>Let&apos;s talk about <span className="text-gradient-hero">your practice</span></>}
+        subtitle="Book a free, no-obligation consultation. Send an enquiry below or reach us directly — we respond within one business day."
+      />
+      <section className="py-16 md:py-24">
+        <div className="container grid max-w-6xl grid-cols-1 gap-8 px-4 lg:grid-cols-[1.5fr_1fr]">
+          <InquiryForm variant="contact" source="contact-page" heading="Send us an enquiry" subheading="Fields marked * are required." />
           <aside className="space-y-4">
-            <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="nofollow noopener noreferrer" className="flex items-start gap-3 bg-card border border-border rounded-xl p-5 hover:border-secondary transition-colors">
-              <MessageCircle className="w-6 h-6 text-[#25D366] mt-0.5 shrink-0" />
-              <div>
-                <h3 className="font-display font-bold text-foreground">WhatsApp</h3>
-                <p className="text-sm text-muted-foreground">Fastest way to reach us</p>
-                <p className="text-sm font-semibold text-primary mt-1">{SITE.phone}</p>
-              </div>
-            </a>
-            <a href={`tel:${SITE.phoneIntl}`} className="flex items-start gap-3 bg-card border border-border rounded-xl p-5 hover:border-secondary transition-colors">
-              <Phone className="w-6 h-6 text-secondary mt-0.5 shrink-0" />
-              <div>
-                <h3 className="font-display font-bold text-foreground">Phone</h3>
-                <p className="text-sm text-muted-foreground">Mon–Fri, 8:00–17:00</p>
-                <p className="text-sm font-semibold text-primary mt-1">{SITE.phone}</p>
-              </div>
-            </a>
-            <a href={`mailto:${SITE.email}`} className="flex items-start gap-3 bg-card border border-border rounded-xl p-5 hover:border-secondary transition-colors">
-              <Mail className="w-6 h-6 text-secondary mt-0.5 shrink-0" />
-              <div>
-                <h3 className="font-display font-bold text-foreground">Email</h3>
-                <p className="text-sm text-muted-foreground">We reply within 1 business day</p>
-                <p className="text-sm font-semibold text-primary mt-1">{SITE.email}</p>
-              </div>
-            </a>
+            {channels.map(({ icon: Icon, title, note, value, href, external, color }) => (
+              <a
+                key={title}
+                href={href}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="card card-hover flex items-start gap-4 p-6"
+              >
+                <span className="icon-tile h-12 w-12 shrink-0"><Icon className={`h-6 w-6 ${color}`} /></span>
+                <span>
+                  <span className="block font-display font-bold text-foreground">{title}</span>
+                  <span className="block text-sm text-muted-foreground">{note}</span>
+                  <span className="mt-1 block font-semibold text-secondary">{value}</span>
+                </span>
+              </a>
+            ))}
+            <div className="card p-6">
+              <p className="flex items-center gap-2 font-display font-bold text-foreground"><Clock className="h-5 w-5 text-secondary" /> Office hours</p>
+              <p className="mt-2 text-sm text-muted-foreground">{SITE.hours}. WhatsApp messages outside these hours are answered the next business day.</p>
+              <p className="mt-4 flex items-center gap-2 font-display font-bold text-foreground"><MapPin className="h-5 w-5 text-secondary" /> Where we work</p>
+              <p className="mt-2 text-sm text-muted-foreground">We serve healthcare practices remotely across all nine provinces of South Africa.</p>
+            </div>
           </aside>
         </div>
       </section>

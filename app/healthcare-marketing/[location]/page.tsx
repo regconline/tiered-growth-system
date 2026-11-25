@@ -6,6 +6,7 @@ import { locations, cities, provinces, getLocationKeywords, getParentProvince, g
 import { serviceDetails } from "@/data/serviceDetails";
 import { domains } from "@/data/domains";
 import { SITE } from "@/data/site";
+import { ServiceIcon, DomainIcon } from "@/components/ServiceIcon";
 
 export function generateStaticParams() {
   return locations.map((l) => ({ location: l.slug }));
@@ -120,8 +121,8 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <section className="hero-gradient text-primary-foreground py-16">
-        <div className="container max-w-4xl mx-auto px-4">
+      <section className="page-hero">
+        <div className="container relative max-w-5xl mx-auto px-4">
           <nav aria-label="Breadcrumb" className="text-sm text-primary-foreground/70 mb-4">
             <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
               <li>
@@ -149,16 +150,16 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
             </ol>
           </nav>
           <div className="flex items-center gap-3 mb-4">
-            <MapPin className="w-8 h-8 text-secondary" />
+            <MapPin className="w-6 h-6 text-[#ff7aa8]" />
             <span className="text-sm uppercase tracking-wider text-primary-foreground/70">{loc.type === "province" ? "Province" : "City"} · {loc.region}</span>
           </div>
-          <h1 className="font-display text-3xl md:text-5xl font-bold mb-4">Healthcare Marketing in {loc.name}</h1>
+          <h1 className="font-display text-4xl md:text-5xl lg:text-[3.4rem] font-extrabold leading-[1.08] mb-5 text-balance">Healthcare Marketing in {loc.name}</h1>
           <p className="text-lg md:text-xl text-primary-foreground/85 max-w-2xl">{loc.intro}</p>
           {loc.population && <p className="text-sm text-primary-foreground/60 mt-3">{loc.population}</p>}
         </div>
       </section>
 
-      <section className="py-12 md:py-16">
+      <section className="py-16 md:py-24">
         <div className="container max-w-5xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
             <div className="lg:col-span-2">
@@ -167,7 +168,7 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
               <h3 className="font-display text-xl font-bold text-foreground mt-8 mb-3">Why local matters in {loc.name}</h3>
               <p className="text-foreground leading-relaxed">{loc.whyLocal}</p>
             </div>
-            <aside className="bg-card border border-border rounded-2xl p-6 h-fit">
+            <aside className="card h-fit p-6">
               <h3 className="font-display font-bold text-foreground mb-3 flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-secondary" /> Areas we serve
               </h3>
@@ -186,8 +187,8 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
             <p className="text-muted-foreground mb-6">Every service below is delivered with {loc.name}-specific local SEO, geo-targeted ads, and patient demographics in mind.</p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {featuredServices.map((s) => (
-                <Link key={s.slug} href={`/services/${s.slug}/`} className="bg-card border border-border rounded-xl p-5 hover:shadow-md hover:border-secondary transition-all">
-                  <div className="text-2xl mb-2">{s.icon}</div>
+                <Link key={s.slug} href={`/services/${s.slug}/`} className="card card-hover block p-5">
+                  <span className="icon-tile mb-3 h-10 w-10 text-secondary"><ServiceIcon slug={s.slug} className="h-5 w-5" /></span>
                   <h3 className="font-display font-bold text-foreground mb-1">{s.title}</h3>
                   <p className="text-xs text-muted-foreground line-clamp-2">{s.tagline}</p>
                 </Link>
@@ -204,8 +205,8 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
             <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">Specialities we serve in {loc.name}</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
               {domains.slice(0, 8).map((d) => (
-                <Link key={d.slug} href={`/domains/${d.slug}/`} className="bg-card border border-border rounded-lg p-3 text-center hover:border-secondary transition-colors">
-                  <div className="text-2xl mb-1">{d.emoji}</div>
+                <Link key={d.slug} href={`/domains/${d.slug}/`} className="card card-hover block p-4 text-center">
+                  <DomainIcon slug={d.slug} className="mx-auto mb-2 h-5 w-5 text-secondary" />
                   <p className="text-xs font-semibold text-foreground">{d.shortName}</p>
                 </Link>
               ))}
@@ -225,7 +226,7 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
                   <Link
                     key={c.slug}
                     href={`/healthcare-marketing-${c.slug}/`}
-                    className="group flex items-center justify-between gap-2 bg-card border border-border rounded-xl px-4 py-3 hover:border-secondary hover:shadow-md transition-all"
+                    className="card card-hover group flex items-center justify-between gap-2 px-4 py-3"
                   >
                     <span className="flex items-center gap-2 font-semibold text-foreground">
                       <MapPin className="w-4 h-4 text-secondary shrink-0" />
@@ -239,7 +240,7 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
           )}
 
           {!isProvince && parentProvince && (
-            <div className="mb-12 bg-card border border-border rounded-2xl p-6">
+            <div className="card mb-12 p-6">
               <p className="text-sm uppercase tracking-wider text-muted-foreground mb-2">Province hub</p>
               <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-2">
                 Part of our {parentProvince.name} healthcare marketing region
@@ -263,7 +264,7 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
               </h2>
               <div className="flex flex-wrap gap-2">
                 {sameRegion.map((c) => (
-                  <Link key={c.slug} href={`/healthcare-marketing-${c.slug}/`} className="text-sm bg-card border border-border rounded-full px-4 py-1.5 hover:border-secondary transition-colors">
+                  <Link key={c.slug} href={`/healthcare-marketing-${c.slug}/`} className="chip !px-4 !py-1.5 text-sm hover:border-secondary/50 hover:text-foreground">
                     {c.name}
                   </Link>
                 ))}
@@ -276,7 +277,7 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
               <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-4">Browse other provinces</h2>
               <div className="flex flex-wrap gap-2">
                 {otherProvinces.map((p) => (
-                  <Link key={p.slug} href={`/healthcare-marketing-${p.slug}/`} className="text-sm bg-card border border-border rounded-full px-4 py-1.5 hover:border-secondary transition-colors">
+                  <Link key={p.slug} href={`/healthcare-marketing-${p.slug}/`} className="chip !px-4 !py-1.5 text-sm hover:border-secondary/50 hover:text-foreground">
                     {p.name}
                   </Link>
                 ))}
@@ -286,11 +287,11 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
         </div>
       </section>
 
-      <section className="py-16 hero-gradient text-primary-foreground">
+      <section className="hero-gradient py-20">
         <div className="container max-w-3xl mx-auto px-4 text-center">
           <h2 className="font-display text-2xl md:text-3xl font-bold mb-4">Grow your {loc.name} practice with REGC Digital</h2>
           <p className="text-primary-foreground/85 mb-6">Book a free, no-obligation consultation tailored to {loc.name}'s patient market.</p>
-          <Link href="/contact/" className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-secondary/90 transition-colors">
+          <Link href="/contact/" className="btn-primary">
             Book a free consultation <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
