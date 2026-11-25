@@ -30,7 +30,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
   const pathname = usePathname() || "/";
   // pages that already end with a strong CTA don't need a second one
-  const showCta = !(pathname === "/" || pathname.startsWith("/contact") || pathname.startsWith("/services/") || pathname.startsWith("/domains/"));
+  const showCta = !(pathname === "/" || pathname.startsWith("/contact") || pathname.startsWith("/services/") || pathname.startsWith("/domains/") || pathname.startsWith("/admin") || pathname.startsWith("/pay/") || pathname.startsWith("/billing/"));
 
   return (
     <footer className="relative overflow-hidden bg-[#0b0710] text-white/80 print:hidden">
@@ -141,6 +141,8 @@ export default function Footer() {
             <Link href="/services/" className="hover:text-white/80">Services</Link>
             <Link href="/blog/" className="hover:text-white/80">Blog</Link>
             <Link href="/contact/" className="hover:text-white/80">Contact</Link>
+            <Link href="/terms/" className="hover:text-white/80">Terms</Link>
+            <Link href="/refund-policy/" className="hover:text-white/80">Refunds</Link>
             <Link href="/privacy-policy/" className="hover:text-white/80">Privacy policy</Link>
             <Link href="/sitemap.xml" prefetch={false} className="hover:text-white/80">Sitemap</Link>
           </nav>

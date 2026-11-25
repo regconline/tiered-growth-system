@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { X, Send } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons";
 import { LogoMark } from "@/components/Logo";
@@ -20,6 +21,7 @@ function track(label: string) {
 }
 
 export default function WhatsAppWidget() {
+  const pathname = usePathname() || "";
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
   const [nudge, setNudge] = useState(false);
@@ -51,6 +53,8 @@ export default function WhatsAppWidget() {
     setOpen(false);
     setText("");
   };
+
+  if (pathname.startsWith("/admin")) return null;
 
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3 print:hidden">

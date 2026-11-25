@@ -4,6 +4,9 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, Lightbulb, Target, Phone, Clock, ShieldCheck, MessageSquareText } from "lucide-react";
 import { serviceDetails } from "@/data/serviceDetails";
 import { serviceExtras } from "@/data/serviceExtras";
+import { planFor } from "@/data/billing";
+import { paystackConfigured } from "@/lib/billing/paystack";
+import { billingDbConfigured } from "@/lib/billing/db";
 import { SITE } from "@/data/site";
 import { getPostBySlug } from "@/lib/blog";
 import { abs, faqSchema, pageMetadata } from "@/lib/seo";
@@ -184,7 +187,15 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
             {service.tiers.map((t, i) => (
               <AnimateIn key={t.tier} delay={i * 90} className="h-full">
-                <TierCard {...t} ctaHref="#enquire" />
+                <TierCard
+                  {...t}
+                  ctaHref="#enquire"
+                  subscribe={(() => {
+                    // Subscribe buttons only appear once Paystack + the billing database are set up
+                    const pl = paystackConfigured() && billingDbConfigured() ? planFor(service.slug, t.tier) : undefined;
+                    return pl ? { planKey: pl.key, planName: pl.name, amountRand: pl.amountRand } : undefined;
+                  })()}
+                />
               </AnimateIn>
             ))}
           </div>
