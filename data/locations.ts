@@ -173,6 +173,20 @@ export const locations: Location[] = [
       "Sandton patients won't tolerate slow websites or unanswered enquiries. We build for speed, polish, and instant response — because anything less loses the booking.",
   },
   {
+    slug: "randburg",
+    name: "Randburg",
+    type: "city",
+    province: "Gauteng",
+    region: "Gauteng",
+    intro:
+      "Randburg and its north-western suburbs — from Ferndale and Northcliff to Randpark Ridge and Olivedale — are home to a dense mix of family GPs, dentists, physiotherapists and allied health practices serving established residential communities.",
+    areas: ["Randpark Ridge", "Ferndale", "Northcliff", "Blairgowrie", "Cresta", "Olivedale", "Northgate", "Honeydew"],
+    medicalContext:
+      "Practices here sit between Sandton's specialist hubs and the fast-growing West Rand, and many compete for the same family patients. Netcare Olivedale Hospital and the medical suites around Cresta and Northcliff anchor much of the local referral network.",
+    whyLocal:
+      "Randburg patients choose practices close to home, so Google Maps visibility, fresh reviews and fast replies on WhatsApp make the difference. We focus on local search and online reputation management for each suburb you serve.",
+  },
+  {
     slug: "pretoria",
     name: "Pretoria",
     type: "city",
@@ -639,6 +653,7 @@ const cityToProvinceSlug: Record<string, string> = {
   paarl: "western-cape",
   "somerset-west": "western-cape",
   george: "western-cape",
+  randburg: "gauteng",
   durban: "kwazulu-natal",
   umhlanga: "kwazulu-natal",
   pietermaritzburg: "kwazulu-natal",

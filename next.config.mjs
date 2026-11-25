@@ -48,6 +48,17 @@ const nextConfig = {
         destination: 'https://www.regcdigital.co.za/:path*',
         permanent: true,
       },
+      // The internal route behind the city pages must not be reachable as a second URL
+      {
+        source: '/healthcare-marketing/:slug',
+        destination: '/healthcare-marketing-:slug/',
+        permanent: true,
+      },
+      {
+        source: '/healthcare-marketing/:slug/',
+        destination: '/healthcare-marketing-:slug/',
+        permanent: true,
+      },
       // Legacy/broken service URLs referenced from older blog posts
       {
         source: '/services/website-design',

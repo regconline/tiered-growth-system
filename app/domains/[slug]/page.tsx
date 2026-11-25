@@ -5,7 +5,7 @@ import { ArrowRight, AlertTriangle, ShieldCheck } from "lucide-react";
 import { domains } from "@/data/domains";
 import { serviceDetails } from "@/data/serviceDetails";
 import { SITE } from "@/data/site";
-import { abs, faqSchema } from "@/lib/seo";
+import { abs, faqSchema, fitTitle } from "@/lib/seo";
 import PageHero from "@/components/PageHero";
 import AnimateIn from "@/components/AnimateIn";
 import JsonLd from "@/components/JsonLd";
@@ -23,12 +23,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const domain = domains.find((d) => d.slug === slug);
   if (!domain) return {};
   const path = `/domains/${domain.slug}/`;
+  const bare = domain.titleTag.replace(/\s*\|\s*REGC Digital\s*$/i, "");
+  const seoTitle = bare.length <= 66 ? bare : `${domain.shortName} Marketing in South Africa`;
   return {
-    title: { absolute: domain.titleTag },
+    title: fitTitle(seoTitle),
     description: domain.metaDescription,
     alternates: { canonical: path },
-    openGraph: { url: path, title: domain.titleTag, description: domain.metaDescription, images: [{ url: SITE.defaultOg, width: 1200, height: 630, alt: domain.titleTag }] },
-    twitter: { card: "summary_large_image", title: domain.titleTag, description: domain.metaDescription, images: [SITE.defaultOg] },
+    openGraph: { url: path, title: fitTitle(seoTitle).absolute, description: domain.metaDescription, images: [{ url: SITE.defaultOg, width: 1200, height: 630, alt: domain.titleTag }] },
+    twitter: { card: "summary_large_image", title: fitTitle(seoTitle).absolute, description: domain.metaDescription, images: [SITE.defaultOg] },
   };
 }
 

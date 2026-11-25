@@ -8,6 +8,7 @@ import { domains } from "@/data/domains";
 import { SITE } from "@/data/site";
 import { ServiceIcon, DomainIcon } from "@/components/ServiceIcon";
 import { getHealthcareGuides } from "@/lib/blog";
+import { fitTitle } from "@/lib/seo";
 
 export function generateStaticParams() {
   return locations.map((l) => ({ location: l.slug }));
@@ -25,19 +26,19 @@ export async function generateMetadata({ params }: { params: Promise<{ location:
     ? `Specialist healthcare digital marketing across ${loc.name} — HPCSA-aligned websites, SEO, Google Ads, social media and reputation management for doctors, dentists, physios and allied health professionals.`
     : `Healthcare digital marketing for medical practices in ${loc.name}, ${provinceName} — HPCSA-aligned websites, SEO, Google Ads and patient acquisition campaigns built for ${loc.name} doctors and specialists.`;
 
-  const pageTitle = `Healthcare Marketing Agency in ${loc.name}`;
+  const pageTitle = `Medical & Healthcare Marketing in ${loc.name}`;
   return {
-    title: pageTitle,
+    title: fitTitle(pageTitle),
     description,
     keywords: keywords.length ? keywords : undefined,
     alternates: { canonical: `/healthcare-marketing-${loc.slug}/` },
     openGraph: {
-      title: `${pageTitle} | REGC Digital`,
+      title: fitTitle(pageTitle).absolute,
       description,
       url: `/healthcare-marketing-${loc.slug}/`,
       images: [{ url: SITE.defaultOg, width: 1200, height: 630, alt: `Healthcare marketing in ${loc.name}` }],
     },
-    twitter: { card: "summary_large_image", title: `${pageTitle} | REGC Digital`, description, images: [SITE.defaultOg] },
+    twitter: { card: "summary_large_image", title: fitTitle(pageTitle).absolute, description, images: [SITE.defaultOg] },
   };
 }
 

@@ -40,9 +40,9 @@ export const serviceExtras: Record<string, ServiceExtra> = {
     related: ["seo-services", "conversion-optimization", "branding"],
   },
   "seo-services": {
-    metaTitle: "Medical SEO South Africa — Rank Your Practice on Google",
+    metaTitle: "Medical SEO Services South Africa | Healthcare SEO Company",
     metaDescription:
-      "Local SEO for South African medical and dental practices. Google Business Profile optimisation, on-page and technical SEO, and content that brings patients. From R2,500/month.",
+      "Medical SEO services for South African doctors, dentists and clinics: Google Business Profile, local SEO, technical fixes and patient-focused content. From R2,500/month.",
     keywords: ["medical SEO South Africa", "SEO for doctors", "dental SEO", "local SEO for medical practice", "Google Business Profile for doctors"],
     idealFor: [
       "Practices that don't appear when patients search “near me”",
@@ -115,9 +115,9 @@ export const serviceExtras: Record<string, ServiceExtra> = {
     related: ["seo-services", "social-media", "website-services"],
   },
   "reputation-management": {
-    metaTitle: "Online Reputation & Google Review Management for Practices",
+    metaTitle: "Online Reputation Management South Africa for Practices",
     metaDescription:
-      "Grow and protect your practice's Google reviews. Ethical review requests, professional responses and monitoring — POPIA and HPCSA aware. From R1,500/month.",
+      "Online reputation management for South African medical practices in Johannesburg, Randburg, Cape Town and beyond: more genuine Google reviews and professional replies. From R1,500/month.",
     keywords: ["Google reviews for doctors", "medical reputation management", "online reviews dental practice", "review management South Africa"],
     idealFor: [
       "Practices with few or outdated Google reviews",
