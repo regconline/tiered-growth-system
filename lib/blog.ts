@@ -140,3 +140,26 @@ export function getCategories(): { name: string; count: number }[] {
   for (const p of getAllPosts()) map.set(p.category, (map.get(p.category) ?? 0) + 1);
   return [...map.entries()].map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
 }
+
+/** Which service page each blog category should feed (internal linking for SEO). */
+export const CATEGORY_SERVICE: Record<string, string> = {
+  SEO: "seo-services",
+  "Google Ads": "conversion-optimization",
+  "Website Development": "website-services",
+  "Social Media": "social-media",
+  "Content Marketing": "content-marketing",
+  Reputation: "reputation-management",
+  "Patient Communication": "patient-communication",
+  Compliance: "compliance",
+  "Digital Marketing": "seo-services",
+};
+
+/** Healthcare-specific guides (used on location pages). */
+export function getHealthcareGuides(count = 3, seed = 0): BlogPost[] {
+  const hc = getAllPosts().filter((p) =>
+    /medical|doctor|dental|dentist|practice|patient|healthcare|hpcsa|popia|physio|psycholog/i.test(p.title + " " + p.slug),
+  );
+  if (hc.length <= count) return hc;
+  const start = seed % hc.length;
+  return [...hc.slice(start), ...hc.slice(0, start)].slice(0, count);
+}

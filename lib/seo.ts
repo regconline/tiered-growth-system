@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SITE } from "@/data/site";
+import { provinces } from "@/data/locations";
 
 export type Crumb = { name: string; path: string };
 
@@ -71,7 +72,10 @@ export function organizationSchema() {
     priceRange: "R2,500 – R45,000",
     currenciesAccepted: "ZAR",
     address: { "@type": "PostalAddress", addressCountry: SITE.countryCode },
-    areaServed: { "@type": "Country", name: SITE.region },
+    areaServed: [
+      { "@type": "Country", name: SITE.region },
+      ...provinces.map((p) => ({ "@type": "AdministrativeArea", name: p.name, containedInPlace: { "@type": "Country", name: SITE.region } })),
+    ],
     knowsAbout: [
       "Healthcare marketing", "Medical website design", "Medical SEO", "Local SEO",
       "Google Ads for healthcare", "Social media marketing", "Online reputation management",

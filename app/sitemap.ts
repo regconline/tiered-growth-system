@@ -6,7 +6,8 @@ import { locations } from "@/data/locations";
 import { getAllPosts } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  // date of the last real content update — change it when pages are edited
+  const now = new Date("2026-11-25");
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: SITE.url + "/", lastModified: now, changeFrequency: "weekly", priority: 1 },
