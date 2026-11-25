@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, Clock, CalendarDays, RefreshCw } from "lucide-react";
-import { getAllPosts, getPostBySlug, renderMarkdown, readingTime, getRelatedPosts, extractHeadings, addHeadingIds } from "@/lib/blog";
+import { getAllPosts, getPostBySlug, renderMarkdown, readingTime, getRelatedPosts, extractHeadings, addHeadingIds, CATEGORY_SERVICE } from "@/lib/blog";
+import { serviceDetails } from "@/data/serviceDetails";
+import { cities } from "@/data/locations";
+import { ServiceIcon } from "@/components/ServiceIcon";
 import { SITE } from "@/data/site";
 import { abs, faqSchema, pageMetadata } from "@/lib/seo";
 import PageHero from "@/components/PageHero";
@@ -50,6 +53,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const path = `/blog/${post.slug}/`;
   const url = abs(path);
   const modified = post.updatedDate ?? post.pubDate;
+  const service = serviceDetails.find((s) => s.slug === (CATEGORY_SERVICE[post.category] ?? "seo-services"));
+  const topCities = cities.slice(0, 10);
 
   const jsonLd: object[] = [
     {
@@ -109,7 +114,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <Link href="/blog/" className="text-sm font-semibold text-secondary hover:underline underline-offset-4">← All articles</Link>
             </div>
 
-            <div className="hero-gradient mt-12 rounded-3xl p-8 md:p-10">
+            {service && (
+              <Link href={`/services/${service.slug}/`} className="card card-hover group mt-12 flex items-start gap-4 p-6">
+                <span className="icon-tile h-12 w-12 shrink-0 text-secondary"><ServiceIcon slug={service.slug} className="h-6 w-6" /></span>
+                <span className="min-w-0">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-secondary">Related service</span>
+                  <span className="mt-1 block font-display text-lg font-bold text-foreground group-hover:text-secondary transition-colors">{service.title} for healthcare practices</span>
+                  <span className="mt-1 block text-sm text-muted-foreground">{service.tagline}</span>
+                </span>
+                <ArrowRight className="ml-auto mt-1 h-5 w-5 shrink-0 text-secondary transition-transform group-hover:translate-x-1" />
+              </Link>
+            )}
+
+            <div className="hero-gradient mt-6 rounded-3xl p-8 md:p-10">
               <p className="font-display text-2xl font-extrabold text-white">Want this done for your practice?</p>
               <p className="mt-2 max-w-lg text-white/70">Book a free consultation and we&apos;ll show you exactly where your practice can win more patients online.</p>
               <div className="mt-6 flex flex-wrap gap-3">
@@ -117,6 +134,16 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <Link href="/services/" className="btn-ghost">See services</Link>
               </div>
             </div>
+
+            <nav aria-label="Healthcare marketing by city" className="mt-8">
+              <p className="text-sm font-semibold text-foreground">We help practices across South Africa</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {topCities.map((c) => (
+                  <Link key={c.slug} href={`/healthcare-marketing-${c.slug}/`} className="chip hover:border-secondary/50 hover:text-foreground">{c.name}</Link>
+                ))}
+                <Link href="/locations/" className="chip font-semibold text-secondary hover:border-secondary/50">All locations →</Link>
+              </div>
+            </nav>
           </article>
 
           <aside className="hidden lg:block">
@@ -132,9 +159,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 </nav>
               )}
               <div className="card p-5">
-                <p className="font-display font-bold text-foreground">Free practice marketing review</p>
+                <p className="font-display font-bold text-foreground">{service ? `Need help with ${service.title.toLowerCase()}?` : "Free practice marketing review"}</p>
                 <p className="mt-1.5 text-sm text-muted-foreground">We&apos;ll audit your website, Google profile and reviews — no obligation.</p>
-                <Link href="/contact/" className="btn-primary mt-4 w-full !py-2.5">Get my free review</Link>
+                <Link href={service ? `/services/${service.slug}/#enquire` : "/contact/"} className="btn-primary mt-4 w-full !py-2.5">Get a free quote</Link>
               </div>
             </div>
           </aside>

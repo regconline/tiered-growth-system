@@ -7,6 +7,7 @@ import { serviceDetails } from "@/data/serviceDetails";
 import { domains } from "@/data/domains";
 import { SITE } from "@/data/site";
 import { ServiceIcon, DomainIcon } from "@/components/ServiceIcon";
+import { getHealthcareGuides } from "@/lib/blog";
 
 export function generateStaticParams() {
   return locations.map((l) => ({ location: l.slug }));
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ location:
     ? `Specialist healthcare digital marketing across ${loc.name} — HPCSA-aligned websites, SEO, Google Ads, social media and reputation management for doctors, dentists, physios and allied health professionals.`
     : `Healthcare digital marketing for medical practices in ${loc.name}, ${provinceName} — HPCSA-aligned websites, SEO, Google Ads and patient acquisition campaigns built for ${loc.name} doctors and specialists.`;
 
-  const pageTitle = `Healthcare Marketing in ${loc.name}`;
+  const pageTitle = `Healthcare Marketing Agency in ${loc.name}`;
   return {
     title: pageTitle,
     description,
@@ -34,7 +35,9 @@ export async function generateMetadata({ params }: { params: Promise<{ location:
       title: `${pageTitle} | REGC Digital`,
       description,
       url: `/healthcare-marketing-${loc.slug}/`,
+      images: [{ url: SITE.defaultOg, width: 1200, height: 630, alt: `Healthcare marketing in ${loc.name}` }],
     },
+    twitter: { card: "summary_large_image", title: `${pageTitle} | REGC Digital`, description, images: [SITE.defaultOg] },
   };
 }
 
@@ -54,6 +57,7 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
     ? []
     : cities.filter((c) => c.region === loc.region && c.slug !== loc.slug).slice(0, 6);
   const otherProvinces = provinces.filter((p) => p.slug !== loc.slug).slice(0, 5);
+  const guides = getHealthcareGuides(3, loc.slug.length + loc.name.charCodeAt(0));
 
   // areaServed lists the province + the relevant city/cities so Google can
   // associate this page with the correct local market.
@@ -266,6 +270,21 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
                 {sameRegion.map((c) => (
                   <Link key={c.slug} href={`/healthcare-marketing-${c.slug}/`} className="chip !px-4 !py-1.5 text-sm hover:border-secondary/50 hover:text-foreground">
                     {c.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {guides.length > 0 && (
+            <div className="mb-12">
+              <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-4">Free guides for {loc.name} practices</h2>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                {guides.map((g) => (
+                  <Link key={g.slug} href={`/blog/${g.slug}/`} className="card card-hover group block p-5">
+                    <span className="text-2xl">{g.heroEmoji}</span>
+                    <span className="mt-2 block text-xs font-semibold uppercase tracking-wider text-secondary">{g.category}</span>
+                    <span className="mt-1 block font-display font-bold leading-snug text-foreground group-hover:text-secondary transition-colors">{g.title}</span>
                   </Link>
                 ))}
               </div>
