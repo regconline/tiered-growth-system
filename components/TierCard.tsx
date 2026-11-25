@@ -1,4 +1,5 @@
 import { Check, ArrowRight } from "lucide-react";
+import SubscribeButton from "@/components/SubscribeButton";
 
 type TierLevel = "basic" | "standard" | "premium";
 
@@ -10,6 +11,8 @@ interface Props {
   result?: string;
   /** anchor for the enquiry CTA (e.g. "#enquire") */
   ctaHref?: string;
+  /** fixed-price monthly packages can be bought online */
+  subscribe?: { planKey: string; planName: string; amountRand: number };
 }
 
 const config = {
@@ -18,7 +21,7 @@ const config = {
   premium: { label: "Premium", badge: "tier-premium-badge", border: "tier-premium-border", bg: "tier-premium-bg" },
 } as const;
 
-export default function TierCard({ tier, name, price, includes, result, ctaHref }: Props) {
+export default function TierCard({ tier, name, price, includes, result, ctaHref, subscribe }: Props) {
   const c = config[tier];
   const featured = tier === "standard";
   return (
@@ -48,9 +51,10 @@ export default function TierCard({ tier, name, price, includes, result, ctaHref 
             <span className="text-secondary">Outcome:</span> {result}
           </p>
         )}
+        {subscribe && <div className="mt-6"><SubscribeButton {...subscribe} featured={featured} /></div>}
         {ctaHref && (
-          <a href={ctaHref} data-package={name} className={`mt-6 w-full ${featured ? "btn-primary" : "btn-secondary"}`}>
-            Enquire about {name} <ArrowRight className="h-4 w-4" />
+          <a href={ctaHref} data-package={name} className={`w-full ${subscribe ? "mt-3 btn-secondary" : `mt-6 ${featured ? "btn-primary" : "btn-secondary"}`}`}>
+            {subscribe ? "Get a custom quote" : <>Enquire about {name}</>} <ArrowRight className="h-4 w-4" />
           </a>
         )}
       </div>
