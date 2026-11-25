@@ -6,6 +6,7 @@ import { abs, pageMetadata } from "@/lib/seo";
 import PageHero from "@/components/PageHero";
 import AnimateIn from "@/components/AnimateIn";
 import JsonLd from "@/components/JsonLd";
+import { LogoMark } from "@/components/Logo";
 
 export const metadata: Metadata = pageMetadata({
   title: "About Us — Healthcare Marketing Specialists",
@@ -49,6 +50,7 @@ export default function AboutPage() {
             <AnimateIn delay={100}>
               <div className="card relative overflow-hidden p-8">
                 <div aria-hidden className="absolute -right-20 -top-20 h-56 w-56 rounded-full" style={{ background: "radial-gradient(circle, hsl(var(--secondary)/0.18), transparent 70%)" }} />
+                <LogoMark className="mb-5 h-20 w-20 shadow-[0_12px_30px_-10px_rgba(196,49,122,0.6)]" alt="REGC Digital logo" />
                 <h3 className="font-display text-xl font-bold text-foreground">A registered, accountable business</h3>
                 <ul className="mt-5 space-y-3.5">
                   {["Registered with the CIPC", "B-BBEE certified", "Tax-compliant South African company", "POPIA-aligned data handling", "Healthcare-only client focus"].map((t) => (
