@@ -6,6 +6,17 @@ export type Crumb = { name: string; path: string };
 
 export const abs = (path: string) => new URL(path, SITE.url).toString();
 
+const SUFFIX = ` | ${SITE.name}`;
+
+/**
+ * Google truncates titles at roughly 60 characters. Adds the brand suffix only when
+ * it still fits; otherwise uses the bare title so the important words stay visible.
+ */
+export function fitTitle(title: string): { absolute: string } {
+  const bare = title.replace(/\s*\|\s*REGC Digital\s*$/i, "").trim();
+  return { absolute: bare.length + SUFFIX.length <= 62 ? bare + SUFFIX : bare };
+}
+
 /** Consistent per-page metadata: title, description, canonical, OG & Twitter. */
 export function pageMetadata({
   title,
@@ -28,9 +39,9 @@ export function pageMetadata({
   modifiedTime?: string;
   noindex?: boolean;
 }): Metadata {
-  const fullTitle = `${title} | ${SITE.name}`;
+  const fullTitle = fitTitle(title).absolute;
   return {
-    title,
+    title: fitTitle(title),
     description,
     keywords,
     alternates: { canonical: path },

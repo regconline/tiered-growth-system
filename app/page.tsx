@@ -16,9 +16,9 @@ import { SITE } from "@/data/site";
 import { faqSchema, itemList } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: { absolute: "Healthcare Digital Marketing Agency South Africa | REGC Digital" },
+  title: { absolute: "Healthcare & Medical Marketing Services | REGC Digital" },
   description:
-    "Specialist healthcare marketing agency for South African doctors, dentists and clinics. Medical websites, SEO, Google Ads, social media and reviews — HPCSA & POPIA aligned. Free consultation.",
+    "South Africa's healthcare digital marketing agency. Medical marketing services for doctors, dentists and clinics: websites, medical SEO, Google Ads, social media and reviews. HPCSA & POPIA aligned.",
   alternates: { canonical: "/" },
   openGraph: { url: "/", type: "website", images: [{ url: SITE.defaultOg, width: 1200, height: 630, alt: SITE.defaultOgAlt }] },
 };
