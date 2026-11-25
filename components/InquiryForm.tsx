@@ -1,15 +1,12 @@
 "use client";
 
-import { useState, useCallback, useEffect, type FormEvent } from "react";
-import dynamic from "next/dynamic";
+import { useState, useCallback, useEffect, useRef, type FormEvent } from "react";
 import Link from "next/link";
 import { Send, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
 import { SITE } from "@/data/site";
 import { WhatsAppIcon } from "@/components/icons";
+import Turnstile, { TURNSTILE_SITE_KEY, type TurnstileHandle } from "@/components/Turnstile";
 
-// reCAPTCHA is only downloaded when a site key is configured.
-const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"), { ssr: false });
-const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
 const MESSAGE_MAX = 1500;
 
 export const SERVICE_OPTIONS = [
@@ -81,6 +78,7 @@ export default function InquiryForm({
     website: "", // honeypot
   });
   const [token, setToken] = useState<string | null>(null);
+  const turnstile = useRef<TurnstileHandle>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [fallback, setFallback] = useState(false);
@@ -128,8 +126,9 @@ export default function InquiryForm({
       setStatus("error");
       return;
     }
-    if (RECAPTCHA_SITE_KEY && !token) {
-      setError("Please complete the reCAPTCHA check.");
+    if (TURNSTILE_SITE_KEY && !token) {
+      setError("Just a moment — we're confirming you're human. Please tick the security check below if it appears, then try again.");
+      setFallback(true); // e.g. an ad-blocker stopped the check from loading
       setStatus("error");
       return;
     }
@@ -152,7 +151,7 @@ export default function InquiryForm({
           consent: form.consent,
           source,
           page: typeof window !== "undefined" ? window.location.pathname : "",
-          recaptchaToken: token,
+          turnstileToken: token,
         }),
       });
       if (res.ok) {
@@ -161,11 +160,13 @@ export default function InquiryForm({
         window.dataLayer.push({ event: "generate_lead", form_source: source, form_service: form.service || "unspecified" });
         return;
       }
+      turnstile.current?.reset(); // tokens are single-use
       const data = await res.json().catch(() => ({}));
       setError(data.error || "We couldn't send your message right now.");
       setFallback(true);
       setStatus("error");
     } catch {
+      turnstile.current?.reset();
       setError("We couldn't reach the server.");
       setFallback(true);
       setStatus("error");
@@ -294,11 +295,7 @@ export default function InquiryForm({
         </span>
       </label>
 
-      {RECAPTCHA_SITE_KEY && (
-        <div className="mt-4 flex justify-center">
-          <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={(t: string | null) => setToken(t)} />
-        </div>
-      )}
+      <Turnstile ref={turnstile} action={source.slice(0, 32).replace(/[^a-zA-Z0-9_-]/g, "-")} onToken={setToken} className="mt-4" />
 
       {status === "error" && (
         <div role="alert" className="mt-4 rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-sm">
