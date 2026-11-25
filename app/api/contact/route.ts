@@ -11,7 +11,8 @@ import { rateLimit, getClientIp } from "@/lib/rateLimit";
  *   RESEND_FROM_EMAIL    verified sender, e.g. "REGC Digital <hello@regcdigital.co.za>"
  *                        (default: Resend's test sender onboarding@resend.dev, which can
  *                        only deliver to the email address that owns the Resend account)
- *   RECAPTCHA_SECRET_KEY optional; enables server-side reCAPTCHA verification
+ *   TURNSTILE_SECRET_KEY optional; enables Cloudflare Turnstile bot verification
+ *                        (pair with NEXT_PUBLIC_TURNSTILE_SITE_KEY for the widget)
  */
 
 export const runtime = "nodejs";
@@ -47,19 +48,21 @@ function originAllowed(req: Request): boolean {
   }
 }
 
-async function verifyRecaptcha(token: unknown, ip: string): Promise<boolean> {
-  const secret = process.env.RECAPTCHA_SECRET_KEY;
-  if (!secret) return true;
-  if (typeof token !== "string" || !token) return false;
+async function verifyTurnstile(token: unknown, ip: string): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) return true; // not configured yet
+  if (typeof token !== "string" || !token || token.length > 2048) return false;
   try {
-    const r = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+    const r = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({ secret, response: token, remoteip: ip }).toString(),
     });
-    const data: { success?: boolean } = await r.json();
+    const data: { success?: boolean; "error-codes"?: string[] } = await r.json();
+    if (!data.success) console.warn("[contact] turnstile rejected", data["error-codes"]);
     return data.success === true;
-  } catch {
+  } catch (e) {
+    console.error("[contact] turnstile verify error", e);
     return false;
   }
 }
@@ -101,8 +104,8 @@ export async function POST(req: Request) {
     // honeypot — pretend success for bots
     if (typeof body.website === "string" && body.website.trim() !== "") return NextResponse.json({ success: true });
 
-    if (!(await verifyRecaptcha(body.recaptchaToken, ip))) {
-      return NextResponse.json({ error: "reCAPTCHA verification failed. Please try again." }, { status: 400 });
+    if (!(await verifyTurnstile(body.turnstileToken, ip))) {
+      return NextResponse.json({ error: "Security check failed. Please try again, or send your enquiry on WhatsApp." }, { status: 400 });
     }
 
     const d = Object.fromEntries(

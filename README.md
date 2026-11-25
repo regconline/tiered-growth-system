@@ -21,7 +21,7 @@ Add these in **Vercel → Project → Settings → Environment Variables**, then
 | `RESEND_API_KEY` | yes | API key from resend.com |
 | `CONTACT_TO_EMAIL` | no | Inbox for enquiries — defaults to `regconline@gmail.com` |
 | `RESEND_FROM_EMAIL` | no | Verified sender, e.g. `REGC Digital <hello@regcdigital.co.za>`. Until set, Resend's test sender is used, which only delivers to the email address that owns the Resend account. Setting it also turns on an automatic "we received your enquiry" reply to the visitor. |
-| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` / `RECAPTCHA_SECRET_KEY` | no | Optional Google reCAPTCHA v2 |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` / `TURNSTILE_SECRET_KEY` | no | Cloudflare Turnstile bot protection (free). Add both, then redeploy. |
 
 Until `RESEND_API_KEY` is set, forms show a friendly message with a one-tap "send this enquiry on WhatsApp" fallback, so no lead is lost.
 
