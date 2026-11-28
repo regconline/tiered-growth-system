@@ -46,7 +46,7 @@ The foundation. Done well, SEO is the highest-ROI organic lead source over time.
 ### Effort required:
 2–4 hours/week of in-house effort (writing, optimisation) for serious growth, or R8,000+/month if outsourced.
 
-We covered this in depth in [what is SEO](/blog/what-is-seo-business-survival/) and [how to rank #1 on Google in South Africa](/blog/how-to-rank-1-google-south-africa/).
+
 
 ## Channel 2: Google Business Profile
 

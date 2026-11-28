@@ -46,7 +46,7 @@ Long-form blog posts, videos, podcasts that attract and educate audiences. The s
 ### 6. Email and WhatsApp Marketing
 Nurturing leads and customers through owned channels. Highest ROI per channel when done well.
 
-We dive deep on each in dedicated guides — see [what is SEO](/blog/what-is-seo-business-survival/), [content marketing as backbone](/blog/content-marketing-backbone-online-success/), and [how to grow on social](/blog/social-media-grow-business-90-days/).
+
 
 ## How to choose your channels
 

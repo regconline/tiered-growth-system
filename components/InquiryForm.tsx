@@ -14,15 +14,10 @@ const MESSAGE_MAX = 1500;
 
 export const SERVICE_OPTIONS = [
   "Website Services",
-  "SEO Services",
   "Social Media Management",
   "Content Marketing",
   "Reputation Management",
-  "Patient Communication Systems",
-  "Analytics & Reporting",
-  "Compliance",
   "Branding",
-  "Conversion Optimization",
   "Complete digital partnership",
   "Not sure — please advise",
 ];

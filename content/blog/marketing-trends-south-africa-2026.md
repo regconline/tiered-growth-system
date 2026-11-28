@@ -113,7 +113,7 @@ As paid acquisition costs climb, more South African businesses have woken up to 
 - AI-driven local search (Maps integrated with AI) is emerging
 
 **What to do:**
-Invest in local SEO seriously, not casually. Get consistent reviews, build location pages with real local content, maintain GBP weekly. We dive into this in [local SEO for South African businesses](/blog/local-seo-south-africa-guide/).
+Invest in local SEO seriously, not casually. Get consistent reviews, build location pages with real local content, maintain GBP weekly.
 
 ## 9. Brand still matters — perhaps more than ever (real, contrarian)
 

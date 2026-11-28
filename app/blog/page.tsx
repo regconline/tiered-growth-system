@@ -9,7 +9,7 @@ import JsonLd from "@/components/JsonLd";
 export const metadata: Metadata = pageMetadata({
   title: "Healthcare Marketing Blog — Guides for SA Practices",
   description:
-    "Practical guides on medical websites, SEO, Google reviews, social media, POPIA and HPCSA-compliant marketing for South African doctors, dentists and clinics.",
+    "Practical guides on medical websites, social media, content, Google reviews and HPCSA-aware marketing for South African doctors, dentists and clinics.",
   path: "/blog/",
 });
 

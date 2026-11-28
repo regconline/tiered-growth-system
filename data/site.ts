@@ -11,7 +11,7 @@ export const SITE = {
   legalName: "REGC Digital",
   tagline: "Healthcare digital marketing for South African practices",
   description:
-    "REGC Digital is a specialist healthcare marketing agency in South Africa. We build fast medical websites, run SEO, Google Ads and social media, and grow reviews for doctors, dentists and clinics — HPCSA & POPIA aligned.",
+    "REGC Digital is a specialist healthcare marketing agency in South Africa. We build fast medical websites, run social media and content, and grow reviews for doctors, dentists and clinics — HPCSA & POPIA aligned.",
   logo: "/assets/regc-logo.png",
   defaultOg: "/opengraph-image/",
   defaultOgAlt: "REGC Digital — Healthcare Digital Marketing in South Africa",

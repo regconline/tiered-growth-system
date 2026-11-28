@@ -6,15 +6,10 @@ import {
 
 const SERVICE_ICONS: Record<string, LucideIcon> = {
   "website-services": MonitorSmartphone,
-  "seo-services": Search,
   "social-media": Share2,
   "content-marketing": PenLine,
   "reputation-management": Star,
-  "patient-communication": MessagesSquare,
-  "analytics-reporting": BarChart3,
-  compliance: ShieldCheck,
   branding: Palette,
-  "conversion-optimization": MousePointerClick,
 };
 
 const DOMAIN_ICONS: Record<string, LucideIcon> = {

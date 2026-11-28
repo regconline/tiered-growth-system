@@ -12,6 +12,7 @@ import PageHero from "@/components/PageHero";
 import AnimateIn from "@/components/AnimateIn";
 import InquiryForm from "@/components/InquiryForm";
 import JsonLd from "@/components/JsonLd";
+import Showcase from "@/components/Showcase";
 import { ServiceIcon } from "@/components/ServiceIcon";
 import { WhatsAppIcon } from "@/components/icons";
 
@@ -173,6 +174,19 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
+      {service.slug === "website-services" && (
+        <section id="our-work" className="scroll-mt-24 py-16 md:py-24">
+          <div className="container max-w-6xl px-4">
+            <AnimateIn className="mx-auto mb-12 max-w-2xl text-center">
+              <span className="section-label">Our work</span>
+              <h2 className="mt-4 font-display text-3xl font-extrabold text-foreground md:text-4xl">Websites we&apos;ve built for practices</h2>
+              <p className="mt-4 text-muted-foreground">A few of the live practice websites we&apos;ve designed and built. Tap a preview to visit the site.</p>
+            </AnimateIn>
+            <Showcase />
+          </div>
+        </section>
+      )}
+
       {/* Pricing */}
       <section id="pricing" className="section-tint scroll-mt-24 py-16 md:py-24">
         <div className="container max-w-6xl px-4">
@@ -181,6 +195,17 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             <h2 className="mt-4 font-display text-3xl font-extrabold text-foreground md:text-4xl">Transparent pricing in rand</h2>
             <p className="mt-4 text-muted-foreground">Three clear options to match your stage and budget. Final quotes depend on scope — no hidden extras.</p>
           </AnimateIn>
+          {service.slug === "social-media" && (
+            <AnimateIn className="mx-auto mb-10 max-w-3xl rounded-2xl border border-secondary/30 bg-card p-5 text-center md:p-6">
+              <p className="font-display text-base font-bold text-foreground md:text-lg">Every package includes paid ads</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                The ad budget is 50% of your monthly management fee and goes straight into Facebook and Instagram ads that put your practice in front of new patients nearby.
+              </p>
+              <p className="mt-4 inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full bg-muted px-4 py-2 text-sm font-semibold text-foreground">
+                <span>R3,000 management</span><span className="text-secondary">+</span><span>R1,500 ad budget</span><span className="text-secondary">=</span><span>R4,500/month</span>
+              </p>
+            </AnimateIn>
+          )}
           <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
             {service.tiers.map((t, i) => (
               <AnimateIn key={t.tier} delay={i * 90} className="h-full">
@@ -188,7 +213,11 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               </AnimateIn>
             ))}
           </div>
-          <p className="mt-8 text-center text-xs text-muted-foreground">Prices exclude VAT where applicable and third-party costs such as ad spend, domains or paid software.</p>
+          <p className="mt-8 text-center text-xs text-muted-foreground">
+            {service.slug === "social-media"
+              ? "Package prices include the 50% ad budget. Prices exclude VAT where applicable."
+              : "Prices exclude VAT where applicable and third-party costs such as ad spend, domains or paid software."}
+          </p>
         </div>
       </section>
 

@@ -9,7 +9,7 @@ import { SITE } from "@/data/site";
 const QUICK_REPLIES = [
   { label: "Book a free consultation", msg: "Hi REGC Digital! I'd like to book a free consultation for my practice." },
   { label: "Get pricing for a website", msg: "Hi REGC Digital! Please send me pricing for a practice website." },
-  { label: "Help with SEO / Google", msg: "Hi REGC Digital! I'd like help getting my practice found on Google." },
+  { label: "Branding & logo design", msg: "Hi REGC Digital! I'd like help with branding and a logo for my practice." },
   { label: "Social media management", msg: "Hi REGC Digital! I'm interested in social media management for my practice." },
 ];
 

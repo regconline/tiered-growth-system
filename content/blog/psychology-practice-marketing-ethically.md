@@ -33,11 +33,11 @@ Your website should feel calm, warm and easy to navigate:
 - A simple, low-pressure way to make contact.
 - Crisis information: make it clear that you're not an emergency service and list crisis lines, such as the South African Depression and Anxiety Group (SADAG).
 
-Keep contact forms minimal — name, contact details and preferred contact method. Don't ask people to describe their difficulties in detail through a web form. See our [POPIA guide](/blog/popia-compliance-medical-practice-website/).
+Keep contact forms minimal — name, contact details and preferred contact method. Don't ask people to describe their difficulties in detail through a web form.
 
 ## Be findable — discreetly
 
-- Optimise your [Google Business Profile](/blog/google-business-profile-doctors-guide/) with accurate categories and services.
+- Optimise your Google Business Profile with accurate categories and services.
 - List your practice in reputable therapist directories and your professional association's directory.
 - If you offer online sessions, say so clearly — it widens your reach across the country.
 
@@ -72,7 +72,7 @@ GPs, psychiatrists, schools, employee wellness programmes and other therapists a
 ## Frequently asked questions
 
 **Can psychologists advertise in South Africa?**
-Yes, within the ethical rules of the HPCSA. Advertising should be factual and not misleading, and must respect client confidentiality. See our [HPCSA advertising guide](/blog/hpcsa-advertising-rules-marketing-guide/).
+Yes, within the ethical rules of the HPCSA. Advertising should be factual and not misleading, and must respect client confidentiality.
 
 **Should I list my fees on my website?**
 Many clients appreciate fee transparency, which reduces anxiety about reaching out. If you do, keep them accurate and current.

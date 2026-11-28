@@ -32,7 +32,7 @@ Healthcare advertising is regulated. The HPCSA's ethical rules require advertisi
 - Accurate pricing information if you mention prices.
 - Prescription medicines can't be promoted in ads.
 
-Read our [HPCSA advertising rules guide](/blog/hpcsa-advertising-rules-marketing-guide/) before writing any ad copy.
+
 
 ## Structure campaigns around services, not your practice
 
@@ -70,7 +70,7 @@ Sending ad clicks to your homepage wastes money. Each ad group needs a landing p
 4. Has an obvious call-to-action: tap-to-call, WhatsApp and a short booking request form.
 5. Includes trust signals — qualifications, registration, real photos of the practice.
 
-See our [high-converting website breakdown](/blog/high-converting-website-breakdown/) for the anatomy of a page that converts.
+
 
 ## Track calls, forms and WhatsApp — or you're guessing
 

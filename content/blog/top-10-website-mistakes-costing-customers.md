@@ -82,7 +82,7 @@ Across hundreds of South African business website audits, the same ten mistakes 
 
 **Why it costs you:** You don't appear in Google for the searches that matter. You're invisible to people actively looking for what you offer.
 
-**The fix:** Unique title and meta description for every page. Proper H1/H2 structure. Clean URLs. Dedicated location and service pages. We dive into this in [why your website isn't ranking](/blog/why-website-not-ranking-fix/).
+**The fix:** Unique title and meta description for every page. Proper H1/H2 structure. Clean URLs. Dedicated location and service pages.
 
 ## 10. No clear next step on every page
 

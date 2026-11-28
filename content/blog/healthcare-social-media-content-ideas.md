@@ -78,7 +78,7 @@ Here are 40 ideas that are useful for patients, good for your brand and comforta
 - No comparisons with other practitioners?
 - No individual medical advice in comments?
 
-Our [HPCSA advertising rules guide](/blog/hpcsa-advertising-rules-marketing-guide/) covers this in more depth.
+
 
 ## How often should a practice post?
 
