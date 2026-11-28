@@ -210,7 +210,7 @@ Conversion first, every time. A 1,000-follower account converting at 5% beats a 
 
 ---
 
-Want a free audit of your current social-to-sale system to find where you're leaking conversions? [Book a free review](/contact/) and we'll map your funnel and identify the top three fixes. Or explore our [conversion services](/services/conversion-optimization/) to see how we work with brands to systematically lift social-attributed revenue.
+Want a free audit of your current social-to-sale system to find where you're leaking conversions? [Book a free review](/contact/) and we'll map your funnel and identify the top three fixes.
 
 <!--
 IMAGE SUGGESTIONS

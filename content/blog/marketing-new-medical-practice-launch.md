@@ -49,7 +49,7 @@ Add a privacy policy and POPIA-compliant forms from day one. See [website must-h
 - **Start asking for reviews** from every patient. Early reviews make a big difference for new practices. Use our [ethical review guide](/blog/get-more-google-reviews-medical-practice/).
 - **Post consistently on social media** — two to three times a week. Introduce the team, show the practice and share health tips.
 - **Publish your first articles** answering common patient questions in your speciality.
-- **Set up WhatsApp Business** with quick replies and reminders. See our [WhatsApp guide](/blog/whatsapp-business-medical-practice/).
+- **Set up WhatsApp Business** with quick replies and reminders.
 
 ## Month 3: Optimise and grow
 
@@ -74,7 +74,7 @@ If budget is tight, invest in this order:
 - Inconsistent practice details across Google, directories and signage.
 - No system for asking for reviews.
 - Generic stock photos instead of your real practice.
-- Marketing claims that breach HPCSA rules — read our [advertising rules guide](/blog/hpcsa-advertising-rules-marketing-guide/).
+- Marketing claims that breach HPCSA rules — keep every claim factual and verifiable.
 
 ## Frequently asked questions
 

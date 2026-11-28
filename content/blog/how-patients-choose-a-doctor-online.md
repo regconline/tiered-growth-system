@@ -26,7 +26,7 @@ Patients usually see Google's map pack first, then websites and directories. On 
 
 **What to do:**
 
-- Optimise your [Google Business Profile](/blog/google-business-profile-doctors-guide/).
+- Optimise your Google Business Profile.
 - Build service pages that answer specific searches.
 - Consider Google Ads for urgent or high-value searches.
 
@@ -93,6 +93,6 @@ Both work together. The Google profile often creates the first impression; the w
 As quickly as possible during business hours. Set an away message for after-hours so patients know when to expect a reply.
 
 **How can I find out where my patients come from?**
-Ask new patients at registration and use website and call tracking. Our [analytics service](/services/analytics-reporting/) can set this up.
+Ask new patients at registration and use website and call tracking.
 
 Want to see your practice through a patient's eyes? [Book a free online presence review](/contact/).

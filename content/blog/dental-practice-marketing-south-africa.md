@@ -38,7 +38,7 @@ See [10 must-haves for a healthcare website](/blog/healthcare-website-must-haves
 
 Most dental searches include a location or "near me". Prioritise:
 
-- A fully optimised [Google Business Profile](/blog/google-business-profile-doctors-guide/) with *Dentist* as primary category.
+- A fully optimised Google Business Profile with *Dentist* as primary category.
 - Steady, genuine [Google reviews](/blog/get-more-google-reviews-medical-practice/).
 - Consistent listings across directories.
 - Location information on your website that matches Google exactly.
@@ -72,7 +72,7 @@ Patients — especially anxious ones — want to know what your practice feels l
 - Explanations of procedures and what to expect.
 - Practice news and community involvement.
 
-Be cautious with smile transformations: before-and-after images and testimonials can conflict with HPCSA advertising rules. See our [HPCSA advertising guide](/blog/hpcsa-advertising-rules-marketing-guide/).
+Be cautious with smile transformations: before-and-after images and testimonials can conflict with HPCSA advertising rules.
 
 ## 6. Recall and retention
 

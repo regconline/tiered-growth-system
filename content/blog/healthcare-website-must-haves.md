@@ -62,7 +62,7 @@ If your website collects any personal information, you need a privacy policy exp
 - Include a consent checkbox.
 - Avoid asking for detailed medical information over an unsecured form.
 
-Our [POPIA guide for medical practices](/blog/popia-compliance-medical-practice-website/) explains this step by step.
+
 
 ## 9. Accessibility
 
@@ -77,7 +77,7 @@ A healthcare website should be built to rank from day one:
 - Structured data (schema) for your practice.
 - Location information consistent with your Google Business Profile.
 
-Learn more in our [local SEO playbook](/blog/local-seo-medical-practice/).
+
 
 ## Quick self-audit checklist
 

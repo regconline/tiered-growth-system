@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     "medical marketing agency South Africa",
     "digital marketing for doctors",
     "medical website design South Africa",
-    "medical SEO South Africa",
+    "medical website design South Africa",
     "dental marketing South Africa",
     "HPCSA compliant marketing",
     "Google Ads for doctors",

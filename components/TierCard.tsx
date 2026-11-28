@@ -6,6 +6,7 @@ interface Props {
   tier: TierLevel;
   name: string;
   price: string;
+  priceNote?: string;
   includes: string[];
   result?: string;
   /** anchor for the enquiry CTA (e.g. "#enquire") */
@@ -18,7 +19,7 @@ const config = {
   premium: { label: "Premium", badge: "tier-premium-badge", border: "tier-premium-border", bg: "tier-premium-bg" },
 } as const;
 
-export default function TierCard({ tier, name, price, includes, result, ctaHref }: Props) {
+export default function TierCard({ tier, name, price, priceNote, includes, result, ctaHref }: Props) {
   const c = config[tier];
   const featured = tier === "standard";
   return (
@@ -31,6 +32,7 @@ export default function TierCard({ tier, name, price, includes, result, ctaHref 
         <span className={`inline-block rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider ${c.badge}`}>{c.label}</span>
         <h3 className="mt-4 font-display text-xl font-bold text-foreground">{name}</h3>
         <p className="mt-2 font-display text-2xl font-extrabold text-foreground">{price}</p>
+        {priceNote && <p className="mt-1.5 text-xs font-medium leading-snug text-muted-foreground">{priceNote}</p>}
       </div>
       <div className="flex flex-1 flex-col px-6 py-6">
         <ul className="flex-1 space-y-3">

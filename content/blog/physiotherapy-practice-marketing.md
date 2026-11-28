@@ -14,7 +14,7 @@ Physiotherapy practices grow through two engines: **direct patients** who search
 
 Most direct patients search locally and urgently — they're in pain and want an appointment this week.
 
-- Optimise your [Google Business Profile](/blog/google-business-profile-doctors-guide/) with *Physiotherapist* as the primary category.
+- Optimise your Google Business Profile with *Physiotherapist* as the primary category.
 - List specific services: sports injuries, back and neck pain, post-surgery rehabilitation, dry needling, paediatric physio.
 - Upload photos of your treatment rooms and rehab area.
 - Build a steady flow of [genuine reviews](/blog/get-more-google-reviews-medical-practice/).
@@ -65,7 +65,7 @@ Many patients stop attending once pain eases, before rehabilitation is complete.
 - Reminders and progress check-ins via WhatsApp.
 - Home exercise programmes sent digitally.
 
-See our guide to [reducing no-shows](/blog/reduce-patient-no-shows/).
+
 
 ## 7. Make medical aid information clear
 
