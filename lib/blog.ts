@@ -143,15 +143,15 @@ export function getCategories(): { name: string; count: number }[] {
 
 /** Which service page each blog category should feed (internal linking for SEO). */
 export const CATEGORY_SERVICE: Record<string, string> = {
-  SEO: "seo-services",
-  "Google Ads": "conversion-optimization",
+  SEO: "website-services",
+  "Google Ads": "website-services",
   "Website Development": "website-services",
   "Social Media": "social-media",
   "Content Marketing": "content-marketing",
   Reputation: "reputation-management",
-  "Patient Communication": "patient-communication",
-  Compliance: "compliance",
-  "Digital Marketing": "seo-services",
+  "Patient Communication": "website-services",
+  Compliance: "content-marketing",
+  "Digital Marketing": "website-services",
 };
 
 /** Healthcare-specific guides (used on location pages). */

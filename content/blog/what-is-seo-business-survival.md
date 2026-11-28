@@ -167,7 +167,7 @@ The opposite. AI assistants cite sources — usually the same websites that rank
 
 ---
 
-Want to know what your SEO opportunity actually looks like? [Request a free SEO audit](/contact/) and we'll send you a clear report on where you currently rank, who's outranking you, and what's possible. Or explore our [SEO services](/services/seo-services/) to see how we work.
+Want to know what your SEO opportunity actually looks like? [Request a free SEO audit](/contact/) and we'll send you a clear report on where you currently rank, who's outranking you, and what's possible. Or explore our [website services](/services/website-services/) to see how we work.
 
 <!--
 IMAGE SUGGESTIONS

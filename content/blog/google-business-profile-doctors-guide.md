@@ -108,4 +108,4 @@ Common reasons: the profile isn't verified, the category is wrong, the informati
 Yes, provided you have a permanent presence there with your own signage and staffed hours. Use your suite number to distinguish your listing.
 
 **Should I pay someone to manage my profile?**
-Many practices manage it themselves. If you'd rather focus on patients, our [SEO service](/services/seo-services/) includes full profile optimisation and monthly posts.
+Many practices manage it themselves. If you'd rather focus on patients, [get in touch](/contact/) and we'll point you in the right direction.

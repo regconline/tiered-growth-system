@@ -24,7 +24,7 @@ const generalFAQs = [
   },
   {
     q: "How soon will I see results from digital marketing?",
-    a: "Website launches and paid traffic deliver inquiries in days. SEO and content typically show meaningful movement at 60–90 days, with strong compounding gains from month 4 onward.",
+    a: "A new website can deliver enquiries within days. Social media and content typically build momentum over the first few months, with stronger results from consistency.",
   },
 ];
 
@@ -40,7 +40,7 @@ export const domains: Domain[] = [
     emoji: "🩺",
     titleTag: "Digital Marketing for Doctors & Dentists in South Africa | REGC Digital",
     metaDescription:
-      "Grow your medical or dental practice with HPCSA-compliant digital marketing. Websites, SEO & patient systems built for South African doctors and dentists.",
+      "Grow your medical or dental practice with HPCSA-compliant digital marketing. Websites, social media & branding built for South African doctors and dentists.",
     h1: "Digital Marketing for Medical Practitioners & Dentists in South Africa",
     heroSubheading:
       "Your patients are searching for you on Google right now. Are they finding you — or your competitors?",
@@ -73,7 +73,7 @@ export const domains: Domain[] = [
     emoji: "👩‍⚕️",
     titleTag: "Digital Marketing for Nurses & Private Nursing Practices in South Africa | REGC Digital",
     metaDescription:
-      "Build your private nursing practice online with SANC-compliant digital marketing. Websites, SEO & patient communication for South African nurses.",
+      "Build your private nursing practice online with SANC-compliant digital marketing. Websites, social media & branding for South African nurses.",
     h1: "Digital Marketing for Nurses & Private Nursing Practices in South Africa",
     heroSubheading:
       "Running a private nursing practice? Your patients need to find you — and trust you — before they call.",
@@ -103,7 +103,7 @@ export const domains: Domain[] = [
     emoji: "💊",
     titleTag: "Digital Marketing for Pharmacies & Pharmacists in South Africa | REGC Digital",
     metaDescription:
-      "Grow your independent pharmacy with POPIA & SAPC-compliant digital marketing. Websites, SEO & patient communication systems for South African pharmacists.",
+      "Grow your independent pharmacy with POPIA & SAPC-compliant digital marketing. Websites, social media & branding for South African pharmacists.",
     h1: "Digital Marketing for Pharmacies & Pharmacists in South Africa",
     heroSubheading:
       "Independent pharmacies that invest in digital marketing grow customer retention by over 30%. Is yours?",
@@ -133,7 +133,7 @@ export const domains: Domain[] = [
     emoji: "🦴",
     titleTag: "Digital Marketing for Physiotherapists, Podiatrists & Biokineticists SA | REGC Digital",
     metaDescription:
-      "Get more patients for your physio, podiatry or biokineticist practice. HPCSA-compliant websites, SEO & social media for South African rehabilitation professionals.",
+      "Get more patients for your physio, podiatry or biokineticist practice. HPCSA-compliant websites, social media & branding for South African rehabilitation professionals.",
     h1: "Digital Marketing for Physiotherapists, Podiatrists & Biokineticists in South Africa",
     heroSubheading:
       "Patients searching for 'physiotherapy near me' book the practice that appears first. Make sure it's yours.",
@@ -195,7 +195,7 @@ export const domains: Domain[] = [
     emoji: "🤲",
     titleTag: "Digital Marketing for Occupational Therapists & Prosthetists South Africa | REGC Digital",
     metaDescription:
-      "Grow your OT, prosthetics or arts therapy practice online. HPCSA-compliant websites, SEO & patient communication for South African occupational therapists.",
+      "Grow your OT, prosthetics or arts therapy practice online. HPCSA-compliant websites, social media & branding for South African occupational therapists.",
     h1: "Digital Marketing for Occupational Therapists, Prosthetists & Arts Therapists in South Africa",
     heroSubheading:
       "Families searching for OT or prosthetic services deserve to find you quickly and trust you immediately.",
@@ -255,7 +255,7 @@ export const domains: Domain[] = [
     emoji: "👂",
     titleTag: "Digital Marketing for Speech Therapists & Audiologists in South Africa | REGC Digital",
     metaDescription:
-      "Get more patients for your speech therapy or audiology practice. HPCSA-compliant websites, SEO & content marketing for South African speech and hearing professionals.",
+      "Get more patients for your speech therapy or audiology practice. HPCSA-compliant websites, content marketing & social media for South African speech and hearing professionals.",
     h1: "Digital Marketing for Speech Therapists & Audiologists in South Africa",
     heroSubheading:
       "Parents searching for their child's speech therapist and patients seeking hearing care are looking for you online right now.",
@@ -315,7 +315,7 @@ export const domains: Domain[] = [
     emoji: "🚑",
     titleTag: "Digital Marketing for Emergency Care Services & Paramedics in South Africa | REGC Digital",
     metaDescription:
-      "Build your emergency care or private ambulance brand online. HPCSA-compliant websites, SEO & reputation management for South African emergency care providers.",
+      "Build your emergency care or private ambulance brand online. HPCSA-compliant websites, reputation management & social media for South African emergency care providers.",
     h1: "Digital Marketing for Emergency Care Practitioners & Private Ambulance Services in South Africa",
     heroSubheading:
       "When people need emergency care, they search fast. Make sure your service is found first.",
@@ -375,7 +375,7 @@ export const domains: Domain[] = [
     emoji: "👓",
     titleTag: "Digital Marketing for Optometrists & Opticians in South Africa | REGC Digital",
     metaDescription:
-      "Grow your optometry practice or optical store online. HPCSA-compliant websites, SEO & social media for South African optometrists and dispensing opticians.",
+      "Grow your optometry practice or optical store online. HPCSA-compliant websites, social media & branding for South African optometrists and dispensing opticians.",
     h1: "Digital Marketing for Optometrists & Dispensing Opticians in South Africa",
     heroSubheading:
       "Patients searching for eye tests, frames or contact lenses choose the practice with the strongest online presence.",
@@ -405,7 +405,7 @@ export const domains: Domain[] = [
     emoji: "🦷",
     titleTag: "Digital Marketing for Dental Therapists & Oral Hygienists in South Africa | REGC Digital",
     metaDescription:
-      "Grow your dental therapy or oral hygiene practice online. HPCSA-compliant websites, SEO & patient communication for South African dental therapy professionals.",
+      "Grow your dental therapy or oral hygiene practice online. HPCSA-compliant websites, social media & branding for South African dental therapy professionals.",
     h1: "Digital Marketing for Dental Therapists & Oral Hygienists in South Africa",
     heroSubheading:
       "Patients who prioritise preventive dental care are actively looking for oral health professionals. Make sure they find you.",
@@ -465,7 +465,7 @@ export const domains: Domain[] = [
     emoji: "🌿",
     titleTag: "Digital Marketing for Chiropractors, Homeopaths & Allied Health SA | REGC Digital",
     metaDescription:
-      "Grow your complementary or alternative health practice online. AHPCSA-compliant websites, SEO & social media for South African allied health practitioners.",
+      "Grow your complementary or alternative health practice online. AHPCSA-compliant websites, social media & branding for South African allied health practitioners.",
     h1: "Digital Marketing for Allied Health & Complementary Medicine Practitioners in South Africa",
     heroSubheading:
       "Patients exploring natural and complementary healthcare are searching online. Your expertise deserves to be found.",

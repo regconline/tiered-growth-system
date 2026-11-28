@@ -11,7 +11,7 @@ import { ServiceIcon } from "@/components/ServiceIcon";
 export const metadata: Metadata = pageMetadata({
   title: "Healthcare Marketing Services & Pricing",
   description:
-    "Medical websites, SEO, social media, content, reviews, patient communication, analytics, compliance, branding and conversion optimisation for South African practices — with transparent rand pricing.",
+    "Medical websites, social media management, content marketing, reputation management and branding for South African practices — with transparent rand pricing.",
   path: "/services/",
 });
 

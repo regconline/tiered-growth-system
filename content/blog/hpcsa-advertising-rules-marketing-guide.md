@@ -118,4 +118,4 @@ Only if you are registered as a specialist in that field with the HPCSA. Misrepr
 **Can I advertise prices?**
 You can publish fees, but they must be accurate and not misleading — include what's covered and what isn't.
 
-Want a second pair of eyes on your marketing? Our [compliance service](/services/compliance/) reviews your website, ads and social media against HPCSA and POPIA requirements.
+Want marketing that's built with HPCSA guidelines in mind from day one? Explore our [social media management](/services/social-media/) and [website services](/services/website-services/).

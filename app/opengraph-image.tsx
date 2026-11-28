@@ -5,5 +5,5 @@ export const size = OG_SIZE;
 export const contentType = "image/png";
 
 export default function Image() {
-  return ogCard({ eyebrow: "Healthcare digital marketing · South Africa", title: "More patients. Fully booked diaries.", footer: "Websites · SEO · Social media · Reviews" });
+  return ogCard({ eyebrow: "Healthcare digital marketing · South Africa", title: "More patients. Fully booked diaries.", footer: "Websites · Social media · Reviews · Branding" });
 }

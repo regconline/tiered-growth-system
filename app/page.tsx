@@ -18,7 +18,7 @@ import { faqSchema, itemList } from "@/lib/seo";
 export const metadata: Metadata = {
   title: { absolute: "Healthcare & Medical Marketing Services | REGC Digital" },
   description:
-    "South Africa's healthcare digital marketing agency. Medical marketing services for doctors, dentists and clinics: websites, medical SEO, Google Ads, social media and reviews. HPCSA & POPIA aligned.",
+    "South Africa's healthcare digital marketing agency. Medical marketing services for doctors, dentists and clinics: websites, social media, content, reviews and branding. HPCSA & POPIA aligned.",
   alternates: { canonical: "/" },
   openGraph: { url: "/", type: "website", images: [{ url: SITE.defaultOg, width: 1200, height: 630, alt: SITE.defaultOgAlt }] },
 };
@@ -34,7 +34,7 @@ const faqs = [
   },
   {
     q: "How quickly will I see results?",
-    a: "A new website or a Google Ads campaign can generate enquiries within days of launch. Local SEO usually shows movement within 30–60 days, with stronger, compounding gains from month four onward.",
+    a: "A new website can start generating enquiries within days of launch. Social media, content and reviews build trust steadily, with stronger results as consistency compounds over the following months.",
   },
   {
     q: "Do I have to sign a long-term contract?",
@@ -256,7 +256,7 @@ export default function HomePage() {
                 {[
                   "No fake reviews, testimonials or guaranteed-outcome claims",
                   "POPIA-compliant forms, tracking and patient data handling",
-                  "Plain-English monthly reports focused on enquiries and bookings",
+                  "Clear pricing in rand, month-to-month with no lock-in",
                 ].map((p) => (
                   <li key={p} className="flex items-start gap-3 text-foreground">
                     <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-secondary" /> {p}
@@ -265,7 +265,7 @@ export default function HomePage() {
               </ul>
               <div className="mt-9 flex flex-wrap gap-3">
                 <Link href="/about/" className="btn-primary">About REGC Digital <ArrowRight className="h-4 w-4" /></Link>
-                <Link href="/services/compliance/" className="btn-secondary">Our compliance approach</Link>
+                <Link href="/services/" className="btn-secondary">View our services</Link>
               </div>
             </AnimateIn>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

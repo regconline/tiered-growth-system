@@ -37,32 +37,7 @@ export const serviceExtras: Record<string, ServiceExtra> = {
       { q: "Will my website work with online booking?", a: "Yes. We can add a request-based booking form, WhatsApp booking, or integrate the booking tool you already use." },
     ],
     relatedPosts: ["healthcare-website-must-haves", "fast-website-doubles-sales", "custom-vs-template-website-south-africa"],
-    related: ["seo-services", "conversion-optimization", "branding"],
-  },
-  "seo-services": {
-    metaTitle: "Medical SEO Services South Africa | Healthcare SEO Company",
-    metaDescription:
-      "Medical SEO services for South African doctors, dentists and clinics: Google Business Profile, local SEO, technical fixes and patient-focused content. From R2,500/month.",
-    keywords: ["medical SEO South Africa", "SEO for doctors", "dental SEO", "local SEO for medical practice", "Google Business Profile for doctors"],
-    idealFor: [
-      "Practices that don't appear when patients search “near me”",
-      "Specialists competing in busy metros like Johannesburg or Cape Town",
-      "Practices that rely on medical-aid patients searching online",
-      "Anyone tired of paying for every click with ads",
-    ],
-    outcomes: [
-      { title: "Map-pack visibility", text: "Show up in Google Maps results for your suburb and services." },
-      { title: "Compounding traffic", text: "Rankings keep sending patients without paying per click." },
-      { title: "Clear reporting", text: "Monthly rankings, traffic and enquiry reports in plain English." },
-    ],
-    faqs: [
-      { q: "How long does medical SEO take to work?", a: "Google Business Profile improvements can show results within weeks. Competitive keywords typically take 3–6 months of consistent work, with results compounding over time." },
-      { q: "Do you guarantee a #1 ranking?", a: "No honest agency can guarantee rankings — Google controls the results. We guarantee the work: a clear plan, best-practice execution and transparent monthly reporting." },
-      { q: "What is local SEO?", a: "Local SEO helps your practice appear for location-based searches such as “dentist in Sandton” or “GP near me”, mainly through your Google Business Profile, reviews, citations and location-specific website content." },
-      { q: "Do I need a new website for SEO?", a: "Not always. We start with an audit; if your current site is technically sound we optimise it. If it's slow or poorly structured, a rebuild is often the faster route to rankings." },
-    ],
-    relatedPosts: ["local-seo-medical-practice", "google-business-profile-doctors-guide", "why-website-not-ranking-fix"],
-    related: ["content-marketing", "website-services", "reputation-management"],
+    related: ["branding", "social-media", "content-marketing"],
   },
   "social-media": {
     metaTitle: "Social Media Management for Medical Practices South Africa",
@@ -112,7 +87,7 @@ export const serviceExtras: Record<string, ServiceExtra> = {
       { q: "Can content be repurposed for social media?", a: "Absolutely. We can turn each article into social posts, carousels or short video scripts." },
     ],
     relatedPosts: ["content-marketing-backbone-online-success", "seo-content-writing-rank-and-convert", "evergreen-vs-trending-content"],
-    related: ["seo-services", "social-media", "website-services"],
+    related: ["social-media", "website-services", "reputation-management"],
   },
   "reputation-management": {
     metaTitle: "Online Reputation Management South Africa for Practices",
@@ -137,82 +112,7 @@ export const serviceExtras: Record<string, ServiceExtra> = {
       { q: "How quickly will my rating improve?", a: "Most practices see a steady flow of new reviews within the first month of implementing a review request system." },
     ],
     relatedPosts: ["get-more-google-reviews-medical-practice", "how-patients-choose-a-doctor-online", "local-seo-medical-practice"],
-    related: ["seo-services", "patient-communication", "social-media"],
-  },
-  "patient-communication": {
-    metaTitle: "WhatsApp Business & Appointment Reminders for Practices",
-    metaDescription:
-      "WhatsApp Business setup, automated appointment reminders and patient follow-ups that reduce no-shows. POPIA-compliant patient communication for SA practices.",
-    keywords: ["WhatsApp Business for doctors", "appointment reminder system South Africa", "reduce patient no-shows", "patient communication automation"],
-    idealFor: [
-      "Practices losing income to missed appointments",
-      "Busy receptions overwhelmed by calls and WhatsApps",
-      "Practices that want recall and follow-up reminders",
-      "Clinics without after-hours enquiry handling",
-    ],
-    outcomes: [
-      { title: "Fewer no-shows", text: "Automated reminders patients actually read — on WhatsApp." },
-      { title: "Faster replies", text: "Smart auto-replies and quick answers for common questions." },
-      { title: "Better retention", text: "Follow-ups and recalls that bring patients back." },
-    ],
-    faqs: [
-      { q: "Is WhatsApp POPIA compliant for patient communication?", a: "It can be, when patients opt in, messages are kept to administrative content, and access to the business account is controlled. We set it up with consent and data-minimisation in mind." },
-      { q: "Will this work with my practice management software?", a: "Many systems can integrate. We review your current software and recommend the simplest reliable setup." },
-      { q: "Can patients book through WhatsApp?", a: "Yes. We can set up booking-request flows that your reception confirms." },
-      { q: "Is there a monthly fee?", a: "The Quick Setup is once-off. Smart Comms and Full Automation include a small monthly fee for messaging tools and support." },
-    ],
-    relatedPosts: ["whatsapp-business-medical-practice", "reduce-patient-no-shows", "popia-compliance-medical-practice-website"],
-    related: ["reputation-management", "conversion-optimization", "website-services"],
-  },
-  "analytics-reporting": {
-    metaTitle: "Marketing Analytics & Reporting for Medical Practices",
-    metaDescription:
-      "Google Analytics 4, call and WhatsApp tracking, and clear monthly reports that show where your patients come from. Make data-driven marketing decisions.",
-    keywords: ["Google Analytics for medical practice", "healthcare marketing reporting", "conversion tracking doctors"],
-    idealFor: [
-      "Practices spending on marketing without knowing what works",
-      "Practices running Google Ads without conversion tracking",
-      "Multi-location clinics comparing performance",
-      "Owners who want simple, monthly numbers",
-    ],
-    outcomes: [
-      { title: "Know your sources", text: "See which channels bring enquiries and bookings." },
-      { title: "Stop wasted spend", text: "Cut what doesn't work and double down on what does." },
-      { title: "Plain-English reports", text: "Monthly reports focused on outcomes, not vanity metrics." },
-    ],
-    faqs: [
-      { q: "What do you track?", a: "Website visits, enquiry form submissions, calls, WhatsApp clicks, booking requests and campaign performance — without collecting any patient health information." },
-      { q: "Is tracking POPIA compliant?", a: "We configure analytics to avoid personal health information and recommend appropriate privacy notices and consent." },
-      { q: "Can I see a live dashboard?", a: "Yes, on our Data-Driven plan you receive a live dashboard plus a monthly summary with recommendations." },
-      { q: "Do I need GA4 if I already have Universal Analytics?", a: "Universal Analytics stopped processing data in 2023, so GA4 is now required for website analytics." },
-    ],
-    relatedPosts: ["how-patients-choose-a-doctor-online", "google-ads-medical-practice"],
-    related: ["conversion-optimization", "seo-services", "website-services"],
-  },
-  compliance: {
-    metaTitle: "HPCSA Advertising & POPIA Compliance for Practice Marketing",
-    metaDescription:
-      "Make sure your website, ads and social media meet HPCSA advertising rules and POPIA. Compliance audits, privacy policies, consent and disclaimers for SA practices.",
-    keywords: ["HPCSA advertising rules", "POPIA compliance medical practice", "healthcare marketing compliance South Africa", "privacy policy for doctors"],
-    idealFor: [
-      "Practices unsure whether their website breaks HPCSA rules",
-      "Practices collecting patient details through online forms",
-      "Clinics running ads or social media campaigns",
-      "Anyone preparing for a POPIA review",
-    ],
-    outcomes: [
-      { title: "Peace of mind", text: "A clear audit of what's compliant and what needs to change." },
-      { title: "Fixed, not just flagged", text: "We update content, forms, policies and consent flows." },
-      { title: "Ongoing protection", text: "New campaigns reviewed before they go live." },
-    ],
-    faqs: [
-      { q: "What does HPCSA say about advertising?", a: "In short, advertising must be factual and not misleading. Practitioners should avoid testimonials, comparisons with colleagues, guaranteed results and claims of superiority. Always refer to the current HPCSA ethical rules for your profession." },
-      { q: "Does my website need a privacy policy?", a: "Yes. If your website collects any personal information — even a name and phone number — POPIA requires you to explain how it's used, stored and protected." },
-      { q: "Is this legal advice?", a: "No. We implement marketing best practice aligned with HPCSA and POPIA guidance. For legal opinions, consult a qualified attorney." },
-      { q: "Do you check other councils' rules?", a: "Yes — we align work with SANC, SAPC, AHPCSA and other councils depending on your profession." },
-    ],
-    relatedPosts: ["hpcsa-advertising-rules-marketing-guide", "popia-compliance-medical-practice-website", "healthcare-social-media-content-ideas"],
-    related: ["website-services", "social-media", "patient-communication"],
+    related: ["social-media", "website-services", "content-marketing"],
   },
   branding: {
     metaTitle: "Healthcare Branding & Logo Design for Medical Practices",
@@ -238,30 +138,5 @@ export const serviceExtras: Record<string, ServiceExtra> = {
     ],
     relatedPosts: ["marketing-new-medical-practice-launch", "dental-practice-marketing-south-africa"],
     related: ["website-services", "social-media", "content-marketing"],
-  },
-  "conversion-optimization": {
-    metaTitle: "Conversion Optimisation — Turn Website Visitors into Patients",
-    metaDescription:
-      "Get more bookings from the traffic you already have. Landing pages, clearer calls-to-action, faster forms and booking flows for medical practices in South Africa.",
-    keywords: ["conversion rate optimisation healthcare", "medical landing page design", "increase patient bookings online"],
-    idealFor: [
-      "Practices with traffic but few enquiries",
-      "Practices running Google or Meta ads",
-      "Specialists launching a new procedure or service",
-      "Clinics with complicated booking processes",
-    ],
-    outcomes: [
-      { title: "More enquiries", text: "Remove friction so more visitors call, WhatsApp or book." },
-      { title: "Lower ad costs", text: "Better landing pages mean cheaper patient acquisition." },
-      { title: "Evidence-based", text: "Changes are tested and measured, not guessed." },
-    ],
-    faqs: [
-      { q: "What is a good conversion rate for a medical website?", a: "It varies by speciality and traffic source, but many practice websites convert only a small percentage of visitors. Even modest improvements can mean several extra patients every month." },
-      { q: "Do I need a lot of traffic for A/B testing?", a: "Formal A/B tests need meaningful traffic. For smaller practices we use best-practice improvements, user recordings and before-and-after measurement instead." },
-      { q: "Will you change my whole website?", a: "Not necessarily. We prioritise the highest-impact pages and elements first — often the homepage, service pages and contact flow." },
-      { q: "How do you measure success?", a: "By tracked enquiries: form submissions, calls, WhatsApp clicks and booking requests." },
-    ],
-    relatedPosts: ["high-converting-website-breakdown", "top-10-website-mistakes-costing-customers"],
-    related: ["analytics-reporting", "website-services", "seo-services"],
   },
 };

@@ -23,8 +23,8 @@ export async function generateMetadata({ params }: { params: Promise<{ location:
   const isProvince = loc.type === "province";
   const provinceName = isProvince ? loc.name : (loc.province ?? loc.region);
   const description = isProvince
-    ? `Specialist healthcare digital marketing across ${loc.name} — HPCSA-aligned websites, SEO, Google Ads, social media and reputation management for doctors, dentists, physios and allied health professionals.`
-    : `Healthcare digital marketing for medical practices in ${loc.name}, ${provinceName} — HPCSA-aligned websites, SEO, Google Ads and patient acquisition campaigns built for ${loc.name} doctors and specialists.`;
+    ? `Specialist healthcare digital marketing across ${loc.name} — HPCSA-aligned websites, social media, content, reputation management and branding for doctors, dentists, physios and allied health professionals.`
+    : `Healthcare digital marketing for medical practices in ${loc.name}, ${provinceName} — HPCSA-aligned websites, social media, content and branding built for ${loc.name} doctors and specialists.`;
 
   const pageTitle = `Medical & Healthcare Marketing in ${loc.name}`;
   return {
@@ -90,10 +90,11 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
       areaServed,
       serviceType: [
         "Healthcare Marketing",
-        "Medical SEO",
+        "Healthcare Social Media Management",
         "Healthcare Website Design",
         "Patient Acquisition",
-        "Google Ads for Doctors",
+        "Healthcare Branding",
+        "Reputation Management",
         "Healthcare Content Marketing",
       ],
       address: { "@type": "PostalAddress", addressRegion: loc.region, addressCountry: "ZA" },
@@ -189,7 +190,7 @@ export default async function LocationPage({ params }: { params: Promise<{ locat
 
           <div className="mb-12">
             <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2">Our services for {loc.name} practices</h2>
-            <p className="text-muted-foreground mb-6">Every service below is delivered with {loc.name}-specific local SEO, geo-targeted ads, and patient demographics in mind.</p>
+            <p className="text-muted-foreground mb-6">Every service below is delivered with {loc.name}'s local patients and demographics in mind.</p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {featuredServices.map((s) => (
                 <Link key={s.slug} href={`/services/${s.slug}/`} className="card card-hover block p-5">

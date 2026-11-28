@@ -96,4 +96,4 @@ Yes. Many practices accept booking requests on WhatsApp and confirm them in thei
 **What should we never send on WhatsApp?**
 Avoid sending sensitive clinical information, identity documents or images of patients without consent and a clear policy.
 
-Want WhatsApp set up and automated for you? Our [patient communication service](/services/patient-communication/) handles setup, templates and reminders.
+Want a website with WhatsApp click-to-chat built in? Explore our [website services](/services/website-services/).

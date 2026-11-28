@@ -67,37 +67,6 @@ export const serviceDetails: ServiceDetail[] = [
     ],
   },
   {
-    slug: "seo-services",
-    icon: "🔍",
-    title: "SEO Services",
-    tagline: "Get found by patients searching for your services.",
-    description:
-      "Search Engine Optimization (SEO) ensures your practice appears when patients search for healthcare services in your area. We specialize in local SEO for medical practices, helping you rank for terms like 'doctor near me', 'dentist in Johannesburg', or 'physiotherapy Cape Town'.",
-    whyItMatters:
-      "93% of online experiences begin with a search engine. If your practice doesn't appear on the first page of Google, you're losing patients to competitors who do.",
-    features: [
-      "Google Business Profile optimization",
-      "Local keyword targeting",
-      "On-page SEO (titles, meta, content)",
-      "Technical SEO audits & fixes",
-      "Competitor analysis",
-      "Content strategy & blog posts",
-      "Internal linking optimization",
-      "Monthly performance reports",
-    ],
-    process: [
-      { step: "Audit", description: "Full technical and content SEO audit of your current site." },
-      { step: "Strategy", description: "Keyword research and competitive analysis for your area." },
-      { step: "Optimize", description: "On-page, technical, and content optimizations." },
-      { step: "Monitor & Grow", description: "Ongoing optimization with monthly reporting." },
-    ],
-    tiers: [
-      { tier: "basic", name: "Local Visibility", price: "R2,500 – R4,000/mo", includes: ["Google Business Profile optimization", "Local keywords (e.g. \"doctor near me\")", "Basic on-page SEO", "Monthly report"], result: "Appear in local searches" },
-      { tier: "standard", name: "Search Growth", price: "R5,000 – R8,000/mo", includes: ["Everything in Basic PLUS:", "On-page optimization (titles, content)", "Technical SEO fixes", "Competitor analysis", "1–2 blog posts/month"], result: "Higher rankings + more traffic" },
-      { tier: "premium", name: "Authority SEO", price: "R10,000 – R15,000+/mo", includes: ["Everything in Standard PLUS:", "Advanced keyword strategy", "4+ blog posts/month", "Internal linking strategy", "Continuous optimization"], result: "Dominates local healthcare search" },
-    ],
-  },
-  {
     slug: "social-media",
     icon: "📱",
     title: "Social Media Management",
@@ -191,99 +160,6 @@ export const serviceDetails: ServiceDetail[] = [
     ],
   },
   {
-    slug: "patient-communication",
-    icon: "💬",
-    title: "Patient Communication Systems",
-    tagline: "Automate patient touchpoints and reduce no-shows.",
-    description:
-      "Effective patient communication reduces no-shows, improves satisfaction, and increases retention. We set up and manage WhatsApp Business, automated appointment reminders, follow-up sequences, and full patient journey automation systems tailored to healthcare practices.",
-    whyItMatters:
-      "Automated appointment reminders alone can reduce no-shows by up to 38%. Consistent follow-up communication increases patient retention by 25%.",
-    features: [
-      "WhatsApp Business setup & automation",
-      "Appointment reminder systems",
-      "Lead capture & follow-up forms",
-      "Email & SMS integration",
-      "Patient journey automation",
-      "Auto-reply configuration",
-      "Multi-channel communication",
-      "Performance tracking",
-    ],
-    process: [
-      { step: "Assess", description: "Map your current patient communication touchpoints." },
-      { step: "Design", description: "Create communication workflows for each patient stage." },
-      { step: "Implement", description: "Set up tools, automations, and integrations." },
-      { step: "Optimize", description: "Monitor and refine communication performance." },
-    ],
-    tiers: [
-      { tier: "basic", name: "Quick Setup", price: "R1,000 – R2,000 (setup)", includes: ["WhatsApp Business setup", "Basic auto-replies"] },
-      { tier: "standard", name: "Smart Comms", price: "R2,500 – R4,000 setup + R500/mo", includes: ["Appointment reminders", "Lead capture forms", "Follow-ups"] },
-      { tier: "premium", name: "Full Automation", price: "R5,000+ setup + R1,000 – R3,000/mo", includes: ["Full automation system", "Email + SMS integration", "Patient journey automation"], result: "Better retention + fewer missed bookings" },
-    ],
-  },
-  {
-    slug: "analytics-reporting",
-    icon: "📊",
-    title: "Analytics & Reporting",
-    tagline: "Make data-driven decisions for your practice.",
-    description:
-      "Understanding your digital performance is essential for growth. We set up comprehensive analytics tracking, provide monthly performance reports, and deliver actionable insights that help you understand where your patients come from and how to get more of them.",
-    whyItMatters:
-      "Practices that track and act on their digital analytics grow 2.5x faster than those that don't. Data removes guesswork from marketing decisions.",
-    features: [
-      "Google Analytics 4 setup",
-      "Conversion tracking",
-      "Patient acquisition funnels",
-      "Monthly performance reports",
-      "Traffic source analysis",
-      "ROI measurement",
-      "Strategy recommendations",
-      "Custom dashboards",
-    ],
-    process: [
-      { step: "Setup", description: "Install and configure analytics across all digital channels." },
-      { step: "Track", description: "Set up conversion goals and patient acquisition tracking." },
-      { step: "Report", description: "Deliver clear, actionable monthly reports." },
-      { step: "Recommend", description: "Provide strategic recommendations based on data." },
-    ],
-    tiers: [
-      { tier: "basic", name: "Tracking Setup", price: "R1,000 (setup)", includes: ["Google Analytics setup"] },
-      { tier: "standard", name: "Monthly Insights", price: "R1,500 – R2,500/mo", includes: ["Monthly reports", "Traffic insights"] },
-      { tier: "premium", name: "Data-Driven", price: "R3,000/mo", includes: ["Conversion tracking", "Patient acquisition insights", "Strategy recommendations"], result: "Data-driven decisions" },
-    ],
-  },
-  {
-    slug: "compliance",
-    icon: "⚖️",
-    title: "Compliance",
-    tagline: "Stay compliant with HPCSA and POPIA regulations.",
-    description:
-      "Healthcare marketing in South Africa must comply with strict regulations from the Health Professions Council (HPCSA) and the Protection of Personal Information Act (POPIA). We ensure your digital presence meets all legal requirements, protecting your practice from penalties and building patient trust.",
-    whyItMatters:
-      "Non-compliance with HPCSA advertising rules can result in disciplinary action. POPIA violations carry fines of up to R10 million. Compliance isn't optional — it's essential.",
-    features: [
-      "HPCSA advertising compliance audits",
-      "POPIA compliance implementation",
-      "Privacy policy creation",
-      "Terms & conditions drafting",
-      "Disclaimer implementation",
-      "Consent management systems",
-      "Cross-platform compliance",
-      "Ongoing compliance monitoring",
-    ],
-    process: [
-      { step: "Audit", description: "Review all digital assets for compliance issues." },
-      { step: "Remediate", description: "Fix non-compliant content, forms, and processes." },
-      { step: "Implement", description: "Add required policies, disclaimers, and consent systems." },
-      { step: "Monitor", description: "Ongoing monitoring for continued compliance." },
-    ],
-    tiers: [
-      { tier: "basic", name: "HPCSA Check", price: "R1,500", includes: ["Basic HPCSA compliance check"] },
-      { tier: "standard", name: "POPIA Ready", price: "R2,500 – R3,500", includes: ["POPIA compliance", "Privacy policy", "Disclaimers"] },
-      { tier: "premium", name: "Full Compliance", price: "R4,000 – R5,000", includes: ["Full compliance audit", "Implementation across platforms"] },
-    ],
-  },
-  {
     slug: "branding",
     icon: "🧩",
     title: "Branding",
@@ -312,37 +188,6 @@ export const serviceDetails: ServiceDetail[] = [
       { tier: "basic", name: "Logo Only", price: "R1,500 – R3,000", includes: ["Logo design"] },
       { tier: "standard", name: "Brand Foundation", price: "R4,000 – R7,000", includes: ["Logo + colors + typography"] },
       { tier: "premium", name: "Full Brand Identity", price: "R8,000 – R12,000", includes: ["Full brand identity", "Brand guidelines", "Templates"] },
-    ],
-  },
-  {
-    slug: "conversion-optimization",
-    icon: "📈",
-    title: "Conversion Optimization",
-    tagline: "Turn more website visitors into booked patients.",
-    description:
-      "Getting traffic is only half the battle — converting visitors into patients is where the real value lies. We optimize your website's calls-to-action, landing pages, and patient funnels to maximize the number of inquiries and bookings you get from your existing traffic.",
-    whyItMatters:
-      "A 1% increase in conversion rate can mean 10+ additional patients per month. Conversion optimization delivers ROI from traffic you're already paying for.",
-    features: [
-      "CTA optimization & A/B testing",
-      "Landing page design & optimization",
-      "Patient funnel development",
-      "Form optimization",
-      "Booking flow improvements",
-      "Heat mapping & user behavior analysis",
-      "Continuous testing & iteration",
-      "Conversion rate reporting",
-    ],
-    process: [
-      { step: "Analyze", description: "Identify conversion bottlenecks and drop-off points." },
-      { step: "Hypothesize", description: "Develop data-driven improvement hypotheses." },
-      { step: "Test", description: "Implement and A/B test changes." },
-      { step: "Scale", description: "Roll out winning variations and continue optimizing." },
-    ],
-    tiers: [
-      { tier: "basic", name: "Quick Wins", price: "R2,000/mo", includes: ["CTA improvements"] },
-      { tier: "standard", name: "Funnel Builder", price: "R4,000 – R6,000/mo", includes: ["Landing page optimization", "Funnel improvements"] },
-      { tier: "premium", name: "Full Conversion Engine", price: "R7,000 – R10,000/mo", includes: ["Full conversion strategy", "Continuous optimization"], result: "More patients from same traffic" },
     ],
   },
 ];

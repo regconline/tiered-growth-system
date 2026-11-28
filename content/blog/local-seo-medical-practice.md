@@ -115,4 +115,4 @@ Yes. Google uses your website to confirm relevance and trust, and patients use i
 **Is local SEO a once-off job?**
 No. Reviews, posts, photos and content need regular attention — competitors are improving too.
 
-Want your practice in the top three? Our [SEO services](/services/seo-services/) are built specifically for South African healthcare practices — or [book a free consultation](/contact/).
+Want your practice in the top three? Our [website services](/services/website-services/) are built for local search from day one — or [book a free consultation](/contact/).

@@ -93,6 +93,6 @@ Both work together. The Google profile often creates the first impression; the w
 As quickly as possible during business hours. Set an away message for after-hours so patients know when to expect a reply.
 
 **How can I find out where my patients come from?**
-Ask new patients at registration and use website and call tracking. Our [analytics service](/services/analytics-reporting/) can set this up.
+Ask new patients at registration and use website and call tracking. Your booking system or website forms can help you track this.
 
 Want to see your practice through a patient's eyes? [Book a free online presence review](/contact/).

@@ -192,7 +192,7 @@ No. Quality and topical depth beat frequency. One excellent in-depth post per fo
 
 ---
 
-Want to know exactly what's blocking you from ranking #1 in your market? [Get a free competitor and keyword audit](/contact/) — we'll show you who's beating you, why, and what's needed to overtake them. Or explore our [SEO services](/services/seo-services/) to see how we work.
+Want to know exactly what's blocking you from ranking #1 in your market? [Get a free competitor and keyword audit](/contact/) — we'll show you who's beating you, why, and what's needed to overtake them. Or explore our [website services](/services/website-services/) to see how we work.
 
 <!--
 IMAGE SUGGESTIONS

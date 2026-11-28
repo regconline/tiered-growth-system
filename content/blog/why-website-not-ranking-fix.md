@@ -163,7 +163,7 @@ Yes — Google Search Console (free), PageSpeed Insights (free), and a basic bac
 
 ---
 
-Want a free, specific diagnosis of why your site isn't ranking? [Request a free audit](/contact/) and we'll send you a one-page report with the top three reasons and the fix for each. Or explore our [SEO services](/services/seo-services/) to see how we systematically rebuild rankings for South African businesses.
+Want a free, specific diagnosis of why your site isn't ranking? [Request a free audit](/contact/) and we'll send you a one-page report with the top three reasons and the fix for each. Or explore our [website services](/services/website-services/) to see how we work.
 
 <!--
 IMAGE SUGGESTIONS

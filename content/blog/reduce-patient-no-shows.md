@@ -80,6 +80,6 @@ Many practices do, provided the policy is clearly communicated in advance and ap
 WhatsApp messages are often read faster and allow two-way replies, but some patients prefer SMS. Ask patients their preferred channel.
 
 **Can reminders be automated?**
-Yes — many booking systems and WhatsApp Business Platform providers send automated reminders. Our [patient communication service](/services/patient-communication/) can set this up for you.
+Yes — many booking systems and WhatsApp Business Platform providers send automated reminders. Ask your booking system provider about setting this up.
 
 Related reading: [WhatsApp Business for medical practices](/blog/whatsapp-business-medical-practice/).

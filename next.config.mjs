@@ -80,6 +80,12 @@ const nextConfig = {
         destination: '/services/',
         permanent: true,
       },
+      // Services no longer offered (removed Nov 2026)
+      ...['seo-services', 'patient-communication', 'analytics-reporting', 'compliance', 'conversion-optimization']
+        .flatMap((slug) => [
+          { source: `/services/${slug}`, destination: '/services/', permanent: true },
+          { source: `/services/${slug}/`, destination: '/services/', permanent: true },
+        ]),
     ];
   },
   async headers() {

@@ -217,7 +217,7 @@ Yes — set yourself up as a service-area business in GBP, hide your address, an
 
 ---
 
-Ready to dominate your local market in Google? [Request a free local SEO audit](/contact/) and we'll send you a clear breakdown of where you stand vs your local competitors, with the top three actions to take. Or explore our [local SEO services](/services/seo-services/) to see how we run programmes for SMEs.
+Ready to dominate your local market in Google? [Request a free local SEO audit](/contact/) and we'll send you a clear breakdown of where you stand vs your local competitors, with the top three actions to take. Or explore our [website services](/services/website-services/) to see how we work.
 
 <!--
 IMAGE SUGGESTIONS

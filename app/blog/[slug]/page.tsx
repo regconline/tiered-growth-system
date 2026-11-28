@@ -53,7 +53,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const path = `/blog/${post.slug}/`;
   const url = abs(path);
   const modified = post.updatedDate ?? post.pubDate;
-  const service = serviceDetails.find((s) => s.slug === (CATEGORY_SERVICE[post.category] ?? "seo-services"));
+  const service = serviceDetails.find((s) => s.slug === (CATEGORY_SERVICE[post.category] ?? "website-services"));
   const topCities = cities.slice(0, 10);
 
   const jsonLd: object[] = [
